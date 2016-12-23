@@ -6,13 +6,7 @@ package controller;
 public final class Example {
   private Example() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:controller.Request)
@@ -47,27 +41,37 @@ public final class Example {
   /**
    * Protobuf type {@code controller.Request}
    */
-  public  static final class Request extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Request extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:controller.Request)
       RequestOrBuilder {
     // Use Request.newBuilder() to construct.
-    private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Request() {
+    private Request(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Request defaultInstance;
+    public static Request getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Request getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Request(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -118,7 +122,7 @@ public final class Example {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -129,11 +133,26 @@ public final class Example {
       return controller.Example.internal_static_controller_Request_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return controller.Example.internal_static_controller_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               controller.Example.Request.class, controller.Example.Request.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Request> PARSER =
+        new com.google.protobuf.AbstractParser<Request>() {
+      public Request parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Request(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Request> getParserForType() {
+      return PARSER;
     }
 
     public interface SearchOrBuilder extends
@@ -157,28 +176,37 @@ public final class Example {
     /**
      * Protobuf type {@code controller.Request.Search}
      */
-    public  static final class Search extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Search extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Request.Search)
         SearchOrBuilder {
       // Use Search.newBuilder() to construct.
-      private Search(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Search(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Search() {
-        title_ = "";
+      private Search(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Search defaultInstance;
+      public static Search getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Search getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Search(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -209,7 +237,7 @@ public final class Example {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -220,16 +248,31 @@ public final class Example {
         return controller.Example.internal_static_controller_Request_Search_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Request_Search_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Example.Request.Search.class, controller.Example.Request.Search.Builder.class);
       }
 
+      public static com.google.protobuf.Parser<Search> PARSER =
+          new com.google.protobuf.AbstractParser<Search>() {
+        public Search parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Search(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Search> getParserForType() {
+        return PARSER;
+      }
+
       private int bitField0_;
       public static final int TITLE_FIELD_NUMBER = 1;
-      private volatile java.lang.Object title_;
+      private java.lang.Object title_;
       /**
        * <code>required string title = 1;</code>
        */
@@ -270,6 +313,9 @@ public final class Example {
         }
       }
 
+      private void initFields() {
+        title_ = "";
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -286,60 +332,33 @@ public final class Example {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
+          output.writeBytes(1, getTitleBytes());
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, getTitleBytes());
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Example.Request.Search)) {
-          return super.equals(obj);
-        }
-        controller.Example.Request.Search other = (controller.Example.Request.Search) obj;
-
-        boolean result = true;
-        result = result && (hasTitle() == other.hasTitle());
-        if (hasTitle()) {
-          result = result && getTitle()
-              .equals(other.getTitle());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasTitle()) {
-          hash = (37 * hash) + TITLE_FIELD_NUMBER;
-          hash = (53 * hash) + getTitle().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Example.Request.Search parseFrom(
@@ -365,57 +384,46 @@ public final class Example {
       }
       public static controller.Example.Request.Search parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Request.Search parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Example.Request.Search parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Example.Request.Search parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Example.Request.Search parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Request.Search parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Example.Request.Search prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -423,7 +431,7 @@ public final class Example {
        * Protobuf type {@code controller.Request.Search}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Request.Search)
           controller.Example.Request.SearchOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -431,7 +439,7 @@ public final class Example {
           return controller.Example.internal_static_controller_Request_Search_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Example.internal_static_controller_Request_Search_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -444,20 +452,27 @@ public final class Example {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
           title_ = "";
           bitField0_ = (bitField0_ & ~0x00000001);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -490,32 +505,6 @@ public final class Example {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Example.Request.Search) {
             return mergeFrom((controller.Example.Request.Search)other);
@@ -532,13 +521,13 @@ public final class Example {
             title_ = other.title_;
             onChanged();
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasTitle()) {
+            
             return false;
           }
           return true;
@@ -553,7 +542,7 @@ public final class Example {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Example.Request.Search) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -638,53 +627,16 @@ public final class Example {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Request.Search)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Request.Search)
-      private static final controller.Example.Request.Search DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Example.Request.Search();
+        defaultInstance = new Search(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Example.Request.Search getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Search>
-          PARSER = new com.google.protobuf.AbstractParser<Search>() {
-        public Search parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Search(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Search> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Search> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Example.Request.Search getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Request.Search)
     }
 
     public interface BuyOrBuilder extends
@@ -703,28 +655,37 @@ public final class Example {
     /**
      * Protobuf type {@code controller.Request.Buy}
      */
-    public  static final class Buy extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Buy extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Request.Buy)
         BuyOrBuilder {
       // Use Buy.newBuilder() to construct.
-      private Buy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Buy(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Buy() {
-        isbn_ = 0;
+      private Buy(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Buy defaultInstance;
+      public static Buy getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Buy getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Buy(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -754,7 +715,7 @@ public final class Example {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -765,11 +726,26 @@ public final class Example {
         return controller.Example.internal_static_controller_Request_Buy_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Request_Buy_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Example.Request.Buy.class, controller.Example.Request.Buy.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Buy> PARSER =
+          new com.google.protobuf.AbstractParser<Buy>() {
+        public Buy parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Buy(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Buy> getParserForType() {
+        return PARSER;
       }
 
       private int bitField0_;
@@ -788,6 +764,9 @@ public final class Example {
         return isbn_;
       }
 
+      private void initFields() {
+        isbn_ = 0;
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -804,14 +783,16 @@ public final class Example {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           output.writeInt32(1, isbn_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
@@ -819,46 +800,16 @@ public final class Example {
           size += com.google.protobuf.CodedOutputStream
             .computeInt32Size(1, isbn_);
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Example.Request.Buy)) {
-          return super.equals(obj);
-        }
-        controller.Example.Request.Buy other = (controller.Example.Request.Buy) obj;
-
-        boolean result = true;
-        result = result && (hasIsbn() == other.hasIsbn());
-        if (hasIsbn()) {
-          result = result && (getIsbn()
-              == other.getIsbn());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasIsbn()) {
-          hash = (37 * hash) + ISBN_FIELD_NUMBER;
-          hash = (53 * hash) + getIsbn();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Example.Request.Buy parseFrom(
@@ -884,57 +835,46 @@ public final class Example {
       }
       public static controller.Example.Request.Buy parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Request.Buy parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Example.Request.Buy parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Example.Request.Buy parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Example.Request.Buy parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Request.Buy parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Example.Request.Buy prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -942,7 +882,7 @@ public final class Example {
        * Protobuf type {@code controller.Request.Buy}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Request.Buy)
           controller.Example.Request.BuyOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -950,7 +890,7 @@ public final class Example {
           return controller.Example.internal_static_controller_Request_Buy_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Example.internal_static_controller_Request_Buy_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -963,20 +903,27 @@ public final class Example {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
           isbn_ = 0;
           bitField0_ = (bitField0_ & ~0x00000001);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -1009,32 +956,6 @@ public final class Example {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Example.Request.Buy) {
             return mergeFrom((controller.Example.Request.Buy)other);
@@ -1049,13 +970,13 @@ public final class Example {
           if (other.hasIsbn()) {
             setIsbn(other.getIsbn());
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasIsbn()) {
+            
             return false;
           }
           return true;
@@ -1070,7 +991,7 @@ public final class Example {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Example.Request.Buy) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -1111,53 +1032,16 @@ public final class Example {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Request.Buy)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Request.Buy)
-      private static final controller.Example.Request.Buy DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Example.Request.Buy();
+        defaultInstance = new Buy(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Example.Request.Buy getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Buy>
-          PARSER = new com.google.protobuf.AbstractParser<Buy>() {
-        public Buy parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Buy(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Buy> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Buy> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Example.Request.Buy getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Request.Buy)
     }
 
     private int bitField0_;
@@ -1173,13 +1057,13 @@ public final class Example {
      * <code>optional .controller.Request.Search search = 1;</code>
      */
     public controller.Example.Request.Search getSearch() {
-      return search_ == null ? controller.Example.Request.Search.getDefaultInstance() : search_;
+      return search_;
     }
     /**
      * <code>optional .controller.Request.Search search = 1;</code>
      */
     public controller.Example.Request.SearchOrBuilder getSearchOrBuilder() {
-      return search_ == null ? controller.Example.Request.Search.getDefaultInstance() : search_;
+      return search_;
     }
 
     public static final int BUY_FIELD_NUMBER = 2;
@@ -1194,15 +1078,19 @@ public final class Example {
      * <code>optional .controller.Request.Buy buy = 2;</code>
      */
     public controller.Example.Request.Buy getBuy() {
-      return buy_ == null ? controller.Example.Request.Buy.getDefaultInstance() : buy_;
+      return buy_;
     }
     /**
      * <code>optional .controller.Request.Buy buy = 2;</code>
      */
     public controller.Example.Request.BuyOrBuilder getBuyOrBuilder() {
-      return buy_ == null ? controller.Example.Request.Buy.getDefaultInstance() : buy_;
+      return buy_;
     }
 
+    private void initFields() {
+      search_ = controller.Example.Request.Search.getDefaultInstance();
+      buy_ = controller.Example.Request.Buy.getDefaultInstance();
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1227,77 +1115,40 @@ public final class Example {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, getSearch());
+        output.writeMessage(1, search_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, getBuy());
+        output.writeMessage(2, buy_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getSearch());
+          .computeMessageSize(1, search_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getBuy());
+          .computeMessageSize(2, buy_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Example.Request)) {
-        return super.equals(obj);
-      }
-      controller.Example.Request other = (controller.Example.Request) obj;
-
-      boolean result = true;
-      result = result && (hasSearch() == other.hasSearch());
-      if (hasSearch()) {
-        result = result && getSearch()
-            .equals(other.getSearch());
-      }
-      result = result && (hasBuy() == other.hasBuy());
-      if (hasBuy()) {
-        result = result && getBuy()
-            .equals(other.getBuy());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasSearch()) {
-        hash = (37 * hash) + SEARCH_FIELD_NUMBER;
-        hash = (53 * hash) + getSearch().hashCode();
-      }
-      if (hasBuy()) {
-        hash = (37 * hash) + BUY_FIELD_NUMBER;
-        hash = (53 * hash) + getBuy().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static controller.Example.Request parseFrom(
@@ -1323,57 +1174,46 @@ public final class Example {
     }
     public static controller.Example.Request parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Example.Request parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static controller.Example.Request parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static controller.Example.Request parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static controller.Example.Request parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Example.Request parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(controller.Example.Request prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1381,7 +1221,7 @@ public final class Example {
      * Protobuf type {@code controller.Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:controller.Request)
         controller.Example.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1389,7 +1229,7 @@ public final class Example {
         return controller.Example.internal_static_controller_Request_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1402,32 +1242,39 @@ public final class Example {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getSearchFieldBuilder();
           getBuyFieldBuilder();
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         if (searchBuilder_ == null) {
-          search_ = null;
+          search_ = controller.Example.Request.Search.getDefaultInstance();
         } else {
           searchBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (buyBuilder_ == null) {
-          buy_ = null;
+          buy_ = controller.Example.Request.Buy.getDefaultInstance();
         } else {
           buyBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -1472,32 +1319,6 @@ public final class Example {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof controller.Example.Request) {
           return mergeFrom((controller.Example.Request)other);
@@ -1515,19 +1336,20 @@ public final class Example {
         if (other.hasBuy()) {
           mergeBuy(other.getBuy());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (hasSearch()) {
           if (!getSearch().isInitialized()) {
+            
             return false;
           }
         }
         if (hasBuy()) {
           if (!getBuy().isInitialized()) {
+            
             return false;
           }
         }
@@ -1543,7 +1365,7 @@ public final class Example {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (controller.Example.Request) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1553,8 +1375,8 @@ public final class Example {
       }
       private int bitField0_;
 
-      private controller.Example.Request.Search search_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Example.Request.Search search_ = controller.Example.Request.Search.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Request.Search, controller.Example.Request.Search.Builder, controller.Example.Request.SearchOrBuilder> searchBuilder_;
       /**
        * <code>optional .controller.Request.Search search = 1;</code>
@@ -1567,7 +1389,7 @@ public final class Example {
        */
       public controller.Example.Request.Search getSearch() {
         if (searchBuilder_ == null) {
-          return search_ == null ? controller.Example.Request.Search.getDefaultInstance() : search_;
+          return search_;
         } else {
           return searchBuilder_.getMessage();
         }
@@ -1608,7 +1430,6 @@ public final class Example {
       public Builder mergeSearch(controller.Example.Request.Search value) {
         if (searchBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              search_ != null &&
               search_ != controller.Example.Request.Search.getDefaultInstance()) {
             search_ =
               controller.Example.Request.Search.newBuilder(search_).mergeFrom(value).buildPartial();
@@ -1627,7 +1448,7 @@ public final class Example {
        */
       public Builder clearSearch() {
         if (searchBuilder_ == null) {
-          search_ = null;
+          search_ = controller.Example.Request.Search.getDefaultInstance();
           onChanged();
         } else {
           searchBuilder_.clear();
@@ -1650,18 +1471,17 @@ public final class Example {
         if (searchBuilder_ != null) {
           return searchBuilder_.getMessageOrBuilder();
         } else {
-          return search_ == null ?
-              controller.Example.Request.Search.getDefaultInstance() : search_;
+          return search_;
         }
       }
       /**
        * <code>optional .controller.Request.Search search = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Request.Search, controller.Example.Request.Search.Builder, controller.Example.Request.SearchOrBuilder> 
           getSearchFieldBuilder() {
         if (searchBuilder_ == null) {
-          searchBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          searchBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Example.Request.Search, controller.Example.Request.Search.Builder, controller.Example.Request.SearchOrBuilder>(
                   getSearch(),
                   getParentForChildren(),
@@ -1671,8 +1491,8 @@ public final class Example {
         return searchBuilder_;
       }
 
-      private controller.Example.Request.Buy buy_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Example.Request.Buy buy_ = controller.Example.Request.Buy.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Request.Buy, controller.Example.Request.Buy.Builder, controller.Example.Request.BuyOrBuilder> buyBuilder_;
       /**
        * <code>optional .controller.Request.Buy buy = 2;</code>
@@ -1685,7 +1505,7 @@ public final class Example {
        */
       public controller.Example.Request.Buy getBuy() {
         if (buyBuilder_ == null) {
-          return buy_ == null ? controller.Example.Request.Buy.getDefaultInstance() : buy_;
+          return buy_;
         } else {
           return buyBuilder_.getMessage();
         }
@@ -1726,7 +1546,6 @@ public final class Example {
       public Builder mergeBuy(controller.Example.Request.Buy value) {
         if (buyBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              buy_ != null &&
               buy_ != controller.Example.Request.Buy.getDefaultInstance()) {
             buy_ =
               controller.Example.Request.Buy.newBuilder(buy_).mergeFrom(value).buildPartial();
@@ -1745,7 +1564,7 @@ public final class Example {
        */
       public Builder clearBuy() {
         if (buyBuilder_ == null) {
-          buy_ = null;
+          buy_ = controller.Example.Request.Buy.getDefaultInstance();
           onChanged();
         } else {
           buyBuilder_.clear();
@@ -1768,18 +1587,17 @@ public final class Example {
         if (buyBuilder_ != null) {
           return buyBuilder_.getMessageOrBuilder();
         } else {
-          return buy_ == null ?
-              controller.Example.Request.Buy.getDefaultInstance() : buy_;
+          return buy_;
         }
       }
       /**
        * <code>optional .controller.Request.Buy buy = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Request.Buy, controller.Example.Request.Buy.Builder, controller.Example.Request.BuyOrBuilder> 
           getBuyFieldBuilder() {
         if (buyBuilder_ == null) {
-          buyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          buyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Example.Request.Buy, controller.Example.Request.Buy.Builder, controller.Example.Request.BuyOrBuilder>(
                   getBuy(),
                   getParentForChildren(),
@@ -1788,53 +1606,16 @@ public final class Example {
         }
         return buyBuilder_;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:controller.Request)
     }
 
-    // @@protoc_insertion_point(class_scope:controller.Request)
-    private static final controller.Example.Request DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new controller.Example.Request();
+      defaultInstance = new Request(true);
+      defaultInstance.initFields();
     }
 
-    public static controller.Example.Request getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Request>
-        PARSER = new com.google.protobuf.AbstractParser<Request>() {
-      public Request parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Request(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Request> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Request> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Example.Request getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:controller.Request)
   }
 
   public interface ReplyOrBuilder extends
@@ -1870,27 +1651,37 @@ public final class Example {
   /**
    * Protobuf type {@code controller.Reply}
    */
-  public  static final class Reply extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Reply extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:controller.Reply)
       ReplyOrBuilder {
     // Use Reply.newBuilder() to construct.
-    private Reply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Reply(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Reply() {
+    private Reply(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Reply defaultInstance;
+    public static Reply getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Reply getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Reply(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1941,7 +1732,7 @@ public final class Example {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1952,11 +1743,26 @@ public final class Example {
       return controller.Example.internal_static_controller_Reply_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return controller.Example.internal_static_controller_Reply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               controller.Example.Reply.class, controller.Example.Reply.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Reply> PARSER =
+        new com.google.protobuf.AbstractParser<Reply>() {
+      public Reply parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Reply(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Reply> getParserForType() {
+      return PARSER;
     }
 
     public interface SearchOrBuilder extends
@@ -1975,28 +1781,37 @@ public final class Example {
     /**
      * Protobuf type {@code controller.Reply.Search}
      */
-    public  static final class Search extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Search extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Reply.Search)
         SearchOrBuilder {
       // Use Search.newBuilder() to construct.
-      private Search(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Search(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Search() {
-        isbn_ = 0;
+      private Search(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Search defaultInstance;
+      public static Search getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Search getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Search(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2026,7 +1841,7 @@ public final class Example {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -2037,11 +1852,26 @@ public final class Example {
         return controller.Example.internal_static_controller_Reply_Search_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Reply_Search_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Example.Reply.Search.class, controller.Example.Reply.Search.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Search> PARSER =
+          new com.google.protobuf.AbstractParser<Search>() {
+        public Search parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Search(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Search> getParserForType() {
+        return PARSER;
       }
 
       private int bitField0_;
@@ -2060,6 +1890,9 @@ public final class Example {
         return isbn_;
       }
 
+      private void initFields() {
+        isbn_ = 0;
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -2076,14 +1909,16 @@ public final class Example {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           output.writeInt32(1, isbn_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
@@ -2091,46 +1926,16 @@ public final class Example {
           size += com.google.protobuf.CodedOutputStream
             .computeInt32Size(1, isbn_);
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Example.Reply.Search)) {
-          return super.equals(obj);
-        }
-        controller.Example.Reply.Search other = (controller.Example.Reply.Search) obj;
-
-        boolean result = true;
-        result = result && (hasIsbn() == other.hasIsbn());
-        if (hasIsbn()) {
-          result = result && (getIsbn()
-              == other.getIsbn());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasIsbn()) {
-          hash = (37 * hash) + ISBN_FIELD_NUMBER;
-          hash = (53 * hash) + getIsbn();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Example.Reply.Search parseFrom(
@@ -2156,57 +1961,46 @@ public final class Example {
       }
       public static controller.Example.Reply.Search parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Reply.Search parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Example.Reply.Search parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Example.Reply.Search parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Example.Reply.Search parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Reply.Search parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Example.Reply.Search prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -2214,7 +2008,7 @@ public final class Example {
        * Protobuf type {@code controller.Reply.Search}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Reply.Search)
           controller.Example.Reply.SearchOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -2222,7 +2016,7 @@ public final class Example {
           return controller.Example.internal_static_controller_Reply_Search_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Example.internal_static_controller_Reply_Search_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -2235,20 +2029,27 @@ public final class Example {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
           isbn_ = 0;
           bitField0_ = (bitField0_ & ~0x00000001);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -2281,32 +2082,6 @@ public final class Example {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Example.Reply.Search) {
             return mergeFrom((controller.Example.Reply.Search)other);
@@ -2321,13 +2096,13 @@ public final class Example {
           if (other.hasIsbn()) {
             setIsbn(other.getIsbn());
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasIsbn()) {
+            
             return false;
           }
           return true;
@@ -2342,7 +2117,7 @@ public final class Example {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Example.Reply.Search) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -2383,53 +2158,16 @@ public final class Example {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Reply.Search)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Reply.Search)
-      private static final controller.Example.Reply.Search DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Example.Reply.Search();
+        defaultInstance = new Search(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Example.Reply.Search getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Search>
-          PARSER = new com.google.protobuf.AbstractParser<Search>() {
-        public Search parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Search(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Search> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Search> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Example.Reply.Search getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Reply.Search)
     }
 
     public interface BuyOrBuilder extends
@@ -2448,28 +2186,37 @@ public final class Example {
     /**
      * Protobuf type {@code controller.Reply.Buy}
      */
-    public  static final class Buy extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Buy extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Reply.Buy)
         BuyOrBuilder {
       // Use Buy.newBuilder() to construct.
-      private Buy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Buy(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Buy() {
-        done_ = false;
+      private Buy(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Buy defaultInstance;
+      public static Buy getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Buy getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Buy(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2499,7 +2246,7 @@ public final class Example {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -2510,11 +2257,26 @@ public final class Example {
         return controller.Example.internal_static_controller_Reply_Buy_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Reply_Buy_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Example.Reply.Buy.class, controller.Example.Reply.Buy.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Buy> PARSER =
+          new com.google.protobuf.AbstractParser<Buy>() {
+        public Buy parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Buy(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Buy> getParserForType() {
+        return PARSER;
       }
 
       private int bitField0_;
@@ -2533,6 +2295,9 @@ public final class Example {
         return done_;
       }
 
+      private void initFields() {
+        done_ = false;
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -2549,14 +2314,16 @@ public final class Example {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           output.writeBool(1, done_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
@@ -2564,47 +2331,16 @@ public final class Example {
           size += com.google.protobuf.CodedOutputStream
             .computeBoolSize(1, done_);
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Example.Reply.Buy)) {
-          return super.equals(obj);
-        }
-        controller.Example.Reply.Buy other = (controller.Example.Reply.Buy) obj;
-
-        boolean result = true;
-        result = result && (hasDone() == other.hasDone());
-        if (hasDone()) {
-          result = result && (getDone()
-              == other.getDone());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasDone()) {
-          hash = (37 * hash) + DONE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-              getDone());
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Example.Reply.Buy parseFrom(
@@ -2630,57 +2366,46 @@ public final class Example {
       }
       public static controller.Example.Reply.Buy parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Reply.Buy parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Example.Reply.Buy parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Example.Reply.Buy parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Example.Reply.Buy parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Example.Reply.Buy parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Example.Reply.Buy prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -2688,7 +2413,7 @@ public final class Example {
        * Protobuf type {@code controller.Reply.Buy}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Reply.Buy)
           controller.Example.Reply.BuyOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -2696,7 +2421,7 @@ public final class Example {
           return controller.Example.internal_static_controller_Reply_Buy_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Example.internal_static_controller_Reply_Buy_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -2709,20 +2434,27 @@ public final class Example {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
           done_ = false;
           bitField0_ = (bitField0_ & ~0x00000001);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -2755,32 +2487,6 @@ public final class Example {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Example.Reply.Buy) {
             return mergeFrom((controller.Example.Reply.Buy)other);
@@ -2795,13 +2501,13 @@ public final class Example {
           if (other.hasDone()) {
             setDone(other.getDone());
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasDone()) {
+            
             return false;
           }
           return true;
@@ -2816,7 +2522,7 @@ public final class Example {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Example.Reply.Buy) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -2857,53 +2563,16 @@ public final class Example {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Reply.Buy)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Reply.Buy)
-      private static final controller.Example.Reply.Buy DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Example.Reply.Buy();
+        defaultInstance = new Buy(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Example.Reply.Buy getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Buy>
-          PARSER = new com.google.protobuf.AbstractParser<Buy>() {
-        public Buy parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Buy(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Buy> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Buy> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Example.Reply.Buy getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Reply.Buy)
     }
 
     private int bitField0_;
@@ -2919,13 +2588,13 @@ public final class Example {
      * <code>optional .controller.Reply.Search search = 1;</code>
      */
     public controller.Example.Reply.Search getSearch() {
-      return search_ == null ? controller.Example.Reply.Search.getDefaultInstance() : search_;
+      return search_;
     }
     /**
      * <code>optional .controller.Reply.Search search = 1;</code>
      */
     public controller.Example.Reply.SearchOrBuilder getSearchOrBuilder() {
-      return search_ == null ? controller.Example.Reply.Search.getDefaultInstance() : search_;
+      return search_;
     }
 
     public static final int BUY_FIELD_NUMBER = 2;
@@ -2940,15 +2609,19 @@ public final class Example {
      * <code>optional .controller.Reply.Buy buy = 2;</code>
      */
     public controller.Example.Reply.Buy getBuy() {
-      return buy_ == null ? controller.Example.Reply.Buy.getDefaultInstance() : buy_;
+      return buy_;
     }
     /**
      * <code>optional .controller.Reply.Buy buy = 2;</code>
      */
     public controller.Example.Reply.BuyOrBuilder getBuyOrBuilder() {
-      return buy_ == null ? controller.Example.Reply.Buy.getDefaultInstance() : buy_;
+      return buy_;
     }
 
+    private void initFields() {
+      search_ = controller.Example.Reply.Search.getDefaultInstance();
+      buy_ = controller.Example.Reply.Buy.getDefaultInstance();
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2973,77 +2646,40 @@ public final class Example {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, getSearch());
+        output.writeMessage(1, search_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, getBuy());
+        output.writeMessage(2, buy_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getSearch());
+          .computeMessageSize(1, search_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getBuy());
+          .computeMessageSize(2, buy_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Example.Reply)) {
-        return super.equals(obj);
-      }
-      controller.Example.Reply other = (controller.Example.Reply) obj;
-
-      boolean result = true;
-      result = result && (hasSearch() == other.hasSearch());
-      if (hasSearch()) {
-        result = result && getSearch()
-            .equals(other.getSearch());
-      }
-      result = result && (hasBuy() == other.hasBuy());
-      if (hasBuy()) {
-        result = result && getBuy()
-            .equals(other.getBuy());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasSearch()) {
-        hash = (37 * hash) + SEARCH_FIELD_NUMBER;
-        hash = (53 * hash) + getSearch().hashCode();
-      }
-      if (hasBuy()) {
-        hash = (37 * hash) + BUY_FIELD_NUMBER;
-        hash = (53 * hash) + getBuy().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static controller.Example.Reply parseFrom(
@@ -3069,57 +2705,46 @@ public final class Example {
     }
     public static controller.Example.Reply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Example.Reply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static controller.Example.Reply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static controller.Example.Reply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static controller.Example.Reply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Example.Reply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(controller.Example.Reply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3127,7 +2752,7 @@ public final class Example {
      * Protobuf type {@code controller.Reply}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:controller.Reply)
         controller.Example.ReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -3135,7 +2760,7 @@ public final class Example {
         return controller.Example.internal_static_controller_Reply_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Example.internal_static_controller_Reply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3148,32 +2773,39 @@ public final class Example {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getSearchFieldBuilder();
           getBuyFieldBuilder();
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         if (searchBuilder_ == null) {
-          search_ = null;
+          search_ = controller.Example.Reply.Search.getDefaultInstance();
         } else {
           searchBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (buyBuilder_ == null) {
-          buy_ = null;
+          buy_ = controller.Example.Reply.Buy.getDefaultInstance();
         } else {
           buyBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -3218,32 +2850,6 @@ public final class Example {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof controller.Example.Reply) {
           return mergeFrom((controller.Example.Reply)other);
@@ -3261,19 +2867,20 @@ public final class Example {
         if (other.hasBuy()) {
           mergeBuy(other.getBuy());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (hasSearch()) {
           if (!getSearch().isInitialized()) {
+            
             return false;
           }
         }
         if (hasBuy()) {
           if (!getBuy().isInitialized()) {
+            
             return false;
           }
         }
@@ -3289,7 +2896,7 @@ public final class Example {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (controller.Example.Reply) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -3299,8 +2906,8 @@ public final class Example {
       }
       private int bitField0_;
 
-      private controller.Example.Reply.Search search_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Example.Reply.Search search_ = controller.Example.Reply.Search.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Reply.Search, controller.Example.Reply.Search.Builder, controller.Example.Reply.SearchOrBuilder> searchBuilder_;
       /**
        * <code>optional .controller.Reply.Search search = 1;</code>
@@ -3313,7 +2920,7 @@ public final class Example {
        */
       public controller.Example.Reply.Search getSearch() {
         if (searchBuilder_ == null) {
-          return search_ == null ? controller.Example.Reply.Search.getDefaultInstance() : search_;
+          return search_;
         } else {
           return searchBuilder_.getMessage();
         }
@@ -3354,7 +2961,6 @@ public final class Example {
       public Builder mergeSearch(controller.Example.Reply.Search value) {
         if (searchBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              search_ != null &&
               search_ != controller.Example.Reply.Search.getDefaultInstance()) {
             search_ =
               controller.Example.Reply.Search.newBuilder(search_).mergeFrom(value).buildPartial();
@@ -3373,7 +2979,7 @@ public final class Example {
        */
       public Builder clearSearch() {
         if (searchBuilder_ == null) {
-          search_ = null;
+          search_ = controller.Example.Reply.Search.getDefaultInstance();
           onChanged();
         } else {
           searchBuilder_.clear();
@@ -3396,18 +3002,17 @@ public final class Example {
         if (searchBuilder_ != null) {
           return searchBuilder_.getMessageOrBuilder();
         } else {
-          return search_ == null ?
-              controller.Example.Reply.Search.getDefaultInstance() : search_;
+          return search_;
         }
       }
       /**
        * <code>optional .controller.Reply.Search search = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Reply.Search, controller.Example.Reply.Search.Builder, controller.Example.Reply.SearchOrBuilder> 
           getSearchFieldBuilder() {
         if (searchBuilder_ == null) {
-          searchBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          searchBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Example.Reply.Search, controller.Example.Reply.Search.Builder, controller.Example.Reply.SearchOrBuilder>(
                   getSearch(),
                   getParentForChildren(),
@@ -3417,8 +3022,8 @@ public final class Example {
         return searchBuilder_;
       }
 
-      private controller.Example.Reply.Buy buy_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Example.Reply.Buy buy_ = controller.Example.Reply.Buy.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Reply.Buy, controller.Example.Reply.Buy.Builder, controller.Example.Reply.BuyOrBuilder> buyBuilder_;
       /**
        * <code>optional .controller.Reply.Buy buy = 2;</code>
@@ -3431,7 +3036,7 @@ public final class Example {
        */
       public controller.Example.Reply.Buy getBuy() {
         if (buyBuilder_ == null) {
-          return buy_ == null ? controller.Example.Reply.Buy.getDefaultInstance() : buy_;
+          return buy_;
         } else {
           return buyBuilder_.getMessage();
         }
@@ -3472,7 +3077,6 @@ public final class Example {
       public Builder mergeBuy(controller.Example.Reply.Buy value) {
         if (buyBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              buy_ != null &&
               buy_ != controller.Example.Reply.Buy.getDefaultInstance()) {
             buy_ =
               controller.Example.Reply.Buy.newBuilder(buy_).mergeFrom(value).buildPartial();
@@ -3491,7 +3095,7 @@ public final class Example {
        */
       public Builder clearBuy() {
         if (buyBuilder_ == null) {
-          buy_ = null;
+          buy_ = controller.Example.Reply.Buy.getDefaultInstance();
           onChanged();
         } else {
           buyBuilder_.clear();
@@ -3514,18 +3118,17 @@ public final class Example {
         if (buyBuilder_ != null) {
           return buyBuilder_.getMessageOrBuilder();
         } else {
-          return buy_ == null ?
-              controller.Example.Reply.Buy.getDefaultInstance() : buy_;
+          return buy_;
         }
       }
       /**
        * <code>optional .controller.Reply.Buy buy = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Example.Reply.Buy, controller.Example.Reply.Buy.Builder, controller.Example.Reply.BuyOrBuilder> 
           getBuyFieldBuilder() {
         if (buyBuilder_ == null) {
-          buyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          buyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Example.Reply.Buy, controller.Example.Reply.Buy.Builder, controller.Example.Reply.BuyOrBuilder>(
                   getBuy(),
                   getParentForChildren(),
@@ -3534,91 +3137,54 @@ public final class Example {
         }
         return buyBuilder_;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:controller.Reply)
     }
 
-    // @@protoc_insertion_point(class_scope:controller.Reply)
-    private static final controller.Example.Reply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new controller.Example.Reply();
+      defaultInstance = new Reply(true);
+      defaultInstance.initFields();
     }
 
-    public static controller.Example.Reply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Reply>
-        PARSER = new com.google.protobuf.AbstractParser<Reply>() {
-      public Reply parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Reply(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Reply> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Reply> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Example.Reply getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:controller.Reply)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_Search_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_Search_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_Buy_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_Buy_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Reply_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Reply_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Reply_Search_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Reply_Search_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Reply_Buy_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Reply_Buy_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -3646,37 +3212,37 @@ public final class Example {
     internal_static_controller_Request_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_controller_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_descriptor,
         new java.lang.String[] { "Search", "Buy", });
     internal_static_controller_Request_Search_descriptor =
       internal_static_controller_Request_descriptor.getNestedTypes().get(0);
     internal_static_controller_Request_Search_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_Search_descriptor,
         new java.lang.String[] { "Title", });
     internal_static_controller_Request_Buy_descriptor =
       internal_static_controller_Request_descriptor.getNestedTypes().get(1);
     internal_static_controller_Request_Buy_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_Buy_descriptor,
         new java.lang.String[] { "Isbn", });
     internal_static_controller_Reply_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_controller_Reply_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Reply_descriptor,
         new java.lang.String[] { "Search", "Buy", });
     internal_static_controller_Reply_Search_descriptor =
       internal_static_controller_Reply_descriptor.getNestedTypes().get(0);
     internal_static_controller_Reply_Search_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Reply_Search_descriptor,
         new java.lang.String[] { "Isbn", });
     internal_static_controller_Reply_Buy_descriptor =
       internal_static_controller_Reply_descriptor.getNestedTypes().get(1);
     internal_static_controller_Reply_Buy_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Reply_Buy_descriptor,
         new java.lang.String[] { "Done", });
   }
