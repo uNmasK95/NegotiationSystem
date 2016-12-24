@@ -3,20 +3,33 @@ utilizadores 12346
 acoes 12347
 banco 12348
 
--- --
+-- PRIMEIRO SETUP --
 
 initdb -D utilizadores
-postgres -D utilizadores/ -k. -p 12346
+postgres -D utilizadores/ -k. -p 12346 &
 createdb -h localhost -p 12346
-psql -h localhost -p 12346 -a -f BD_Tabelas_Utilizadores.sql
+psql -h localhost -p 12346 -a -f BD_Init_Utilizadores.sql
+psql -h localhost -p 12346 -a -f BD_Pov_Utilizadores.sql
 
 initdb -D acoes
-postgres -D acoes/ -k. -p 12347
+postgres -D acoes/ -k. -p 12347 &
 createdb -h localhost -p 12347
-psql -h localhost -p 12347 -a -f BD_Tabelas_Acoes.sql
+psql -h localhost -p 12347 -a -f BD_Init_Acoes.sql
+psql -h localhost -p 12347 -a -f BD_Pov_Acoes.sql
 
 initdb -D banco
-postgres -D banco/ -k. -p 12348
+postgres -D banco/ -k. -p 12348 &
 createdb -h localhost -p 12348
-psql -h localhost -p 12348 -a -f BD_Tabelas_Banco.sql
+psql -h localhost -p 12348 -a -f BD_Init_Banco.sql
+psql -h localhost -p 12348 -a -f BD_Pov_Banco.sql
+
+-- iniciar servidores + psql ---
+
+postgres -D utilizadores/ -k. -p 12346 &
+postgres -D acoes/ -k. -p 12347 &
+postgres -D banco/ -k. -p 12348 &
+
+psql -h localhost -p 12346 -d utilizadores -U utilizadores;
+psql -h localhost -p 12347 -d acoes -U acoes;
+psql -h localhost -p 12348 -d banco -U banco;
 
