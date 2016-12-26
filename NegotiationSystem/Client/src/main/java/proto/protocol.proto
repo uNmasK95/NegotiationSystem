@@ -1,0 +1,35 @@
+package controller;
+//ver estas mensagens com o pinto tenho duvidas como vamos receber mais que um tipo de mensagens ao mesmo tempo
+
+message LoginRequest {
+    required string username = 1;
+    required string password = 2;
+}
+
+message LoginReply{
+    required string username = 1;
+    required bool login = 2;
+}
+
+message Request {
+
+    message Buy {
+        required string company = 1;
+        required int32 quant = 2;
+        required float price = 3;
+    }
+
+    message Sell{
+        required string company = 1;
+        required int32 quant = 2;
+        required float price = 3;
+    }
+
+    optional Buy buy = 1;
+    optional Sell sell = 1;
+}
+
+message Reply {
+    required bool result = 1;
+    required string descrition = 2;
+}
