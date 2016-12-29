@@ -1,10 +1,8 @@
 package data;
 
-import controller.UserInfo;
-
 import java.sql.*;
 
-public class Users {
+public class UserDAO {
 
     public static final String host = "127.0.0.1";
     public static final int port = 12346;
@@ -13,7 +11,7 @@ public class Users {
     private Connection conection;
     private PreparedStatement loginStatment;
 
-    public Users() throws SQLException {
+    public UserDAO() throws SQLException {
         this.conection = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + database);
         this.loginStatment = this.conection.prepareStatement("SELECT COUNT(*) FROM utilizadores WHERE username = ? AND password = ?");
     }

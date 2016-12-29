@@ -2,8 +2,8 @@ package controller;
 
 import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
-import com.esotericsoftware.minlog.Log;
-import data.Users;
+import controller.entity.User;
+import data.UserDAO;
 
 import java.sql.*;
 
@@ -11,10 +11,10 @@ public class Authenticator extends BasicActor<Message, Void> {
 
     private static final String TAG = "Authenticator";
 
-    private final Users userDAO;
+    private final UserDAO userDAO;
 
     public Authenticator() throws SQLException {
-        this.userDAO = new Users();
+        this.userDAO = new UserDAO();
     }
 
     @Override
@@ -43,8 +43,8 @@ public class Authenticator extends BasicActor<Message, Void> {
     private void loginRequest(Message msg) throws SuspendExecution {
 
         boolean result = this.userDAO.contains(
-                ((UserInfo) msg.obj).getUsername(),
-                ((UserInfo) msg.obj).getPassword()
+                ((User) msg.obj).getUsername(),
+                ((User) msg.obj).getPassword()
         );
 
         msg.source.send(new Message(Message.Type.LOGIN_REP , null, result));

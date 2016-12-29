@@ -14,9 +14,14 @@ message LoginReply{
 }
 
 message Request {
-    required string company = 1;
-    required int32 quant = 2;
-    required float price = 3;
+    enum Type {
+        Buy = 0;
+        Sell = 1;
+    }
+    required Type type = 1;
+    required string company = 2;
+    required int32 quant = 3;
+    required float price = 4;
 }
 
 message Reply {
