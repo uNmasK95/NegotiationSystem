@@ -3,18 +3,18 @@ package controller;
 import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
 import com.esotericsoftware.minlog.Log;
+import data.Users;
 
 import java.sql.*;
 
 public class Authenticator extends BasicActor<Message, Void> {
 
     private static final String TAG = "Authenticator";
-    private final Connection conection;
-    private final PreparedStatement loginStatment;
+
+    private final Users userDAO;
 
     public Authenticator() throws SQLException {
-        this.conection = DriverManager.getConnection("jdbc:postgresql://localhost:12346/utilizadores");
-        this.loginStatment = this.conection.prepareStatement("SELECT * FROM utilizadores WHERE username = ? AND password = ?");
+        this.userDAO = new Users();
     }
 
     @Override
@@ -41,18 +41,12 @@ public class Authenticator extends BasicActor<Message, Void> {
      * @throws SuspendExecution
      */
     private void loginRequest(Message msg) throws SuspendExecution {
-        boolean result = false;
-        try {
-            this.loginStatment.setString(1, ((UserInfo) msg.obj).getUsername() );
-            this.loginStatment.setString(2, ((UserInfo) msg.obj).getUsername() );
-            ResultSet rs = this.loginStatment.executeQuery();
-            rs.first();
-            result = rs.getRow() == 1; //verifica se existe uma linha so resultset
-        } catch (SQLException e) {
-            Log.debug(TAG , "Não foi possivel realizar o pedido á base de dados");
-            //TODO: remover print e verificar connection
-            e.printStackTrace();
-        }
+
+        boolean result = this.userDAO.contains(
+                ((UserInfo) msg.obj).getUsername(),
+                ((UserInfo) msg.obj).getPassword()
+        );
+
         msg.source.send(new Message(Message.Type.LOGIN_REP , null, result));
     }
 

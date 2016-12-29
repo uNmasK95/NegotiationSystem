@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 package controller;
 //ver estas mensagens com o pinto tenho duvidas como vamos receber mais que um tipo de mensagens ao mesmo tempo
 
@@ -12,21 +14,9 @@ message LoginReply{
 }
 
 message Request {
-
-    message Buy {
-        required string company = 1;
-        required int32 quant = 2;
-        required float price = 3;
-    }
-
-    message Sell{
-        required string company = 1;
-        required int32 quant = 2;
-        required float price = 3;
-    }
-
-    optional Buy buy = 1;
-    optional Sell sell = 1;
+    required string company = 1;
+    required int32 quant = 2;
+    required float price = 3;
 }
 
 message Reply {

@@ -1,25 +1,30 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package controller;
 //ver estas mensagens com o pinto tenho duvidas como vamos receber mais que um tipo de mensagens ao mesmo tempo
 
 message LoginRequest {
-    string username = 1;
-    string password = 2;
+    required string username = 1;
+    required string password = 2;
 }
 
 message LoginReply{
-    string username = 1;
-    bool login = 2;
+    required string username = 1;
+    required bool login = 2;
 }
 
 message Request {
-    string company = 1;
-    int32 quant = 2;
-    float price = 3;
+    enum Type {
+        Buy = 0;
+        Sell = 1;
+    }
+    required Type type = 1;
+    required string company = 2;
+    required int32 quant = 3;
+    required float price = 4;
 }
 
 message Reply {
-    bool result = 1;
-    string descrition = 2;
+    required bool result = 1;
+    required string descrition = 2;
 }

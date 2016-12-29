@@ -3,6 +3,8 @@
 
 package controller;
 
+import java.nio.ByteBuffer;
+
 public final class Protocol {
   private Protocol() {}
   public static void registerAllExtensions(
@@ -379,6 +381,7 @@ public final class Protocol {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code controller.LoginRequest}
      */
@@ -1388,43 +1391,34 @@ public final class Protocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
-     */
-    boolean hasType();
-    /**
-     * <code>required .controller.Request.Type type = 1;</code>
-     */
-    controller.Protocol.Request.Type getType();
-
-    /**
-     * <code>required string company = 2;</code>
+     * <code>required string company = 1;</code>
      */
     boolean hasCompany();
     /**
-     * <code>required string company = 2;</code>
+     * <code>required string company = 1;</code>
      */
     java.lang.String getCompany();
     /**
-     * <code>required string company = 2;</code>
+     * <code>required string company = 1;</code>
      */
     com.google.protobuf.ByteString
         getCompanyBytes();
 
     /**
-     * <code>required int32 quant = 3;</code>
+     * <code>required int32 quant = 2;</code>
      */
     boolean hasQuant();
     /**
-     * <code>required int32 quant = 3;</code>
+     * <code>required int32 quant = 2;</code>
      */
     int getQuant();
 
     /**
-     * <code>required float price = 4;</code>
+     * <code>required float price = 3;</code>
      */
     boolean hasPrice();
     /**
-     * <code>required float price = 4;</code>
+     * <code>required float price = 3;</code>
      */
     float getPrice();
   }
@@ -1440,7 +1434,6 @@ public final class Protocol {
       super(builder);
     }
     private Request() {
-      type_ = 0;
       company_ = "";
       quant_ = 0;
       price_ = 0F;
@@ -1474,30 +1467,19 @@ public final class Protocol {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
-              controller.Protocol.Request.Type value = controller.Protocol.Request.Type.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                type_ = rawValue;
-              }
-              break;
-            }
-            case 18: {
+            case 10: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000001;
               company_ = bs;
               break;
             }
-            case 24: {
-              bitField0_ |= 0x00000004;
+            case 16: {
+              bitField0_ |= 0x00000002;
               quant_ = input.readInt32();
               break;
             }
-            case 37: {
-              bitField0_ |= 0x00000008;
+            case 29: {
+              bitField0_ |= 0x00000004;
               price_ = input.readFloat();
               break;
             }
@@ -1525,123 +1507,17 @@ public final class Protocol {
               controller.Protocol.Request.class, controller.Protocol.Request.Builder.class);
     }
 
-    /**
-     * Protobuf enum {@code controller.Request.Type}
-     */
-    public enum Type
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>Buy = 0;</code>
-       */
-      Buy(0),
-      /**
-       * <code>Sell = 1;</code>
-       */
-      Sell(1),
-      ;
-
-      /**
-       * <code>Buy = 0;</code>
-       */
-      public static final int Buy_VALUE = 0;
-      /**
-       * <code>Sell = 1;</code>
-       */
-      public static final int Sell_VALUE = 1;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Type valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static Type forNumber(int value) {
-        switch (value) {
-          case 0: return Buy;
-          case 1: return Sell;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Type>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return controller.Protocol.Request.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final Type[] VALUES = values();
-
-      public static Type valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private Type(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:controller.Request.Type)
-    }
-
     private int bitField0_;
-    public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    public static final int COMPANY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object company_;
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
+     * <code>required string company = 1;</code>
      */
-    public boolean hasType() {
+    public boolean hasCompany() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
-     */
-    public controller.Protocol.Request.Type getType() {
-      controller.Protocol.Request.Type result = controller.Protocol.Request.Type.valueOf(type_);
-      return result == null ? controller.Protocol.Request.Type.Buy : result;
-    }
-
-    public static final int COMPANY_FIELD_NUMBER = 2;
-    private volatile java.lang.Object company_;
-    /**
-     * <code>required string company = 2;</code>
-     */
-    public boolean hasCompany() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required string company = 2;</code>
+     * <code>required string company = 1;</code>
      */
     public java.lang.String getCompany() {
       java.lang.Object ref = company_;
@@ -1658,7 +1534,7 @@ public final class Protocol {
       }
     }
     /**
-     * <code>required string company = 2;</code>
+     * <code>required string company = 1;</code>
      */
     public com.google.protobuf.ByteString
         getCompanyBytes() {
@@ -1674,31 +1550,31 @@ public final class Protocol {
       }
     }
 
-    public static final int QUANT_FIELD_NUMBER = 3;
+    public static final int QUANT_FIELD_NUMBER = 2;
     private int quant_;
     /**
-     * <code>required int32 quant = 3;</code>
+     * <code>required int32 quant = 2;</code>
      */
     public boolean hasQuant() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required int32 quant = 3;</code>
+     * <code>required int32 quant = 2;</code>
      */
     public int getQuant() {
       return quant_;
     }
 
-    public static final int PRICE_FIELD_NUMBER = 4;
+    public static final int PRICE_FIELD_NUMBER = 3;
     private float price_;
     /**
-     * <code>required float price = 4;</code>
+     * <code>required float price = 3;</code>
      */
     public boolean hasPrice() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required float price = 4;</code>
+     * <code>required float price = 3;</code>
      */
     public float getPrice() {
       return price_;
@@ -1710,10 +1586,6 @@ public final class Protocol {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasCompany()) {
         memoizedIsInitialized = 0;
         return false;
@@ -1733,16 +1605,13 @@ public final class Protocol {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, company_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, company_);
+        output.writeInt32(2, quant_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, quant_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, price_);
+        output.writeFloat(3, price_);
       }
       unknownFields.writeTo(output);
     }
@@ -1753,19 +1622,15 @@ public final class Protocol {
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, company_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, company_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, quant_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, quant_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, price_);
+          .computeFloatSize(3, price_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1784,10 +1649,6 @@ public final class Protocol {
       controller.Protocol.Request other = (controller.Protocol.Request) obj;
 
       boolean result = true;
-      result = result && (hasType() == other.hasType());
-      if (hasType()) {
-        result = result && type_ == other.type_;
-      }
       result = result && (hasCompany() == other.hasCompany());
       if (hasCompany()) {
         result = result && getCompany()
@@ -1816,10 +1677,6 @@ public final class Protocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasType()) {
-        hash = (37 * hash) + TYPE_FIELD_NUMBER;
-        hash = (53 * hash) + type_;
-      }
       if (hasCompany()) {
         hash = (37 * hash) + COMPANY_FIELD_NUMBER;
         hash = (53 * hash) + getCompany().hashCode();
@@ -1951,14 +1808,12 @@ public final class Protocol {
       }
       public Builder clear() {
         super.clear();
-        type_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         company_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         quant_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         price_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -1986,17 +1841,13 @@ public final class Protocol {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.type_ = type_;
+        result.company_ = company_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.company_ = company_;
+        result.quant_ = quant_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
-        }
-        result.quant_ = quant_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
         }
         result.price_ = price_;
         result.bitField0_ = to_bitField0_;
@@ -2041,11 +1892,8 @@ public final class Protocol {
 
       public Builder mergeFrom(controller.Protocol.Request other) {
         if (other == controller.Protocol.Request.getDefaultInstance()) return this;
-        if (other.hasType()) {
-          setType(other.getType());
-        }
         if (other.hasCompany()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
           company_ = other.company_;
           onChanged();
         }
@@ -2061,9 +1909,6 @@ public final class Protocol {
       }
 
       public final boolean isInitialized() {
-        if (!hasType()) {
-          return false;
-        }
         if (!hasCompany()) {
           return false;
         }
@@ -2095,51 +1940,15 @@ public final class Protocol {
       }
       private int bitField0_;
 
-      private int type_ = 0;
+      private java.lang.Object company_ = "";
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
+       * <code>required string company = 1;</code>
        */
-      public boolean hasType() {
+      public boolean hasCompany() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
-       */
-      public controller.Protocol.Request.Type getType() {
-        controller.Protocol.Request.Type result = controller.Protocol.Request.Type.valueOf(type_);
-        return result == null ? controller.Protocol.Request.Type.Buy : result;
-      }
-      /**
-       * <code>required .controller.Request.Type type = 1;</code>
-       */
-      public Builder setType(controller.Protocol.Request.Type value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000001;
-        type_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required .controller.Request.Type type = 1;</code>
-       */
-      public Builder clearType() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        type_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object company_ = "";
-      /**
-       * <code>required string company = 2;</code>
-       */
-      public boolean hasCompany() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required string company = 2;</code>
+       * <code>required string company = 1;</code>
        */
       public java.lang.String getCompany() {
         java.lang.Object ref = company_;
@@ -2156,7 +1965,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>required string company = 1;</code>
        */
       public com.google.protobuf.ByteString
           getCompanyBytes() {
@@ -2172,36 +1981,36 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>required string company = 1;</code>
        */
       public Builder setCompany(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000001;
         company_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>required string company = 1;</code>
        */
       public Builder clearCompany() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         company_ = getDefaultInstance().getCompany();
         onChanged();
         return this;
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>required string company = 1;</code>
        */
       public Builder setCompanyBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000001;
         company_ = value;
         onChanged();
         return this;
@@ -2209,31 +2018,31 @@ public final class Protocol {
 
       private int quant_ ;
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>required int32 quant = 2;</code>
        */
       public boolean hasQuant() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>required int32 quant = 2;</code>
        */
       public int getQuant() {
         return quant_;
       }
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>required int32 quant = 2;</code>
        */
       public Builder setQuant(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         quant_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>required int32 quant = 2;</code>
        */
       public Builder clearQuant() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         quant_ = 0;
         onChanged();
         return this;
@@ -2241,31 +2050,31 @@ public final class Protocol {
 
       private float price_ ;
       /**
-       * <code>required float price = 4;</code>
+       * <code>required float price = 3;</code>
        */
       public boolean hasPrice() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required float price = 4;</code>
+       * <code>required float price = 3;</code>
        */
       public float getPrice() {
         return price_;
       }
       /**
-       * <code>required float price = 4;</code>
+       * <code>required float price = 3;</code>
        */
       public Builder setPrice(float value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         price_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float price = 4;</code>
+       * <code>required float price = 3;</code>
        */
       public Builder clearPrice() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         price_ = 0F;
         onChanged();
         return this;
@@ -2997,11 +2806,9 @@ public final class Protocol {
       "\n\016protocol.proto\022\ncontroller\"2\n\014LoginReq" +
       "uest\022\020\n\010username\030\001 \002(\t\022\020\n\010password\030\002 \002(\t" +
       "\"-\n\nLoginReply\022\020\n\010username\030\001 \002(\t\022\r\n\005logi" +
-      "n\030\002 \002(\010\"{\n\007Request\022&\n\004type\030\001 \002(\0162\030.contr" +
-      "oller.Request.Type\022\017\n\007company\030\002 \002(\t\022\r\n\005q" +
-      "uant\030\003 \002(\005\022\r\n\005price\030\004 \002(\002\"\031\n\004Type\022\007\n\003Buy" +
-      "\020\000\022\010\n\004Sell\020\001\"+\n\005Reply\022\016\n\006result\030\001 \002(\010\022\022\n" +
-      "\ndescrition\030\002 \002(\t"
+      "n\030\002 \002(\010\"8\n\007Request\022\017\n\007company\030\001 \002(\t\022\r\n\005q" +
+      "uant\030\002 \002(\005\022\r\n\005price\030\003 \002(\002\"+\n\005Reply\022\016\n\006re" +
+      "sult\030\001 \002(\010\022\022\n\ndescrition\030\002 \002(\t"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3032,7 +2839,7 @@ public final class Protocol {
     internal_static_controller_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_controller_Request_descriptor,
-        new java.lang.String[] { "Type", "Company", "Quant", "Price", });
+        new java.lang.String[] { "Company", "Quant", "Price", });
     internal_static_controller_Reply_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_controller_Reply_fieldAccessorTable = new
