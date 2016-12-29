@@ -12,9 +12,9 @@ import java.sql.SQLException;
 
 
 public class Acceptor extends BasicActor {
-    final int port;
-    final ActorRef authenticator;
-    final ActorRef orderManager;
+    private final int port;
+    private final ActorRef authenticator;
+    private final ActorRef orderManager;
 
     public Acceptor(int port) throws SQLException {
         this.port = port;
@@ -28,7 +28,7 @@ public class Acceptor extends BasicActor {
             ss.bind(new InetSocketAddress(port));
             while (true) {
                 FiberSocketChannel socket = ss.accept();
-                new User(socket,authenticator).spawn();
+                new User(socket, this.authenticator, this.orderManager).spawn();
             }
         } catch (IOException e) { }
         return null;

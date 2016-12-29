@@ -5,6 +5,9 @@ import co.paralleluniverse.actors.ActorRef;
 import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Class principal do modulo Exchange
+ */
 public class Exchange {
     public static void main(String[] args) {
 
@@ -17,6 +20,7 @@ public class Exchange {
                 acceptor.join();
             } catch (SQLException e) {
                 System.out.println("Connection to database close");
+                e.printStackTrace();
             }
 
         } catch (InterruptedException | ExecutionException e) {

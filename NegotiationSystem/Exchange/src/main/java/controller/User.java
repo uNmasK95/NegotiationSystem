@@ -6,15 +6,21 @@ import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 
 public class User extends BasicActor<Message, Void> {
-    final FiberSocketChannel socket;
-    final ActorRef authenticator;
 
-    public User(FiberSocketChannel socket, ActorRef authenticator) {
+    private final FiberSocketChannel socket;
+    private final ActorRef authenticator;
+    private final ActorRef orderManager;
+
+    public User(FiberSocketChannel socket, ActorRef authenticator, ActorRef orderManager) {
         this.socket = socket;
         this.authenticator = authenticator;
+        this.orderManager = orderManager;
     }
 
     protected Void doRun() throws InterruptedException, SuspendExecution {
+
+
+
       /*  new LineReader(self(), socket).spawn();
         room.send(new Msg(Type.ENTER, self()));
         while (receive(msg -> {
