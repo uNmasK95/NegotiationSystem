@@ -12,6 +12,7 @@
         <module>Client</module>
         <module>Exchange</module>
         <module>Settlement</module>
+        <module>Banco</module>
     </modules>
 
 

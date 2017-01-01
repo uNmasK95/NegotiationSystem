@@ -23,7 +23,7 @@ public class Banco {
   }
 
   public float getSaldo(String utilizador) throws UserNotFoundException {
-    PreparedStatement s;
+    PreparedStatement s = null;
     ResultSet rs = null;
     float saldo;
     try {
@@ -40,6 +40,12 @@ public class Banco {
       saldo = rs.getFloat(1);
     }catch (SQLException e) {
       throw new UserNotFoundException(utilizador);
+    }
+    finally {
+      try {
+        rs.close();
+        s.close();
+      } catch (SQLException e) {}
     }
     return saldo;
   }
