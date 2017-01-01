@@ -41,8 +41,15 @@ public class Transacoes {
         s1.setString(2, empresa);
         ResultSet rs1 = s1.executeQuery();
         int qtdAntiga = 0;
-        if (!rs1.next() || (qtdAntiga=rs1.getInt("quantidade")) < quantidade)
+        if (!rs1.next() || (qtdAntiga=rs1.getInt("quantidade")) < quantidade){
+          try{
+            rs1.close();
+            s1.close();
+            txn.rollback();
+          }
+          catch (Exception e){}
           throw new AcoesInsuficientesException();
+        }
         rs1.close();
         s1.close();
 
