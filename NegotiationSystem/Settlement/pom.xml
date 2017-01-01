@@ -53,6 +53,24 @@
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.btm</groupId>
+            <artifactId>btm</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-client</artifactId>
+            <version>5.14.1</version>
+        </dependency>
     </dependencies>
 
 
@@ -73,7 +91,6 @@
                 <configuration>
                     <compilerArgs>
                         <arg>-Dco.paralleluniverse.fibers.verifyInstrumentation=true</arg>
-                        <arg>-javaagent:/Users/rjaf/.gradle/caches/modules-2/files-2.1/co.paralleluniverse/quasar-core/0.7.6/6395d9cee5e779b99d2955a6b91bc72170471ccf/quasar-core-0.7.6-jdk8.jar</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>

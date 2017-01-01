@@ -1,7 +1,12 @@
 import data.Acoes;
 import data.Banco;
+import data.Transacoes;
+import exception.AcoesInsuficientesException;
 import exception.UserNotFoundException;
 
+import javax.jms.JMSException;
+import javax.naming.NamingException;
+import javax.transaction.*;
 import java.sql.SQLException;
 
 /**
@@ -9,16 +14,19 @@ import java.sql.SQLException;
  */
 public class Test {
   public static void main(String[] args) throws SQLException, UserNotFoundException {
-    Banco b = new Banco();
-    float saldoP = b.getSaldo("pedro");
-    System.out.println(saldoP);
-    float notFound = b.getSaldo("notfound");
-    System.out.println(notFound);
-
-    Acoes a = new Acoes();
-    int acoesP = a.getAcoes("microsoft","pedro");
-    System.out.println(acoesP);
-    int notFound2 = a.getAcoes("notfound","notfound");
-    System.out.println(notFound2);
+//    Acoes a = new Acoes();
+//    int acoesP = a.getAcoes("microsoft","pedro");
+//    System.out.println(acoesP);
+//    System.out.println(a.getAcoesUtilizador("pedro"));
+    Transacoes t = new Transacoes();
+    try {
+      t.deliveryVsPayment("pedro","freitas","samsung", 10,1);
+    }
+    catch (AcoesInsuficientesException e) {
+      e.printStackTrace();
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
   }
 }
