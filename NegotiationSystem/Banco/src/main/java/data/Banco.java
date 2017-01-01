@@ -85,9 +85,8 @@ public class Banco {
       s2.executeUpdate();
       s2.close();
 
-      //Creditar saldo em "to"
-        // Verificar se ja existe um registo
-        // para o utilizador "to"
+      //Creditar saldo no utilizador "to"
+        // Verificar se utilizador "to" existe
       PreparedStatement s3 = c.prepareStatement("" +
           "select saldo from utilizadores " +
           "where username = ?"
@@ -95,8 +94,7 @@ public class Banco {
       s3.setString(1,to);
       ResultSet rs3 = s3.executeQuery();
       if(rs3.next()){
-        // Ja existe um registo
-        // Atualizar saldo
+        // Utilizador "to" existe
         PreparedStatement s4 = c.prepareStatement("" +
             "update utilizadores set saldo = saldo + ? " +
             "where username = ?"
@@ -126,7 +124,9 @@ public class Banco {
       try{
         c.rollback();
       }
-      catch (Exception e2){}
+      catch (Exception e2){
+        e2.printStackTrace();
+      }
     }
     finally {
       try {
