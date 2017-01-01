@@ -1,6 +1,7 @@
 package controller;
 
 import co.paralleluniverse.actors.ActorRef;
+import org.zeromq.ZMQ;
 
 import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
@@ -9,6 +10,10 @@ import java.util.concurrent.ExecutionException;
  * Class principal do modulo Exchange
  */
 public class Exchange {
+
+    public static int portPub = 1255;
+    public static int portSub = 1256;
+
     public static void main(String[] args) {
 
         try {
@@ -18,6 +23,17 @@ public class Exchange {
                 Acceptor acceptor = new Acceptor(port);
                 acceptor.spawn();
                 acceptor.join();
+
+
+                ZMQ.Context context = ZMQ.context(1);
+                ZMQ.Socket socketPubs = context.socket(ZMQ.XPUB);
+                socketPubs.bind("tcp://*:" + portPub);
+
+                ZMQ.Socket socketSubs = context.socket(ZMQ.XSUB);
+                socketSubs.bind("tcp://*:" + portSub);
+
+                ZMQ.proxy(socketPubs, socketSubs, null);
+
             } catch (SQLException e) {
                 System.out.println("Connection to database close");
                 e.printStackTrace();

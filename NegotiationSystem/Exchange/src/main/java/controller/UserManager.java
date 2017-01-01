@@ -123,7 +123,10 @@ public class UserManager extends BasicActor<Message, Void> {
                         request.getCompany(),
                         request.getQuant(),
                         request.getPrice(),
+                        new User("",""),
                         self()
+                        // FIXME ver o que colocar aqui no user
+
                 )
         ));
     }
@@ -141,8 +144,9 @@ public class UserManager extends BasicActor<Message, Void> {
                         request.getCompany(),
                         request.getQuant(),
                         request.getPrice(),
+                        new User("",""),
                         self())
-
+                // FIXME ver o que colocar aqui no user
         ));
     }
 
