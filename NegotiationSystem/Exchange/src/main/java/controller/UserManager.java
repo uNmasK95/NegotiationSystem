@@ -32,23 +32,28 @@ public class UserManager extends BasicActor<Message, Void> {
 
     protected Void doRun() throws InterruptedException, SuspendExecution {
         new ReaderSocket( this.socketChannel, self() ).spawn();
-        System.out.println( "UserManager: " + self().getName() );
+        System.out.println( "UserManager " );
 
         while ( receive( msg -> {
             switch (msg.type){
                 case LOGIN_REQ:
+                    System.out.println("Login Request");
                     login_request( msg );
                     break;
                 case LOGIN_REP:
+                    System.out.println("Login Reply");
                     login_reply( msg );
                     break;
                 case ORDER_REQ:
+                    System.out.println("Order Request");
                     order_request( msg );
                     break;
                 case ORDER_REP:
+                    System.out.println("Order REply");
                     order_reply( msg );
                     break;
                 case KO:
+                    System.out.println("KO");
                     // seja qual for a messagem
                     return false;
                 default:
@@ -63,6 +68,9 @@ public class UserManager extends BasicActor<Message, Void> {
 
     private void login_request( Message msg ) throws SuspendExecution {
         Protocol.LoginRequest login = (Protocol.LoginRequest) msg.obj;
+        System.out.println("user: " +login.getUsername() );
+        System.out.println("pass: " +login.getPassword() );
+
         this.authenticator.send( new Message(
                 Message.Type.LOGIN_REQ,
                 self(),
@@ -79,6 +87,7 @@ public class UserManager extends BasicActor<Message, Void> {
      */
     private void login_reply( Message msg ) {
         Protocol.Reply reply = Protocol.Reply.newBuilder()
+                .setType(Protocol.Reply.Type.Login)
                 .setResult( (boolean) msg.obj)
                 .setDescrition("Reply Login")
                 .build();
@@ -89,6 +98,7 @@ public class UserManager extends BasicActor<Message, Void> {
             this.cout.flush();
             this.output.flip();
             this.socketChannel.write(this.output);
+
             this.output.compact();
 
         } catch (IOException e) {

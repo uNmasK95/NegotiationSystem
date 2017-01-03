@@ -33,30 +33,35 @@ public class ReaderSocket extends BasicActor<Message,Void> {
 
         try {
 
-            while (socketChannel.isOpen()) {
+            while (true) {
 
                 //ler do socket para o buffer; ficar a espera enquanto não tiver nada
-                while (socketChannel.read(this.input) <= 0);
+                if(socketChannel.read(this.input) > 0){
+                    System.out.println("Deixou de ler");
 
-                //colocar o buffer de for a que seja possivel ler dele
-                this.input.flip();
+                    //colocar o buffer de for a que seja possivel ler dele
+                    this.input.flip();
 
-                // quantos bytes o parse precisa de ler
-                int len = this.cin.readRawVarint32();
+                    // quantos bytes o parse precisa de ler
+                    int len = this.cin.readRawVarint32();
 
-                if (needLogin){
-                    Protocol.LoginRequest loginRequest = Protocol.LoginRequest.parseFrom(cin.readRawBytes(len) );
-                    this.user.send( new Message(Message.Type.LOGIN_REQ, self(), loginRequest));
-                }else {
-                    Protocol.Request request = Protocol.Request.parseFrom(cin.readRawBytes(len));
-                    this.user.send( new Message( Message.Type.ORDER_REQ, self(), request) );
+                    if (needLogin){
+                        Protocol.LoginRequest loginRequest = Protocol.LoginRequest.parseFrom(cin.readRawBytes(len) );
+                        this.user.send( new Message(Message.Type.LOGIN_REQ, self(), loginRequest));
+                    }else {
+                        Protocol.Request request = Protocol.Request.parseFrom(cin.readRawBytes(len));
+                        this.user.send( new Message( Message.Type.ORDER_REQ, self(), request) );
+                    }
+                    this.input.compact();
                 }
-                this.input.compact();
+
             }
         } catch (IOException e) {
-            this.user.send( new Message(Message.Type.KO, self(),"IOException"));
+           // this.user.send( new Message(Message.Type.KO, self(),"IOException"));
+            System.out.println("IOException");
         }
-        this.user.send( new Message(Message.Type.KO, self(),"Socket is close!"));
+        //this.user.send( new Message(Message.Type.KO, self(),"Socket is close!"));
+        System.out.println("Socket is close!");
         return null;
     }
 }

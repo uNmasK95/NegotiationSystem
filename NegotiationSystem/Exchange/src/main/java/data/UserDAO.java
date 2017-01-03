@@ -23,7 +23,7 @@ public class UserDAO {
             this.loginStatment.setString(2, password);
             ResultSet rs = this.loginStatment.executeQuery();
 
-            rs.first();
+            rs.next();
             result = rs.getInt("count") == 1;
 
         } catch (SQLException e) {

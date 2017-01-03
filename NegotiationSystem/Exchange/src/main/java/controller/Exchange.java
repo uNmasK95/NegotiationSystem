@@ -22,7 +22,6 @@ public class Exchange {
             try {
                 Acceptor acceptor = new Acceptor(port);
                 acceptor.spawn();
-                acceptor.join();
 
 
                 ZMQ.Context context = ZMQ.context(1);
@@ -33,6 +32,8 @@ public class Exchange {
                 socketSubs.bind("tcp://*:" + portSub);
 
                 ZMQ.proxy(socketPubs, socketSubs, null);
+
+                acceptor.join();
 
             } catch (SQLException e) {
                 System.out.println("Connection to database close");

@@ -29,6 +29,7 @@ public class Acceptor extends BasicActor {
             while (true) {
                 FiberSocketChannel socket = ss.accept();
                 new UserManager(socket, this.authenticator, this.orderManager).spawn();
+                System.out.println("new user");
             }
         } catch (IOException e) { }
         return null;

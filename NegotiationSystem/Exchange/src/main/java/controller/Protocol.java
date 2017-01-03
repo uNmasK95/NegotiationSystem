@@ -2324,24 +2324,33 @@ public final class Protocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required bool result = 1;</code>
+     * <code>required .controller.Reply.Type type = 1;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>required .controller.Reply.Type type = 1;</code>
+     */
+    controller.Protocol.Reply.Type getType();
+
+    /**
+     * <code>required bool result = 2;</code>
      */
     boolean hasResult();
     /**
-     * <code>required bool result = 1;</code>
+     * <code>required bool result = 2;</code>
      */
     boolean getResult();
 
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     boolean hasDescrition();
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     java.lang.String getDescrition();
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     com.google.protobuf.ByteString
         getDescritionBytes();
@@ -2358,6 +2367,7 @@ public final class Protocol {
       super(builder);
     }
     private Reply() {
+      type_ = 0;
       result_ = false;
       descrition_ = "";
     }
@@ -2391,13 +2401,24 @@ public final class Protocol {
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+              int rawValue = input.readEnum();
+              controller.Protocol.Reply.Type value = controller.Protocol.Reply.Type.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = rawValue;
+              }
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
               result_ = input.readBool();
               break;
             }
-            case 18: {
+            case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               descrition_ = bs;
               break;
             }
@@ -2425,32 +2446,138 @@ public final class Protocol {
               controller.Protocol.Reply.class, controller.Protocol.Reply.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int RESULT_FIELD_NUMBER = 1;
-    private boolean result_;
     /**
-     * <code>required bool result = 1;</code>
+     * Protobuf enum {@code controller.Reply.Type}
      */
-    public boolean hasResult() {
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>Login = 0;</code>
+       */
+      Login(0),
+      /**
+       * <code>Order = 1;</code>
+       */
+      Order(1),
+      ;
+
+      /**
+       * <code>Login = 0;</code>
+       */
+      public static final int Login_VALUE = 0;
+      /**
+       * <code>Order = 1;</code>
+       */
+      public static final int Order_VALUE = 1;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Type valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Type forNumber(int value) {
+        switch (value) {
+          case 0: return Login;
+          case 1: return Order;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return controller.Protocol.Reply.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Type(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:controller.Reply.Type)
+    }
+
+    private int bitField0_;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <code>required .controller.Reply.Type type = 1;</code>
+     */
+    public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required bool result = 1;</code>
+     * <code>required .controller.Reply.Type type = 1;</code>
+     */
+    public controller.Protocol.Reply.Type getType() {
+      controller.Protocol.Reply.Type result = controller.Protocol.Reply.Type.valueOf(type_);
+      return result == null ? controller.Protocol.Reply.Type.Login : result;
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 2;
+    private boolean result_;
+    /**
+     * <code>required bool result = 2;</code>
+     */
+    public boolean hasResult() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required bool result = 2;</code>
      */
     public boolean getResult() {
       return result_;
     }
 
-    public static final int DESCRITION_FIELD_NUMBER = 2;
+    public static final int DESCRITION_FIELD_NUMBER = 3;
     private volatile java.lang.Object descrition_;
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     public boolean hasDescrition() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     public java.lang.String getDescrition() {
       java.lang.Object ref = descrition_;
@@ -2467,7 +2594,7 @@ public final class Protocol {
       }
     }
     /**
-     * <code>required string descrition = 2;</code>
+     * <code>required string descrition = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescritionBytes() {
@@ -2489,6 +2616,10 @@ public final class Protocol {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasResult()) {
         memoizedIsInitialized = 0;
         return false;
@@ -2504,10 +2635,13 @@ public final class Protocol {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, result_);
+        output.writeEnum(1, type_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, descrition_);
+        output.writeBool(2, result_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, descrition_);
       }
       unknownFields.writeTo(output);
     }
@@ -2519,10 +2653,14 @@ public final class Protocol {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, result_);
+          .computeEnumSize(1, type_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, descrition_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, result_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, descrition_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2541,6 +2679,10 @@ public final class Protocol {
       controller.Protocol.Reply other = (controller.Protocol.Reply) obj;
 
       boolean result = true;
+      result = result && (hasType() == other.hasType());
+      if (hasType()) {
+        result = result && type_ == other.type_;
+      }
       result = result && (hasResult() == other.hasResult());
       if (hasResult()) {
         result = result && (getResult()
@@ -2562,6 +2704,10 @@ public final class Protocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasType()) {
+        hash = (37 * hash) + TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + type_;
+      }
       if (hasResult()) {
         hash = (37 * hash) + RESULT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
@@ -2689,10 +2835,12 @@ public final class Protocol {
       }
       public Builder clear() {
         super.clear();
-        result_ = false;
+        type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        descrition_ = "";
+        result_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
+        descrition_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -2720,9 +2868,13 @@ public final class Protocol {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.result_ = result_;
+        result.type_ = type_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
+        }
+        result.result_ = result_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.descrition_ = descrition_;
         result.bitField0_ = to_bitField0_;
@@ -2767,11 +2919,14 @@ public final class Protocol {
 
       public Builder mergeFrom(controller.Protocol.Reply other) {
         if (other == controller.Protocol.Reply.getDefaultInstance()) return this;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
         if (other.hasResult()) {
           setResult(other.getResult());
         }
         if (other.hasDescrition()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           descrition_ = other.descrition_;
           onChanged();
         }
@@ -2781,6 +2936,9 @@ public final class Protocol {
       }
 
       public final boolean isInitialized() {
+        if (!hasType()) {
+          return false;
+        }
         if (!hasResult()) {
           return false;
         }
@@ -2809,33 +2967,69 @@ public final class Protocol {
       }
       private int bitField0_;
 
-      private boolean result_ ;
+      private int type_ = 0;
       /**
-       * <code>required bool result = 1;</code>
+       * <code>required .controller.Reply.Type type = 1;</code>
        */
-      public boolean hasResult() {
+      public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required bool result = 1;</code>
+       * <code>required .controller.Reply.Type type = 1;</code>
+       */
+      public controller.Protocol.Reply.Type getType() {
+        controller.Protocol.Reply.Type result = controller.Protocol.Reply.Type.valueOf(type_);
+        return result == null ? controller.Protocol.Reply.Type.Login : result;
+      }
+      /**
+       * <code>required .controller.Reply.Type type = 1;</code>
+       */
+      public Builder setType(controller.Protocol.Reply.Type value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .controller.Reply.Type type = 1;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean result_ ;
+      /**
+       * <code>required bool result = 2;</code>
+       */
+      public boolean hasResult() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required bool result = 2;</code>
        */
       public boolean getResult() {
         return result_;
       }
       /**
-       * <code>required bool result = 1;</code>
+       * <code>required bool result = 2;</code>
        */
       public Builder setResult(boolean value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         result_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool result = 1;</code>
+       * <code>required bool result = 2;</code>
        */
       public Builder clearResult() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         result_ = false;
         onChanged();
         return this;
@@ -2843,13 +3037,13 @@ public final class Protocol {
 
       private java.lang.Object descrition_ = "";
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public boolean hasDescrition() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public java.lang.String getDescrition() {
         java.lang.Object ref = descrition_;
@@ -2866,7 +3060,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public com.google.protobuf.ByteString
           getDescritionBytes() {
@@ -2882,36 +3076,36 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public Builder setDescrition(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         descrition_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public Builder clearDescrition() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         descrition_ = getDefaultInstance().getDescrition();
         onChanged();
         return this;
       }
       /**
-       * <code>required string descrition = 2;</code>
+       * <code>required string descrition = 3;</code>
        */
       public Builder setDescritionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         descrition_ = value;
         onChanged();
         return this;
@@ -3000,8 +3194,10 @@ public final class Protocol {
       "n\030\002 \002(\010\"{\n\007Request\022&\n\004type\030\001 \002(\0162\030.contr" +
       "oller.Request.Type\022\017\n\007company\030\002 \002(\t\022\r\n\005q" +
       "uant\030\003 \002(\005\022\r\n\005price\030\004 \002(\002\"\031\n\004Type\022\007\n\003Buy" +
-      "\020\000\022\010\n\004Sell\020\001\"+\n\005Reply\022\016\n\006result\030\001 \002(\010\022\022\n" +
-      "\ndescrition\030\002 \002(\t"
+      "\020\000\022\010\n\004Sell\020\001\"o\n\005Reply\022$\n\004type\030\001 \002(\0162\026.co" +
+      "ntroller.Reply.Type\022\016\n\006result\030\002 \002(\010\022\022\n\nd" +
+      "escrition\030\003 \002(\t\"\034\n\004Type\022\t\n\005Login\020\000\022\t\n\005Or" +
+      "der\020\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3038,7 +3234,7 @@ public final class Protocol {
     internal_static_controller_Reply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_controller_Reply_descriptor,
-        new java.lang.String[] { "Result", "Descrition", });
+        new java.lang.String[] { "Type", "Result", "Descrition", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
