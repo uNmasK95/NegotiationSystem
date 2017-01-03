@@ -2,20 +2,19 @@ package controller;
 
 import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
-import controller.entity.OrderBuy;
-import controller.entity.OrderSell;
+import controller.entity.Match;
 import org.zeromq.ZMQ;
+
+import java.util.List;
 
 public class Transaction extends BasicActor<Message,Void> {
 
     private final String host = "localhost";
     private final int port = 5559;
-    private final OrderBuy orderBuy;
-    private final OrderSell orderSell;
+    private final List<Match> matchList;
 
-    public Transaction(OrderBuy orderBuy, OrderSell orderSell) {
-        this.orderBuy = orderBuy;
-        this.orderSell = orderSell;
+    public Transaction( List<Match> matchList ) {
+        this.matchList = matchList;
     }
 
     @Override

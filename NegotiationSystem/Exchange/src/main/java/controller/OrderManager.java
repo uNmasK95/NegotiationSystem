@@ -2,23 +2,19 @@ package controller;
 
 import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
-import controller.entity.OrderBuy;
-import controller.entity.OrderSell;
+import controller.entity.Match;
+import controller.entity.Order;
+import controller.entity.Orders;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class OrderManager extends BasicActor<Message,Void> {
 
 
-    private Map<String,OrderBuy> orderBuyMap;
-    private Map<String,OrderSell> orderSellMap;
+    private Orders orders;
 
     public OrderManager() {
-        this.orderBuyMap = new HashMap<>();
-        this.orderSellMap = new HashMap<>();
+        this.orders = new Orders();
     }
 
     @Override
@@ -26,11 +22,10 @@ public class OrderManager extends BasicActor<Message,Void> {
 
         while ( receive( msg -> {
             switch (msg.type){
-                case BUY:
-                    receiveOrderBuy( (OrderBuy) msg.obj);
+                case ORDER:
+                    receiveOrder( (Order) msg.obj);
                     break;
-                case SELL:
-                    receiveOrderSell( (OrderSell) msg.obj);
+                default:
                     break;
             }
             return true;
@@ -39,17 +34,13 @@ public class OrderManager extends BasicActor<Message,Void> {
         return null;
     }
 
-    private void receiveOrderBuy( OrderBuy orderBuy){
+    private void receiveOrder( Order order ){
         //TODO verificar se existe algo compativel caso contrario adionar á lista
 
-
-        //se compativel
-        OrderSell orderSell = orderSellMap.get("company");
-        new Transaction(orderBuy , orderSell );
-
-    }
-
-    private void receiveOrderSell( OrderSell orderSell ){
+        List<Match> result = this.orders.add( order );
+        if(result!=null){
+            new Transaction( result );
+        }
 
     }
 }

@@ -5,8 +5,7 @@ import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import com.google.protobuf.CodedOutputStream;
-import controller.entity.OrderBuy;
-import controller.entity.OrderSell;
+import controller.entity.Order;
 import controller.entity.User;
 
 import java.io.IOException;
@@ -20,6 +19,8 @@ public class UserManager extends BasicActor<Message, Void> {
 
     private final ByteBuffer output;
     private final CodedOutputStream cout;
+
+    private String user;
 
     public UserManager(FiberSocketChannel socketChannel, ActorRef authenticator, ActorRef orderManager) {
         this.socketChannel = socketChannel;
@@ -71,6 +72,8 @@ public class UserManager extends BasicActor<Message, Void> {
         System.out.println("user: " +login.getUsername() );
         System.out.println("pass: " +login.getPassword() );
 
+        this.user = login.getUsername();
+        //TODO ver melhor isto
         this.authenticator.send( new Message(
                 Message.Type.LOGIN_REQ,
                 self(),
@@ -129,14 +132,13 @@ public class UserManager extends BasicActor<Message, Void> {
         this.orderManager.send( new Message(
                 Message.Type.BUY,
                 self(),
-                new OrderBuy(
+                new Order(
                         request.getCompany(),
                         request.getQuant(),
                         request.getPrice(),
-                        new User("",""),
-                        self()
-                        // FIXME ver o que colocar aqui no user
-
+                        this.user,
+                        self(),
+                        Order.Tipo.COMPRA
                 )
         ));
     }
@@ -150,12 +152,14 @@ public class UserManager extends BasicActor<Message, Void> {
         this.orderManager.send( new Message(
                 Message.Type.SELL,
                 self(),
-                new OrderSell(
+                new Order(
                         request.getCompany(),
                         request.getQuant(),
                         request.getPrice(),
-                        new User("",""),
-                        self())
+                        this.user,
+                        self(),
+                        Order.Tipo.VENDA
+                )
                 // FIXME ver o que colocar aqui no user
         ));
     }
@@ -166,8 +170,10 @@ public class UserManager extends BasicActor<Message, Void> {
      */
     private void order_reply( Message msg ) {
         Protocol.Reply reply = Protocol.Reply.newBuilder()
+                .setType(Protocol.Reply.Type.Order)
                 .setResult(true)
                 .setDescrition("Coisas")
+                //TODO alterar isto
                 .build();
 
         try {
