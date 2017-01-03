@@ -11,9 +11,9 @@ import java.util.TreeMap;
  */
 public class Acoes {
 
-  public String host = "127.0.0.1";
-  public int port = 12347;
-  public String database = "acoes";
+  public String host;
+  public int port;
+  public String database;
 
   private Connection c;
 

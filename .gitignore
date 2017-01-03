@@ -5,3 +5,4 @@ target/
 BD/acoes/
 BD/banco/
 BD/utilizadores/
+*.tlog
