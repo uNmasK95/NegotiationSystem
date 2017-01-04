@@ -68,7 +68,8 @@ public class UserManager extends BasicActor<Message, Void> {
 
 
     private void login_request( Message msg ) throws SuspendExecution {
-        Protocol.LoginRequest login = (Protocol.LoginRequest) msg.obj;
+        Protocol.Request.Login login = (Protocol.Request.Login) msg.obj;
+
         System.out.println("user: " +login.getUsername() );
         System.out.println("pass: " +login.getPassword() );
 
@@ -88,7 +89,7 @@ public class UserManager extends BasicActor<Message, Void> {
      * Envia um resposta ao utilizador com o resultado ao pedido de login do utilizador
      * @param msg
      */
-    private void login_reply( Message msg ) {
+    private void login_reply( Message msg ) throws SuspendExecution{
         Protocol.Reply reply = Protocol.Reply.newBuilder()
                 .setType(Protocol.Reply.Type.Login)
                 .setResult( (boolean) msg.obj)
@@ -101,7 +102,6 @@ public class UserManager extends BasicActor<Message, Void> {
             this.cout.flush();
             this.output.flip();
             this.socketChannel.write(this.output);
-
             this.output.compact();
 
         } catch (IOException e) {
@@ -115,8 +115,8 @@ public class UserManager extends BasicActor<Message, Void> {
      * @throws SuspendExecution
      */
     private void order_request( Message msg ) throws SuspendExecution {
-        Protocol.Request request = (Protocol.Request) msg.obj;
-        if(request.getType() == Protocol.Request.Type.Buy){
+        Protocol.Request.Order request = (Protocol.Request.Order) msg.obj;
+        if(request.getType() == Protocol.Request.Order.Type.Buy){
             order_buy( request );
         }else{
             order_sell( request );
@@ -128,9 +128,9 @@ public class UserManager extends BasicActor<Message, Void> {
      * @param request
      * @throws SuspendExecution
      */
-    private void order_buy(Protocol.Request request) throws SuspendExecution {
+    private void order_buy(Protocol.Request.Order request) throws SuspendExecution {
         this.orderManager.send( new Message(
-                Message.Type.BUY,
+                Message.Type.ORDER_REQ,
                 self(),
                 new Order(
                         request.getCompany(),
@@ -148,9 +148,9 @@ public class UserManager extends BasicActor<Message, Void> {
      * @param request
      * @throws SuspendExecution
      */
-    private void order_sell(Protocol.Request request) throws SuspendExecution {
+    private void order_sell(Protocol.Request.Order request) throws SuspendExecution {
         this.orderManager.send( new Message(
-                Message.Type.SELL,
+                Message.Type.ORDER_REQ,
                 self(),
                 new Order(
                         request.getCompany(),

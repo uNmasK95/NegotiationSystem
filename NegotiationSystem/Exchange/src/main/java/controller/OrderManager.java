@@ -21,8 +21,8 @@ public class OrderManager extends BasicActor<Message,Void> {
     protected Void doRun() throws InterruptedException, SuspendExecution {
 
         while ( receive( msg -> {
-            switch (msg.type){
-                case ORDER:
+            switch ( msg.type ){
+                case ORDER_REQ:
                     receiveOrder( (Order) msg.obj);
                     break;
                 default:

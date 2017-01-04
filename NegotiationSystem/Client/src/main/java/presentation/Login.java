@@ -4,7 +4,6 @@ import co.paralleluniverse.actors.ActorRef;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.strands.channels.Channel;
 import controller.Message;
-import controller.Message.Type;
 import controller.Protocol;
 
 import javax.swing.*;
@@ -45,23 +44,30 @@ public class Login extends JFrame{
 
     private void buttonLogin(JButton SIGNINButton){
         if( this.passwordPasswordField.getPassword() != null && !this.usernameTextField.getText().equals("")){
-            Protocol.LoginRequest login = Protocol.LoginRequest.newBuilder()
-                    .setUsername( this.usernameTextField.getText())
-                    .setPassword( new String( this.passwordPasswordField.getPassword() ) )
+
+            Protocol.Request requestLogin = Protocol.Request.newBuilder()
+                    .setLogin(
+                            Protocol.Request.Login.newBuilder()
+                            .setUsername(this.usernameTextField.getText())
+                            .setPassword( new String( this.passwordPasswordField.getPassword() ) )
+                            .build()
+                    )
                     .build();
 
-            System.out.println("user: " + login.getUsername());
-            System.out.println("pass: " + login.getPassword());
+            System.out.println("user: " + requestLogin.getLogin().getUsername());
+            System.out.println("pass: " + requestLogin.getLogin().getPassword());
 
             try {
 
                 main.send( new Message(
                         Message.Type.LOGIN_REQ,
                         null,
-                        login
+                        requestLogin
                 ));
 
+                System.out.println("Á espera de recber resposta");
                 Protocol.Reply reply = (Protocol.Reply) channelLogin.receive();
+
                 if( reply.getType() == Protocol.Reply.Type.Login && reply.getResult() ){
                     System.out.println("Login Realizado");
                     new Menu( main, channelSubscribe);

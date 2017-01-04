@@ -30,23 +30,36 @@ public class Listener extends BasicActor<Message,Void> {
             while (socketChannel.isOpen()) {
 
                 //ler do socket para o buffer; ficar a espera enquanto não tiver nada
-                while (socketChannel.read(this.input) <= 0);
+                if (socketChannel.read(this.input) > 0){
+                    //colocar o buffer de for a que seja possivel ler dele
+                    this.input.flip();
 
-                //colocar o buffer de for a que seja possivel ler dele
-                this.input.flip();
+                    // quantos bytes o parse precisa de ler
+                    int len = this.cin.readRawVarint32();
 
-                // quantos bytes o parse precisa de ler
-                int len = this.cin.readRawVarint32();
+                    Protocol.Reply reply = Protocol.Reply.parseFrom(cin.readRawBytes(len) );
+
+                    System.out.println("recebi: " + reply.getResult());
+
+                    if( reply.getType() == Protocol.Reply.Type.Login){
+                        this.main.send( new Message(
+                                Message.Type.LOGIN_REP,
+                                self(),
+                                reply
+                        ));
+                    }else{
+                        this.main.send( new Message(
+                                Message.Type.ORDER_REP,
+                                self(),
+                                reply
+                        ));
+                    }
 
 
-                Protocol.Reply reply = Protocol.Reply.parseFrom(cin.readRawBytes(len) );
-                this.main.send( new Message(
-                        Message.Type.LOGIN_REQ,
-                        self(),
-                        reply
-                ));
 
-                this.input.compact();
+                    this.input.compact();
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();

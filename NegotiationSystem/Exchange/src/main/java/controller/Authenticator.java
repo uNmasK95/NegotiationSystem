@@ -24,13 +24,10 @@ public class Authenticator extends BasicActor<Message, Void> {
 
             if(msg.type == Message.Type.LOGIN_REQ){
                 loginRequest( msg );
-            }else {
-                //TODO: enviar alguma informação para o user a informar que enviou a mensagem errada
             }
 
          return true;
         }));
-
         return null;
     }
 

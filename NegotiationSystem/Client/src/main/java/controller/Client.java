@@ -13,8 +13,6 @@ import java.io.IOException;
 public class Client{
 
 
-
-
     public static void main(String[] args) {
         final String portSubs = args[0];
         final String host = "localhost";
@@ -27,7 +25,7 @@ public class Client{
         socket.connect("tcp://" + host + ":" + portSubs);
 
 
-        ActorRef main = new Main( socket ).spawn();
+        ActorRef main = new Main( socket , channelLogin ).spawn();
         //Subscriber subscriber = new Subscriber( socket, channelSubscrib );
 
         Login login = new Login(main, channelLogin, channelSubscrib);

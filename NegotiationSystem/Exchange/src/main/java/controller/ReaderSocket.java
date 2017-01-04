@@ -16,7 +16,6 @@ public class ReaderSocket extends BasicActor<Message,Void> {
     private final ActorRef user;
     private final ByteBuffer input;
     private final CodedInputStream cin;
-    private final boolean needLogin;
 
 
 
@@ -25,7 +24,6 @@ public class ReaderSocket extends BasicActor<Message,Void> {
         this.user = user;
         this.input = ByteBuffer.allocate(1024);
         this.cin = CodedInputStream.newInstance( this.input );
-        this.needLogin = true;
     }
 
     @Override
@@ -45,12 +43,14 @@ public class ReaderSocket extends BasicActor<Message,Void> {
                     // quantos bytes o parse precisa de ler
                     int len = this.cin.readRawVarint32();
 
-                    if (needLogin){
-                        Protocol.LoginRequest loginRequest = Protocol.LoginRequest.parseFrom(cin.readRawBytes(len) );
-                        this.user.send( new Message(Message.Type.LOGIN_REQ, self(), loginRequest));
+                    Protocol.Request request = Protocol.Request.parseFrom(this.cin.readRawBytes(len));
+
+                    if (request.getLogin()!=null){
+                        System.out.println("Recebi messagem de login");
+                        this.user.send( new Message(Message.Type.LOGIN_REQ, self(), request.getLogin()));
                     }else {
-                        Protocol.Request request = Protocol.Request.parseFrom(cin.readRawBytes(len));
-                        this.user.send( new Message( Message.Type.ORDER_REQ, self(), request) );
+                        System.out.println("Recebi messagem de order");
+                        this.user.send( new Message( Message.Type.ORDER_REQ, self(), request.getOrder()) );
                     }
                     this.input.compact();
                 }

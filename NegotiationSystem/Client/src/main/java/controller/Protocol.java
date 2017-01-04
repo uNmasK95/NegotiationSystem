@@ -14,1419 +14,35 @@ public final class Protocol {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface LoginRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:controller.LoginRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>required string username = 1;</code>
-     */
-    boolean hasUsername();
-    /**
-     * <code>required string username = 1;</code>
-     */
-    java.lang.String getUsername();
-    /**
-     * <code>required string username = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getUsernameBytes();
-
-    /**
-     * <code>required string password = 2;</code>
-     */
-    boolean hasPassword();
-    /**
-     * <code>required string password = 2;</code>
-     */
-    java.lang.String getPassword();
-    /**
-     * <code>required string password = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getPasswordBytes();
-  }
-  /**
-   * Protobuf type {@code controller.LoginRequest}
-   */
-  public  static final class LoginRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:controller.LoginRequest)
-      LoginRequestOrBuilder {
-    // Use LoginRequest.newBuilder() to construct.
-    private LoginRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private LoginRequest() {
-      username_ = "";
-      password_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              username_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              password_ = bs;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return controller.Protocol.internal_static_controller_LoginRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return controller.Protocol.internal_static_controller_LoginRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              controller.Protocol.LoginRequest.class, controller.Protocol.LoginRequest.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int USERNAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object username_;
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public boolean hasUsername() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public java.lang.String getUsername() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          username_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        username_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PASSWORD_FIELD_NUMBER = 2;
-    private volatile java.lang.Object password_;
-    /**
-     * <code>required string password = 2;</code>
-     */
-    public boolean hasPassword() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required string password = 2;</code>
-     */
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          password_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string password = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUsername()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPassword()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Protocol.LoginRequest)) {
-        return super.equals(obj);
-      }
-      controller.Protocol.LoginRequest other = (controller.Protocol.LoginRequest) obj;
-
-      boolean result = true;
-      result = result && (hasUsername() == other.hasUsername());
-      if (hasUsername()) {
-        result = result && getUsername()
-            .equals(other.getUsername());
-      }
-      result = result && (hasPassword() == other.hasPassword());
-      if (hasPassword()) {
-        result = result && getPassword()
-            .equals(other.getPassword());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasUsername()) {
-        hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-        hash = (53 * hash) + getUsername().hashCode();
-      }
-      if (hasPassword()) {
-        hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-        hash = (53 * hash) + getPassword().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static controller.Protocol.LoginRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static controller.Protocol.LoginRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(controller.Protocol.LoginRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code controller.LoginRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:controller.LoginRequest)
-        controller.Protocol.LoginRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return controller.Protocol.internal_static_controller_LoginRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return controller.Protocol.internal_static_controller_LoginRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                controller.Protocol.LoginRequest.class, controller.Protocol.LoginRequest.Builder.class);
-      }
-
-      // Construct using controller.Protocol.LoginRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        username_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return controller.Protocol.internal_static_controller_LoginRequest_descriptor;
-      }
-
-      public controller.Protocol.LoginRequest getDefaultInstanceForType() {
-        return controller.Protocol.LoginRequest.getDefaultInstance();
-      }
-
-      public controller.Protocol.LoginRequest build() {
-        controller.Protocol.LoginRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public controller.Protocol.LoginRequest buildPartial() {
-        controller.Protocol.LoginRequest result = new controller.Protocol.LoginRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.username_ = username_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.password_ = password_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof controller.Protocol.LoginRequest) {
-          return mergeFrom((controller.Protocol.LoginRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(controller.Protocol.LoginRequest other) {
-        if (other == controller.Protocol.LoginRequest.getDefaultInstance()) return this;
-        if (other.hasUsername()) {
-          bitField0_ |= 0x00000001;
-          username_ = other.username_;
-          onChanged();
-        }
-        if (other.hasPassword()) {
-          bitField0_ |= 0x00000002;
-          password_ = other.password_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUsername()) {
-          return false;
-        }
-        if (!hasPassword()) {
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        controller.Protocol.LoginRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (controller.Protocol.LoginRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object username_ = "";
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public boolean hasUsername() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public java.lang.String getUsername() {
-        java.lang.Object ref = username_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            username_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getUsernameBytes() {
-        java.lang.Object ref = username_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          username_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder setUsername(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        username_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder clearUsername() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        username_ = getDefaultInstance().getUsername();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder setUsernameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        username_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object password_ = "";
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public boolean hasPassword() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            password_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          password_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public Builder setPassword(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        password_ = getDefaultInstance().getPassword();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string password = 2;</code>
-       */
-      public Builder setPasswordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:controller.LoginRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:controller.LoginRequest)
-    private static final controller.Protocol.LoginRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new controller.Protocol.LoginRequest();
-    }
-
-    public static controller.Protocol.LoginRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoginRequest>
-        PARSER = new com.google.protobuf.AbstractParser<LoginRequest>() {
-      public LoginRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new LoginRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<LoginRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<LoginRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Protocol.LoginRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface LoginReplyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:controller.LoginReply)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>required string username = 1;</code>
-     */
-    boolean hasUsername();
-    /**
-     * <code>required string username = 1;</code>
-     */
-    java.lang.String getUsername();
-    /**
-     * <code>required string username = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getUsernameBytes();
-
-    /**
-     * <code>required bool login = 2;</code>
-     */
-    boolean hasLogin();
-    /**
-     * <code>required bool login = 2;</code>
-     */
-    boolean getLogin();
-  }
-  /**
-   * Protobuf type {@code controller.LoginReply}
-   */
-  public  static final class LoginReply extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:controller.LoginReply)
-      LoginReplyOrBuilder {
-    // Use LoginReply.newBuilder() to construct.
-    private LoginReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private LoginReply() {
-      username_ = "";
-      login_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginReply(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              username_ = bs;
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              login_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return controller.Protocol.internal_static_controller_LoginReply_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return controller.Protocol.internal_static_controller_LoginReply_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              controller.Protocol.LoginReply.class, controller.Protocol.LoginReply.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int USERNAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object username_;
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public boolean hasUsername() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public java.lang.String getUsername() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          username_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string username = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        username_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int LOGIN_FIELD_NUMBER = 2;
-    private boolean login_;
-    /**
-     * <code>required bool login = 2;</code>
-     */
-    public boolean hasLogin() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required bool login = 2;</code>
-     */
-    public boolean getLogin() {
-      return login_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUsername()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLogin()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(2, login_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, login_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Protocol.LoginReply)) {
-        return super.equals(obj);
-      }
-      controller.Protocol.LoginReply other = (controller.Protocol.LoginReply) obj;
-
-      boolean result = true;
-      result = result && (hasUsername() == other.hasUsername());
-      if (hasUsername()) {
-        result = result && getUsername()
-            .equals(other.getUsername());
-      }
-      result = result && (hasLogin() == other.hasLogin());
-      if (hasLogin()) {
-        result = result && (getLogin()
-            == other.getLogin());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasUsername()) {
-        hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-        hash = (53 * hash) + getUsername().hashCode();
-      }
-      if (hasLogin()) {
-        hash = (37 * hash) + LOGIN_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getLogin());
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static controller.Protocol.LoginReply parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static controller.Protocol.LoginReply parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static controller.Protocol.LoginReply parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static controller.Protocol.LoginReply parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static controller.Protocol.LoginReply parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginReply parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static controller.Protocol.LoginReply parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginReply parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static controller.Protocol.LoginReply parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static controller.Protocol.LoginReply parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(controller.Protocol.LoginReply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code controller.LoginReply}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:controller.LoginReply)
-        controller.Protocol.LoginReplyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return controller.Protocol.internal_static_controller_LoginReply_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return controller.Protocol.internal_static_controller_LoginReply_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                controller.Protocol.LoginReply.class, controller.Protocol.LoginReply.Builder.class);
-      }
-
-      // Construct using controller.Protocol.LoginReply.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        username_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        login_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return controller.Protocol.internal_static_controller_LoginReply_descriptor;
-      }
-
-      public controller.Protocol.LoginReply getDefaultInstanceForType() {
-        return controller.Protocol.LoginReply.getDefaultInstance();
-      }
-
-      public controller.Protocol.LoginReply build() {
-        controller.Protocol.LoginReply result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public controller.Protocol.LoginReply buildPartial() {
-        controller.Protocol.LoginReply result = new controller.Protocol.LoginReply(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.username_ = username_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.login_ = login_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof controller.Protocol.LoginReply) {
-          return mergeFrom((controller.Protocol.LoginReply)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(controller.Protocol.LoginReply other) {
-        if (other == controller.Protocol.LoginReply.getDefaultInstance()) return this;
-        if (other.hasUsername()) {
-          bitField0_ |= 0x00000001;
-          username_ = other.username_;
-          onChanged();
-        }
-        if (other.hasLogin()) {
-          setLogin(other.getLogin());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUsername()) {
-          return false;
-        }
-        if (!hasLogin()) {
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        controller.Protocol.LoginReply parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (controller.Protocol.LoginReply) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object username_ = "";
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public boolean hasUsername() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public java.lang.String getUsername() {
-        java.lang.Object ref = username_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            username_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getUsernameBytes() {
-        java.lang.Object ref = username_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          username_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder setUsername(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        username_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder clearUsername() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        username_ = getDefaultInstance().getUsername();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string username = 1;</code>
-       */
-      public Builder setUsernameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        username_ = value;
-        onChanged();
-        return this;
-      }
-
-      private boolean login_ ;
-      /**
-       * <code>required bool login = 2;</code>
-       */
-      public boolean hasLogin() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required bool login = 2;</code>
-       */
-      public boolean getLogin() {
-        return login_;
-      }
-      /**
-       * <code>required bool login = 2;</code>
-       */
-      public Builder setLogin(boolean value) {
-        bitField0_ |= 0x00000002;
-        login_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool login = 2;</code>
-       */
-      public Builder clearLogin() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        login_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:controller.LoginReply)
-    }
-
-    // @@protoc_insertion_point(class_scope:controller.LoginReply)
-    private static final controller.Protocol.LoginReply DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new controller.Protocol.LoginReply();
-    }
-
-    public static controller.Protocol.LoginReply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoginReply>
-        PARSER = new com.google.protobuf.AbstractParser<LoginReply>() {
-      public LoginReply parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new LoginReply(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<LoginReply> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<LoginReply> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Protocol.LoginReply getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:controller.Request)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
+     * <code>optional .controller.Request.Login login = 1;</code>
      */
-    boolean hasType();
+    boolean hasLogin();
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
+     * <code>optional .controller.Request.Login login = 1;</code>
      */
-    controller.Protocol.Request.Type getType();
+    controller.Protocol.Request.Login getLogin();
+    /**
+     * <code>optional .controller.Request.Login login = 1;</code>
+     */
+    controller.Protocol.Request.LoginOrBuilder getLoginOrBuilder();
 
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    boolean hasCompany();
+    boolean hasOrder();
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    java.lang.String getCompany();
+    controller.Protocol.Request.Order getOrder();
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getCompanyBytes();
-
-    /**
-     * <code>required int32 quant = 3;</code>
-     */
-    boolean hasQuant();
-    /**
-     * <code>required int32 quant = 3;</code>
-     */
-    int getQuant();
-
-    /**
-     * <code>required float price = 4;</code>
-     */
-    boolean hasPrice();
-    /**
-     * <code>required float price = 4;</code>
-     */
-    float getPrice();
+    controller.Protocol.Request.OrderOrBuilder getOrderOrBuilder();
   }
   /**
    * Protobuf type {@code controller.Request}
@@ -1440,10 +56,6 @@ public final class Protocol {
       super(builder);
     }
     private Request() {
-      type_ = 0;
-      company_ = "";
-      quant_ = 0;
-      price_ = 0F;
     }
 
     @java.lang.Override
@@ -1474,31 +86,30 @@ public final class Protocol {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
-              controller.Protocol.Request.Type value = controller.Protocol.Request.Type.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                type_ = rawValue;
+            case 10: {
+              controller.Protocol.Request.Login.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = login_.toBuilder();
               }
+              login_ = input.readMessage(controller.Protocol.Request.Login.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(login_);
+                login_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+              controller.Protocol.Request.Order.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = order_.toBuilder();
+              }
+              order_ = input.readMessage(controller.Protocol.Request.Order.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(order_);
+                order_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000002;
-              company_ = bs;
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              quant_ = input.readInt32();
-              break;
-            }
-            case 37: {
-              bitField0_ |= 0x00000008;
-              price_ = input.readFloat();
               break;
             }
           }
@@ -1525,183 +136,1706 @@ public final class Protocol {
               controller.Protocol.Request.class, controller.Protocol.Request.Builder.class);
     }
 
+    public interface OrderOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:controller.Request.Order)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>required .controller.Request.Order.Type type = 1;</code>
+       */
+      boolean hasType();
+      /**
+       * <code>required .controller.Request.Order.Type type = 1;</code>
+       */
+      controller.Protocol.Request.Order.Type getType();
+
+      /**
+       * <code>required string company = 2;</code>
+       */
+      boolean hasCompany();
+      /**
+       * <code>required string company = 2;</code>
+       */
+      java.lang.String getCompany();
+      /**
+       * <code>required string company = 2;</code>
+       */
+      com.google.protobuf.ByteString
+          getCompanyBytes();
+
+      /**
+       * <code>required int32 quant = 3;</code>
+       */
+      boolean hasQuant();
+      /**
+       * <code>required int32 quant = 3;</code>
+       */
+      int getQuant();
+
+      /**
+       * <code>required float price = 4;</code>
+       */
+      boolean hasPrice();
+      /**
+       * <code>required float price = 4;</code>
+       */
+      float getPrice();
+    }
     /**
-     * Protobuf enum {@code controller.Request.Type}
+     * Protobuf type {@code controller.Request.Order}
      */
-    public enum Type
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>Buy = 0;</code>
-       */
-      Buy(0),
-      /**
-       * <code>Sell = 1;</code>
-       */
-      Sell(1),
-      ;
-
-      /**
-       * <code>Buy = 0;</code>
-       */
-      public static final int Buy_VALUE = 0;
-      /**
-       * <code>Sell = 1;</code>
-       */
-      public static final int Sell_VALUE = 1;
-
-
-      public final int getNumber() {
-        return value;
+    public  static final class Order extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:controller.Request.Order)
+        OrderOrBuilder {
+      // Use Order.newBuilder() to construct.
+      private Order(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Order() {
+        type_ = 0;
+        company_ = "";
+        quant_ = 0;
+        price_ = 0F;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Type valueOf(int value) {
-        return forNumber(value);
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
       }
-
-      public static Type forNumber(int value) {
-        switch (value) {
-          case 0: return Buy;
-          case 1: return Sell;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Type>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
+      private Order(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
               }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return controller.Protocol.Request.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final Type[] VALUES = values();
-
-      public static Type valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+              case 8: {
+                int rawValue = input.readEnum();
+                controller.Protocol.Request.Order.Type value = controller.Protocol.Request.Order.Type.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(1, rawValue);
+                } else {
+                  bitField0_ |= 0x00000001;
+                  type_ = rawValue;
+                }
+                break;
+              }
+              case 18: {
+                com.google.protobuf.ByteString bs = input.readBytes();
+                bitField0_ |= 0x00000002;
+                company_ = bs;
+                break;
+              }
+              case 24: {
+                bitField0_ |= 0x00000004;
+                quant_ = input.readInt32();
+                break;
+              }
+              case 37: {
+                bitField0_ |= 0x00000008;
+                price_ = input.readFloat();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
         }
-        return VALUES[desc.getIndex()];
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return controller.Protocol.internal_static_controller_Request_Order_descriptor;
       }
 
-      private final int value;
-
-      private Type(int value) {
-        this.value = value;
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return controller.Protocol.internal_static_controller_Request_Order_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                controller.Protocol.Request.Order.class, controller.Protocol.Request.Order.Builder.class);
       }
 
-      // @@protoc_insertion_point(enum_scope:controller.Request.Type)
+      /**
+       * Protobuf enum {@code controller.Request.Order.Type}
+       */
+      public enum Type
+          implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <code>Buy = 0;</code>
+         */
+        Buy(0),
+        /**
+         * <code>Sell = 1;</code>
+         */
+        Sell(1),
+        ;
+
+        /**
+         * <code>Buy = 0;</code>
+         */
+        public static final int Buy_VALUE = 0;
+        /**
+         * <code>Sell = 1;</code>
+         */
+        public static final int Sell_VALUE = 1;
+
+
+        public final int getNumber() {
+          return value;
+        }
+
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static Type valueOf(int value) {
+          return forNumber(value);
+        }
+
+        public static Type forNumber(int value) {
+          switch (value) {
+            case 0: return Buy;
+            case 1: return Sell;
+            default: return null;
+          }
+        }
+
+        public static com.google.protobuf.Internal.EnumLiteMap<Type>
+            internalGetValueMap() {
+          return internalValueMap;
+        }
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+            Type> internalValueMap =
+              new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+                public Type findValueByNumber(int number) {
+                  return Type.forNumber(number);
+                }
+              };
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
+            getValueDescriptor() {
+          return getDescriptor().getValues().get(ordinal());
+        }
+        public final com.google.protobuf.Descriptors.EnumDescriptor
+            getDescriptorForType() {
+          return getDescriptor();
+        }
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
+            getDescriptor() {
+          return controller.Protocol.Request.Order.getDescriptor().getEnumTypes().get(0);
+        }
+
+        private static final Type[] VALUES = values();
+
+        public static Type valueOf(
+            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+          if (desc.getType() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+              "EnumValueDescriptor is not for this type.");
+          }
+          return VALUES[desc.getIndex()];
+        }
+
+        private final int value;
+
+        private Type(int value) {
+          this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:controller.Request.Order.Type)
+      }
+
+      private int bitField0_;
+      public static final int TYPE_FIELD_NUMBER = 1;
+      private int type_;
+      /**
+       * <code>required .controller.Request.Order.Type type = 1;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .controller.Request.Order.Type type = 1;</code>
+       */
+      public controller.Protocol.Request.Order.Type getType() {
+        controller.Protocol.Request.Order.Type result = controller.Protocol.Request.Order.Type.valueOf(type_);
+        return result == null ? controller.Protocol.Request.Order.Type.Buy : result;
+      }
+
+      public static final int COMPANY_FIELD_NUMBER = 2;
+      private volatile java.lang.Object company_;
+      /**
+       * <code>required string company = 2;</code>
+       */
+      public boolean hasCompany() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required string company = 2;</code>
+       */
+      public java.lang.String getCompany() {
+        java.lang.Object ref = company_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            company_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>required string company = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCompanyBytes() {
+        java.lang.Object ref = company_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          company_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int QUANT_FIELD_NUMBER = 3;
+      private int quant_;
+      /**
+       * <code>required int32 quant = 3;</code>
+       */
+      public boolean hasQuant() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required int32 quant = 3;</code>
+       */
+      public int getQuant() {
+        return quant_;
+      }
+
+      public static final int PRICE_FIELD_NUMBER = 4;
+      private float price_;
+      /**
+       * <code>required float price = 4;</code>
+       */
+      public boolean hasPrice() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>required float price = 4;</code>
+       */
+      public float getPrice() {
+        return price_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        if (!hasType()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasCompany()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasQuant()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasPrice()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeEnum(1, type_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, company_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeInt32(3, quant_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          output.writeFloat(4, price_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, type_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, company_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(3, quant_);
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeFloatSize(4, price_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof controller.Protocol.Request.Order)) {
+          return super.equals(obj);
+        }
+        controller.Protocol.Request.Order other = (controller.Protocol.Request.Order) obj;
+
+        boolean result = true;
+        result = result && (hasType() == other.hasType());
+        if (hasType()) {
+          result = result && type_ == other.type_;
+        }
+        result = result && (hasCompany() == other.hasCompany());
+        if (hasCompany()) {
+          result = result && getCompany()
+              .equals(other.getCompany());
+        }
+        result = result && (hasQuant() == other.hasQuant());
+        if (hasQuant()) {
+          result = result && (getQuant()
+              == other.getQuant());
+        }
+        result = result && (hasPrice() == other.hasPrice());
+        if (hasPrice()) {
+          result = result && (
+              java.lang.Float.floatToIntBits(getPrice())
+              == java.lang.Float.floatToIntBits(
+                  other.getPrice()));
+        }
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptorForType().hashCode();
+        if (hasType()) {
+          hash = (37 * hash) + TYPE_FIELD_NUMBER;
+          hash = (53 * hash) + type_;
+        }
+        if (hasCompany()) {
+          hash = (37 * hash) + COMPANY_FIELD_NUMBER;
+          hash = (53 * hash) + getCompany().hashCode();
+        }
+        if (hasQuant()) {
+          hash = (37 * hash) + QUANT_FIELD_NUMBER;
+          hash = (53 * hash) + getQuant();
+        }
+        if (hasPrice()) {
+          hash = (37 * hash) + PRICE_FIELD_NUMBER;
+          hash = (53 * hash) + java.lang.Float.floatToIntBits(
+              getPrice());
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static controller.Protocol.Request.Order parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static controller.Protocol.Request.Order parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Order parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static controller.Protocol.Request.Order parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Order parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Order parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Order parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Order parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Order parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Order parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(controller.Protocol.Request.Order prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code controller.Request.Order}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:controller.Request.Order)
+          controller.Protocol.Request.OrderOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return controller.Protocol.internal_static_controller_Request_Order_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return controller.Protocol.internal_static_controller_Request_Order_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  controller.Protocol.Request.Order.class, controller.Protocol.Request.Order.Builder.class);
+        }
+
+        // Construct using controller.Protocol.Request.Order.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          type_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          company_ = "";
+          bitField0_ = (bitField0_ & ~0x00000002);
+          quant_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          price_ = 0F;
+          bitField0_ = (bitField0_ & ~0x00000008);
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return controller.Protocol.internal_static_controller_Request_Order_descriptor;
+        }
+
+        public controller.Protocol.Request.Order getDefaultInstanceForType() {
+          return controller.Protocol.Request.Order.getDefaultInstance();
+        }
+
+        public controller.Protocol.Request.Order build() {
+          controller.Protocol.Request.Order result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public controller.Protocol.Request.Order buildPartial() {
+          controller.Protocol.Request.Order result = new controller.Protocol.Request.Order(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.type_ = type_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.company_ = company_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.quant_ = quant_;
+          if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+            to_bitField0_ |= 0x00000008;
+          }
+          result.price_ = price_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof controller.Protocol.Request.Order) {
+            return mergeFrom((controller.Protocol.Request.Order)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(controller.Protocol.Request.Order other) {
+          if (other == controller.Protocol.Request.Order.getDefaultInstance()) return this;
+          if (other.hasType()) {
+            setType(other.getType());
+          }
+          if (other.hasCompany()) {
+            bitField0_ |= 0x00000002;
+            company_ = other.company_;
+            onChanged();
+          }
+          if (other.hasQuant()) {
+            setQuant(other.getQuant());
+          }
+          if (other.hasPrice()) {
+            setPrice(other.getPrice());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          if (!hasType()) {
+            return false;
+          }
+          if (!hasCompany()) {
+            return false;
+          }
+          if (!hasQuant()) {
+            return false;
+          }
+          if (!hasPrice()) {
+            return false;
+          }
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          controller.Protocol.Request.Order parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (controller.Protocol.Request.Order) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private int type_ = 0;
+        /**
+         * <code>required .controller.Request.Order.Type type = 1;</code>
+         */
+        public boolean hasType() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>required .controller.Request.Order.Type type = 1;</code>
+         */
+        public controller.Protocol.Request.Order.Type getType() {
+          controller.Protocol.Request.Order.Type result = controller.Protocol.Request.Order.Type.valueOf(type_);
+          return result == null ? controller.Protocol.Request.Order.Type.Buy : result;
+        }
+        /**
+         * <code>required .controller.Request.Order.Type type = 1;</code>
+         */
+        public Builder setType(controller.Protocol.Request.Order.Type value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          bitField0_ |= 0x00000001;
+          type_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required .controller.Request.Order.Type type = 1;</code>
+         */
+        public Builder clearType() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          type_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object company_ = "";
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public boolean hasCompany() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public java.lang.String getCompany() {
+          java.lang.Object ref = company_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            if (bs.isValidUtf8()) {
+              company_ = s;
+            }
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getCompanyBytes() {
+          java.lang.Object ref = company_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            company_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public Builder setCompany(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          company_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public Builder clearCompany() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          company_ = getDefaultInstance().getCompany();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string company = 2;</code>
+         */
+        public Builder setCompanyBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          company_ = value;
+          onChanged();
+          return this;
+        }
+
+        private int quant_ ;
+        /**
+         * <code>required int32 quant = 3;</code>
+         */
+        public boolean hasQuant() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        /**
+         * <code>required int32 quant = 3;</code>
+         */
+        public int getQuant() {
+          return quant_;
+        }
+        /**
+         * <code>required int32 quant = 3;</code>
+         */
+        public Builder setQuant(int value) {
+          bitField0_ |= 0x00000004;
+          quant_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required int32 quant = 3;</code>
+         */
+        public Builder clearQuant() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          quant_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private float price_ ;
+        /**
+         * <code>required float price = 4;</code>
+         */
+        public boolean hasPrice() {
+          return ((bitField0_ & 0x00000008) == 0x00000008);
+        }
+        /**
+         * <code>required float price = 4;</code>
+         */
+        public float getPrice() {
+          return price_;
+        }
+        /**
+         * <code>required float price = 4;</code>
+         */
+        public Builder setPrice(float value) {
+          bitField0_ |= 0x00000008;
+          price_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required float price = 4;</code>
+         */
+        public Builder clearPrice() {
+          bitField0_ = (bitField0_ & ~0x00000008);
+          price_ = 0F;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:controller.Request.Order)
+      }
+
+      // @@protoc_insertion_point(class_scope:controller.Request.Order)
+      private static final controller.Protocol.Request.Order DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new controller.Protocol.Request.Order();
+      }
+
+      public static controller.Protocol.Request.Order getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      @java.lang.Deprecated public static final com.google.protobuf.Parser<Order>
+          PARSER = new com.google.protobuf.AbstractParser<Order>() {
+        public Order parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Order(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Order> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Order> getParserForType() {
+        return PARSER;
+      }
+
+      public controller.Protocol.Request.Order getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface LoginOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:controller.Request.Login)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>required string username = 1;</code>
+       */
+      boolean hasUsername();
+      /**
+       * <code>required string username = 1;</code>
+       */
+      java.lang.String getUsername();
+      /**
+       * <code>required string username = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getUsernameBytes();
+
+      /**
+       * <code>required string password = 2;</code>
+       */
+      boolean hasPassword();
+      /**
+       * <code>required string password = 2;</code>
+       */
+      java.lang.String getPassword();
+      /**
+       * <code>required string password = 2;</code>
+       */
+      com.google.protobuf.ByteString
+          getPasswordBytes();
+    }
+    /**
+     * Protobuf type {@code controller.Request.Login}
+     */
+    public  static final class Login extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:controller.Request.Login)
+        LoginOrBuilder {
+      // Use Login.newBuilder() to construct.
+      private Login(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Login() {
+        username_ = "";
+        password_ = "";
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Login(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                com.google.protobuf.ByteString bs = input.readBytes();
+                bitField0_ |= 0x00000001;
+                username_ = bs;
+                break;
+              }
+              case 18: {
+                com.google.protobuf.ByteString bs = input.readBytes();
+                bitField0_ |= 0x00000002;
+                password_ = bs;
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return controller.Protocol.internal_static_controller_Request_Login_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return controller.Protocol.internal_static_controller_Request_Login_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                controller.Protocol.Request.Login.class, controller.Protocol.Request.Login.Builder.class);
+      }
+
+      private int bitField0_;
+      public static final int USERNAME_FIELD_NUMBER = 1;
+      private volatile java.lang.Object username_;
+      /**
+       * <code>required string username = 1;</code>
+       */
+      public boolean hasUsername() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string username = 1;</code>
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            username_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>required string username = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int PASSWORD_FIELD_NUMBER = 2;
+      private volatile java.lang.Object password_;
+      /**
+       * <code>required string password = 2;</code>
+       */
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required string password = 2;</code>
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            password_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>required string password = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        if (!hasUsername()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasPassword()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof controller.Protocol.Request.Login)) {
+          return super.equals(obj);
+        }
+        controller.Protocol.Request.Login other = (controller.Protocol.Request.Login) obj;
+
+        boolean result = true;
+        result = result && (hasUsername() == other.hasUsername());
+        if (hasUsername()) {
+          result = result && getUsername()
+              .equals(other.getUsername());
+        }
+        result = result && (hasPassword() == other.hasPassword());
+        if (hasPassword()) {
+          result = result && getPassword()
+              .equals(other.getPassword());
+        }
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptorForType().hashCode();
+        if (hasUsername()) {
+          hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+          hash = (53 * hash) + getUsername().hashCode();
+        }
+        if (hasPassword()) {
+          hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+          hash = (53 * hash) + getPassword().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static controller.Protocol.Request.Login parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static controller.Protocol.Request.Login parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Login parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static controller.Protocol.Request.Login parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Login parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Login parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Login parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Login parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static controller.Protocol.Request.Login parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static controller.Protocol.Request.Login parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(controller.Protocol.Request.Login prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code controller.Request.Login}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:controller.Request.Login)
+          controller.Protocol.Request.LoginOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return controller.Protocol.internal_static_controller_Request_Login_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return controller.Protocol.internal_static_controller_Request_Login_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  controller.Protocol.Request.Login.class, controller.Protocol.Request.Login.Builder.class);
+        }
+
+        // Construct using controller.Protocol.Request.Login.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          username_ = "";
+          bitField0_ = (bitField0_ & ~0x00000001);
+          password_ = "";
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return controller.Protocol.internal_static_controller_Request_Login_descriptor;
+        }
+
+        public controller.Protocol.Request.Login getDefaultInstanceForType() {
+          return controller.Protocol.Request.Login.getDefaultInstance();
+        }
+
+        public controller.Protocol.Request.Login build() {
+          controller.Protocol.Request.Login result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public controller.Protocol.Request.Login buildPartial() {
+          controller.Protocol.Request.Login result = new controller.Protocol.Request.Login(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.username_ = username_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.password_ = password_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof controller.Protocol.Request.Login) {
+            return mergeFrom((controller.Protocol.Request.Login)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(controller.Protocol.Request.Login other) {
+          if (other == controller.Protocol.Request.Login.getDefaultInstance()) return this;
+          if (other.hasUsername()) {
+            bitField0_ |= 0x00000001;
+            username_ = other.username_;
+            onChanged();
+          }
+          if (other.hasPassword()) {
+            bitField0_ |= 0x00000002;
+            password_ = other.password_;
+            onChanged();
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          if (!hasUsername()) {
+            return false;
+          }
+          if (!hasPassword()) {
+            return false;
+          }
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          controller.Protocol.Request.Login parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (controller.Protocol.Request.Login) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private java.lang.Object username_ = "";
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public boolean hasUsername() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public java.lang.String getUsername() {
+          java.lang.Object ref = username_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            if (bs.isValidUtf8()) {
+              username_ = s;
+            }
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getUsernameBytes() {
+          java.lang.Object ref = username_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            username_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public Builder setUsername(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          username_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public Builder clearUsername() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          username_ = getDefaultInstance().getUsername();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string username = 1;</code>
+         */
+        public Builder setUsernameBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          username_ = value;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object password_ = "";
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public boolean hasPassword() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public java.lang.String getPassword() {
+          java.lang.Object ref = password_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            if (bs.isValidUtf8()) {
+              password_ = s;
+            }
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getPasswordBytes() {
+          java.lang.Object ref = password_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            password_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public Builder setPassword(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          password_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public Builder clearPassword() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          password_ = getDefaultInstance().getPassword();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string password = 2;</code>
+         */
+        public Builder setPasswordBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          password_ = value;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:controller.Request.Login)
+      }
+
+      // @@protoc_insertion_point(class_scope:controller.Request.Login)
+      private static final controller.Protocol.Request.Login DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new controller.Protocol.Request.Login();
+      }
+
+      public static controller.Protocol.Request.Login getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      @java.lang.Deprecated public static final com.google.protobuf.Parser<Login>
+          PARSER = new com.google.protobuf.AbstractParser<Login>() {
+        public Login parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Login(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Login> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Login> getParserForType() {
+        return PARSER;
+      }
+
+      public controller.Protocol.Request.Login getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     private int bitField0_;
-    public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    public static final int LOGIN_FIELD_NUMBER = 1;
+    private controller.Protocol.Request.Login login_;
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
+     * <code>optional .controller.Request.Login login = 1;</code>
      */
-    public boolean hasType() {
+    public boolean hasLogin() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .controller.Request.Type type = 1;</code>
+     * <code>optional .controller.Request.Login login = 1;</code>
      */
-    public controller.Protocol.Request.Type getType() {
-      controller.Protocol.Request.Type result = controller.Protocol.Request.Type.valueOf(type_);
-      return result == null ? controller.Protocol.Request.Type.Buy : result;
+    public controller.Protocol.Request.Login getLogin() {
+      return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
+    }
+    /**
+     * <code>optional .controller.Request.Login login = 1;</code>
+     */
+    public controller.Protocol.Request.LoginOrBuilder getLoginOrBuilder() {
+      return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
     }
 
-    public static final int COMPANY_FIELD_NUMBER = 2;
-    private volatile java.lang.Object company_;
+    public static final int ORDER_FIELD_NUMBER = 2;
+    private controller.Protocol.Request.Order order_;
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    public boolean hasCompany() {
+    public boolean hasOrder() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    public java.lang.String getCompany() {
-      java.lang.Object ref = company_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          company_ = s;
-        }
-        return s;
-      }
+    public controller.Protocol.Request.Order getOrder() {
+      return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
     }
     /**
-     * <code>required string company = 2;</code>
+     * <code>optional .controller.Request.Order order = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getCompanyBytes() {
-      java.lang.Object ref = company_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        company_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int QUANT_FIELD_NUMBER = 3;
-    private int quant_;
-    /**
-     * <code>required int32 quant = 3;</code>
-     */
-    public boolean hasQuant() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>required int32 quant = 3;</code>
-     */
-    public int getQuant() {
-      return quant_;
-    }
-
-    public static final int PRICE_FIELD_NUMBER = 4;
-    private float price_;
-    /**
-     * <code>required float price = 4;</code>
-     */
-    public boolean hasPrice() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>required float price = 4;</code>
-     */
-    public float getPrice() {
-      return price_;
+    public controller.Protocol.Request.OrderOrBuilder getOrderOrBuilder() {
+      return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1710,21 +1844,17 @@ public final class Protocol {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasType()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasLogin()) {
+        if (!getLogin().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
-      if (!hasCompany()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasQuant()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPrice()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasOrder()) {
+        if (!getOrder().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -1733,16 +1863,10 @@ public final class Protocol {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, type_);
+        output.writeMessage(1, getLogin());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, company_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, quant_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, price_);
+        output.writeMessage(2, getOrder());
       }
       unknownFields.writeTo(output);
     }
@@ -1754,18 +1878,11 @@ public final class Protocol {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, type_);
+          .computeMessageSize(1, getLogin());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, company_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, quant_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, price_);
+          .computeMessageSize(2, getOrder());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1784,26 +1901,15 @@ public final class Protocol {
       controller.Protocol.Request other = (controller.Protocol.Request) obj;
 
       boolean result = true;
-      result = result && (hasType() == other.hasType());
-      if (hasType()) {
-        result = result && type_ == other.type_;
+      result = result && (hasLogin() == other.hasLogin());
+      if (hasLogin()) {
+        result = result && getLogin()
+            .equals(other.getLogin());
       }
-      result = result && (hasCompany() == other.hasCompany());
-      if (hasCompany()) {
-        result = result && getCompany()
-            .equals(other.getCompany());
-      }
-      result = result && (hasQuant() == other.hasQuant());
-      if (hasQuant()) {
-        result = result && (getQuant()
-            == other.getQuant());
-      }
-      result = result && (hasPrice() == other.hasPrice());
-      if (hasPrice()) {
-        result = result && (
-            java.lang.Float.floatToIntBits(getPrice())
-            == java.lang.Float.floatToIntBits(
-                other.getPrice()));
+      result = result && (hasOrder() == other.hasOrder());
+      if (hasOrder()) {
+        result = result && getOrder()
+            .equals(other.getOrder());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -1816,22 +1922,13 @@ public final class Protocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasType()) {
-        hash = (37 * hash) + TYPE_FIELD_NUMBER;
-        hash = (53 * hash) + type_;
+      if (hasLogin()) {
+        hash = (37 * hash) + LOGIN_FIELD_NUMBER;
+        hash = (53 * hash) + getLogin().hashCode();
       }
-      if (hasCompany()) {
-        hash = (37 * hash) + COMPANY_FIELD_NUMBER;
-        hash = (53 * hash) + getCompany().hashCode();
-      }
-      if (hasQuant()) {
-        hash = (37 * hash) + QUANT_FIELD_NUMBER;
-        hash = (53 * hash) + getQuant();
-      }
-      if (hasPrice()) {
-        hash = (37 * hash) + PRICE_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPrice());
+      if (hasOrder()) {
+        hash = (37 * hash) + ORDER_FIELD_NUMBER;
+        hash = (53 * hash) + getOrder().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1947,18 +2044,24 @@ public final class Protocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getLoginFieldBuilder();
+          getOrderFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        type_ = 0;
+        if (loginBuilder_ == null) {
+          login_ = null;
+        } else {
+          loginBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        company_ = "";
+        if (orderBuilder_ == null) {
+          order_ = null;
+        } else {
+          orderBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
-        quant_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        price_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1986,19 +2089,19 @@ public final class Protocol {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.type_ = type_;
+        if (loginBuilder_ == null) {
+          result.login_ = login_;
+        } else {
+          result.login_ = loginBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.company_ = company_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (orderBuilder_ == null) {
+          result.order_ = order_;
+        } else {
+          result.order_ = orderBuilder_.build();
         }
-        result.quant_ = quant_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.price_ = price_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2041,19 +2144,11 @@ public final class Protocol {
 
       public Builder mergeFrom(controller.Protocol.Request other) {
         if (other == controller.Protocol.Request.getDefaultInstance()) return this;
-        if (other.hasType()) {
-          setType(other.getType());
+        if (other.hasLogin()) {
+          mergeLogin(other.getLogin());
         }
-        if (other.hasCompany()) {
-          bitField0_ |= 0x00000002;
-          company_ = other.company_;
-          onChanged();
-        }
-        if (other.hasQuant()) {
-          setQuant(other.getQuant());
-        }
-        if (other.hasPrice()) {
-          setPrice(other.getPrice());
+        if (other.hasOrder()) {
+          mergeOrder(other.getOrder());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2061,17 +2156,15 @@ public final class Protocol {
       }
 
       public final boolean isInitialized() {
-        if (!hasType()) {
-          return false;
+        if (hasLogin()) {
+          if (!getLogin().isInitialized()) {
+            return false;
+          }
         }
-        if (!hasCompany()) {
-          return false;
-        }
-        if (!hasQuant()) {
-          return false;
-        }
-        if (!hasPrice()) {
-          return false;
+        if (hasOrder()) {
+          if (!getOrder().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -2095,180 +2188,240 @@ public final class Protocol {
       }
       private int bitField0_;
 
-      private int type_ = 0;
+      private controller.Protocol.Request.Login login_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder> loginBuilder_;
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
+       * <code>optional .controller.Request.Login login = 1;</code>
        */
-      public boolean hasType() {
+      public boolean hasLogin() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
+       * <code>optional .controller.Request.Login login = 1;</code>
        */
-      public controller.Protocol.Request.Type getType() {
-        controller.Protocol.Request.Type result = controller.Protocol.Request.Type.valueOf(type_);
-        return result == null ? controller.Protocol.Request.Type.Buy : result;
+      public controller.Protocol.Request.Login getLogin() {
+        if (loginBuilder_ == null) {
+          return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
+        } else {
+          return loginBuilder_.getMessage();
+        }
       }
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
+       * <code>optional .controller.Request.Login login = 1;</code>
        */
-      public Builder setType(controller.Protocol.Request.Type value) {
-        if (value == null) {
-          throw new NullPointerException();
+      public Builder setLogin(controller.Protocol.Request.Login value) {
+        if (loginBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          login_ = value;
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
-        type_ = value.getNumber();
-        onChanged();
         return this;
       }
       /**
-       * <code>required .controller.Request.Type type = 1;</code>
+       * <code>optional .controller.Request.Login login = 1;</code>
        */
-      public Builder clearType() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        type_ = 0;
-        onChanged();
+      public Builder setLogin(
+          controller.Protocol.Request.Login.Builder builderForValue) {
+        if (loginBuilder_ == null) {
+          login_ = builderForValue.build();
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
         return this;
+      }
+      /**
+       * <code>optional .controller.Request.Login login = 1;</code>
+       */
+      public Builder mergeLogin(controller.Protocol.Request.Login value) {
+        if (loginBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              login_ != null &&
+              login_ != controller.Protocol.Request.Login.getDefaultInstance()) {
+            login_ =
+              controller.Protocol.Request.Login.newBuilder(login_).mergeFrom(value).buildPartial();
+          } else {
+            login_ = value;
+          }
+          onChanged();
+        } else {
+          loginBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .controller.Request.Login login = 1;</code>
+       */
+      public Builder clearLogin() {
+        if (loginBuilder_ == null) {
+          login_ = null;
+          onChanged();
+        } else {
+          loginBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>optional .controller.Request.Login login = 1;</code>
+       */
+      public controller.Protocol.Request.Login.Builder getLoginBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getLoginFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .controller.Request.Login login = 1;</code>
+       */
+      public controller.Protocol.Request.LoginOrBuilder getLoginOrBuilder() {
+        if (loginBuilder_ != null) {
+          return loginBuilder_.getMessageOrBuilder();
+        } else {
+          return login_ == null ?
+              controller.Protocol.Request.Login.getDefaultInstance() : login_;
+        }
+      }
+      /**
+       * <code>optional .controller.Request.Login login = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder> 
+          getLoginFieldBuilder() {
+        if (loginBuilder_ == null) {
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder>(
+                  getLogin(),
+                  getParentForChildren(),
+                  isClean());
+          login_ = null;
+        }
+        return loginBuilder_;
       }
 
-      private java.lang.Object company_ = "";
+      private controller.Protocol.Request.Order order_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder> orderBuilder_;
       /**
-       * <code>required string company = 2;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public boolean hasCompany() {
+      public boolean hasOrder() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public java.lang.String getCompany() {
-        java.lang.Object ref = company_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            company_ = s;
+      public controller.Protocol.Request.Order getOrder() {
+        if (orderBuilder_ == null) {
+          return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
+        } else {
+          return orderBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .controller.Request.Order order = 2;</code>
+       */
+      public Builder setOrder(controller.Protocol.Request.Order value) {
+        if (orderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
           }
-          return s;
+          order_ = value;
+          onChanged();
         } else {
-          return (java.lang.String) ref;
+          orderBuilder_.setMessage(value);
         }
-      }
-      /**
-       * <code>required string company = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getCompanyBytes() {
-        java.lang.Object ref = company_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          company_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string company = 2;</code>
-       */
-      public Builder setCompany(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        company_ = value;
-        onChanged();
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public Builder clearCompany() {
+      public Builder setOrder(
+          controller.Protocol.Request.Order.Builder builderForValue) {
+        if (orderBuilder_ == null) {
+          order_ = builderForValue.build();
+          onChanged();
+        } else {
+          orderBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .controller.Request.Order order = 2;</code>
+       */
+      public Builder mergeOrder(controller.Protocol.Request.Order value) {
+        if (orderBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              order_ != null &&
+              order_ != controller.Protocol.Request.Order.getDefaultInstance()) {
+            order_ =
+              controller.Protocol.Request.Order.newBuilder(order_).mergeFrom(value).buildPartial();
+          } else {
+            order_ = value;
+          }
+          onChanged();
+        } else {
+          orderBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .controller.Request.Order order = 2;</code>
+       */
+      public Builder clearOrder() {
+        if (orderBuilder_ == null) {
+          order_ = null;
+          onChanged();
+        } else {
+          orderBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
-        company_ = getDefaultInstance().getCompany();
-        onChanged();
         return this;
       }
       /**
-       * <code>required string company = 2;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public Builder setCompanyBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        company_ = value;
+      public controller.Protocol.Request.Order.Builder getOrderBuilder() {
+        bitField0_ |= 0x00000002;
         onChanged();
-        return this;
-      }
-
-      private int quant_ ;
-      /**
-       * <code>required int32 quant = 3;</code>
-       */
-      public boolean hasQuant() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return getOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public int getQuant() {
-        return quant_;
+      public controller.Protocol.Request.OrderOrBuilder getOrderOrBuilder() {
+        if (orderBuilder_ != null) {
+          return orderBuilder_.getMessageOrBuilder();
+        } else {
+          return order_ == null ?
+              controller.Protocol.Request.Order.getDefaultInstance() : order_;
+        }
       }
       /**
-       * <code>required int32 quant = 3;</code>
+       * <code>optional .controller.Request.Order order = 2;</code>
        */
-      public Builder setQuant(int value) {
-        bitField0_ |= 0x00000004;
-        quant_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 quant = 3;</code>
-       */
-      public Builder clearQuant() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        quant_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float price_ ;
-      /**
-       * <code>required float price = 4;</code>
-       */
-      public boolean hasPrice() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>required float price = 4;</code>
-       */
-      public float getPrice() {
-        return price_;
-      }
-      /**
-       * <code>required float price = 4;</code>
-       */
-      public Builder setPrice(float value) {
-        bitField0_ |= 0x00000008;
-        price_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float price = 4;</code>
-       */
-      public Builder clearPrice() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        price_ = 0F;
-        onChanged();
-        return this;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder> 
+          getOrderFieldBuilder() {
+        if (orderBuilder_ == null) {
+          orderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder>(
+                  getOrder(),
+                  getParentForChildren(),
+                  isClean());
+          order_ = null;
+        }
+        return orderBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3160,20 +3313,20 @@ public final class Protocol {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_controller_LoginRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_controller_LoginRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_controller_LoginReply_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_controller_LoginReply_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_controller_Request_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_controller_Request_Order_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_controller_Request_Order_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_controller_Request_Login_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_controller_Request_Login_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Reply_descriptor;
   private static final 
@@ -3188,16 +3341,17 @@ public final class Protocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016protocol.proto\022\ncontroller\"2\n\014LoginReq" +
-      "uest\022\020\n\010username\030\001 \002(\t\022\020\n\010password\030\002 \002(\t" +
-      "\"-\n\nLoginReply\022\020\n\010username\030\001 \002(\t\022\r\n\005logi" +
-      "n\030\002 \002(\010\"{\n\007Request\022&\n\004type\030\001 \002(\0162\030.contr" +
-      "oller.Request.Type\022\017\n\007company\030\002 \002(\t\022\r\n\005q" +
-      "uant\030\003 \002(\005\022\r\n\005price\030\004 \002(\002\"\031\n\004Type\022\007\n\003Buy" +
-      "\020\000\022\010\n\004Sell\020\001\"o\n\005Reply\022$\n\004type\030\001 \002(\0162\026.co" +
-      "ntroller.Reply.Type\022\016\n\006result\030\002 \002(\010\022\022\n\nd" +
-      "escrition\030\003 \002(\t\"\034\n\004Type\022\t\n\005Login\020\000\022\t\n\005Or" +
-      "der\020\001"
+      "\n\016protocol.proto\022\ncontroller\"\213\002\n\007Request" +
+      "\022(\n\005login\030\001 \001(\0132\031.controller.Request.Log" +
+      "in\022(\n\005order\030\002 \001(\0132\031.controller.Request.O" +
+      "rder\032\177\n\005Order\022,\n\004type\030\001 \002(\0162\036.controller" +
+      ".Request.Order.Type\022\017\n\007company\030\002 \002(\t\022\r\n\005" +
+      "quant\030\003 \002(\005\022\r\n\005price\030\004 \002(\002\"\031\n\004Type\022\007\n\003Bu" +
+      "y\020\000\022\010\n\004Sell\020\001\032+\n\005Login\022\020\n\010username\030\001 \002(\t" +
+      "\022\020\n\010password\030\002 \002(\t\"o\n\005Reply\022$\n\004type\030\001 \002(" +
+      "\0162\026.controller.Reply.Type\022\016\n\006result\030\002 \002(" +
+      "\010\022\022\n\ndescrition\030\003 \002(\t\"\034\n\004Type\022\t\n\005Login\020\000",
+      "\022\t\n\005Order\020\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3211,26 +3365,26 @@ public final class Protocol {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_controller_LoginRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_controller_LoginRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_controller_LoginRequest_descriptor,
-        new java.lang.String[] { "Username", "Password", });
-    internal_static_controller_LoginReply_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_controller_LoginReply_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_controller_LoginReply_descriptor,
-        new java.lang.String[] { "Username", "Login", });
     internal_static_controller_Request_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_controller_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_controller_Request_descriptor,
+        new java.lang.String[] { "Login", "Order", });
+    internal_static_controller_Request_Order_descriptor =
+      internal_static_controller_Request_descriptor.getNestedTypes().get(0);
+    internal_static_controller_Request_Order_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_controller_Request_Order_descriptor,
         new java.lang.String[] { "Type", "Company", "Quant", "Price", });
+    internal_static_controller_Request_Login_descriptor =
+      internal_static_controller_Request_descriptor.getNestedTypes().get(1);
+    internal_static_controller_Request_Login_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_controller_Request_Login_descriptor,
+        new java.lang.String[] { "Username", "Password", });
     internal_static_controller_Reply_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_controller_Reply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_controller_Reply_descriptor,
