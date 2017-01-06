@@ -27,18 +27,6 @@ public class OrderList{
     return this.price;
   }
 
-  /*
-   Devolve ordens que combinem com a ordem recebida,
-   e mudifica estrutura interna e quantidade da ordem de input.
-   Apenas se verificam quantidades, ou seja, assume-se
-   que tipos (compra/venda) estao corretos, isto e,
-   se a lista e constituida por compras,
-   entao o input e uma venda, e vice-versa.
-   Assume-se tambem que se o input e uma venda,
-   entao o seu preco minimo e menor que o preco maximo
-   desta lista; Se o input e uma compra, entao o preco maximo
-   e maior que o preco minimo desta lista.
-   */
   public List<Match> match(Order o){
     ArrayList<Match> matches = new ArrayList<>();
 
@@ -47,26 +35,31 @@ public class OrderList{
       int min = Math.min(o.getQuant(),this_order.getQuant());
       o.decrementQuantity(min);
       this_order.decrementQuantity(min);
-      ActorRef compradorRef = null;
-      ActorRef vendedorRef = null;
-      String comprador = null;
-      String vendedor = null;
+      ActorRef compradorRef = null, vendedorRef = null;
+      String comprador = null, vendedor = null;
+      float precoV = 0, precoC = 0;
       switch (o.getTipo()){
         case COMPRA:
           compradorRef = o.getUserRef();
           comprador = o.getUser();
+          precoC = o.getPrice();
           vendedorRef = this_order.getUserRef();
           vendedor = this_order.getUser();
+          precoV = this_order.getPrice();
           break;
         case VENDA:
           vendedorRef = o.getUserRef();
           vendedor = o.getUser();
+          precoV = o.getPrice();
           compradorRef = this_order.getUserRef();
           comprador = this_order.getUser();
+          precoC = o.getPrice();
           break;
       }
       matches.add(new Match(
-          (o.getPrice()+this_order.getPrice())/2,
+          (precoV+precoC)/2,
+          precoV,
+          precoC,
           o.getCompany(),
           min,
           compradorRef,

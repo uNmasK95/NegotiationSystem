@@ -15,7 +15,7 @@ public class Buy2 {
 
         txn.begin();
 
-        ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/books");
+        ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/banco");
         javax.jms.Connection c1 = cf.createConnection();
         c1.start();
 

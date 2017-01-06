@@ -130,26 +130,33 @@ public class Transacoes {
       }
 
       // TODO - TRANSFERENCIAS NO BANCO
-//      System.out.println("A dormir...");
-//      try {
-//        System.in.read();
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//      }
-//      System.out.println("A continuar!");
-//
-//      ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/books");
-//      javax.jms.Connection c2 = cf.createConnection();
-//      Session s = c2.createSession(false, 0);
-//      Destination q = s.createQueue("FILA1");
-//      MessageProducer p = s.createProducer(q);
-//
-//      TextMessage m = s.createTextMessage("teste!");
-//      p.send(m);
-//
-//      p.close();
-//      s.close();
-//      c2.close();
+    }
 
+    public void bankTransfer(String from, String to, float amount) throws NamingException, JMSException, SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
+      ConnectionFactory cf = null;
+      Context ctx = new InitialContext();
+
+      UserTransaction txn = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
+      txn.begin();
+
+      cf = (ConnectionFactory) ctx.lookup("jms/banco");
+      javax.jms.Connection cb = cf.createConnection();
+      cb.start();
+
+      Session s = cb.createSession(false, 0);
+      Queue q = s.createQueue("Transferencias");
+      MessageProducer p = s.createProducer(q);
+
+      TextMessage m = s.createTextMessage("transferencia");
+      m.setStringProperty("emissor",from);
+      m.setStringProperty("recetor",to);
+      m.setFloatProperty("montante",amount);
+      p.send(m);
+
+      p.close();
+      s.close();
+      cb.close();
+
+      txn.commit();
     }
 }

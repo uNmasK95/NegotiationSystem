@@ -16,18 +16,15 @@ public class Buy1 {
 
         txn.begin();
 
-        DataSource ds1 = (DataSource) ctx.lookup("jdbc/books");
-        Connection c1 = ds1.getConnection();
-        Statement s1 = c1.createStatement();
-        s1.executeUpdate("update books set stock = stock - 1 where isbn = 2");
-        s1.close();
-        c1.close();
+//        DataSource ds1 = (DataSource) ctx.lookup("jdbc/books");
+//        Connection c1 = ds1.getConnection();
+//        Statement s1 = c1.createStatement();
+//        s1.executeUpdate("update books set stock = stock - 1 where isbn = 2");
+//        s1.close();
+//        c1.close();
 
-        System.out.println("A dormir...");
-        System.in.read();
-        System.out.println("A continuar!");
 
-        ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/books");
+        ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/banco");
         javax.jms.Connection c2 = cf.createConnection();
         Session s = c2.createSession(false, 0);
         Destination q = s.createQueue("FILA1");
