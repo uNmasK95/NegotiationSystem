@@ -10,10 +10,10 @@ import java.util.*;
 
 public class OrderManager extends BasicActor<Message,Void> {
 
-
-    private Orders orders;
+    private final Orders orders;
 
     public OrderManager() {
+
         this.orders = new Orders();
     }
 
@@ -21,6 +21,7 @@ public class OrderManager extends BasicActor<Message,Void> {
     protected Void doRun() throws InterruptedException, SuspendExecution {
 
         while ( receive( msg -> {
+
             switch ( msg.type ){
                 case ORDER_REQ:
                     receiveOrder( (Order) msg.obj);
@@ -35,11 +36,13 @@ public class OrderManager extends BasicActor<Message,Void> {
     }
 
     private void receiveOrder( Order order ){
-        //TODO verificar se existe algo compativel caso contrario adionar á lista
 
         List<Match> result = this.orders.add( order );
-        if(result!=null){
-            new Transaction( result );
+        if(!result.isEmpty()){
+            System.out.println("Foi encontrado match");
+            new Transaction( result ).spawn();
+        }else{
+            System.out.println("Não foi encontrado match");
         }
 
     }

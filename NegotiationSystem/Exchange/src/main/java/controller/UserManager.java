@@ -33,12 +33,10 @@ public class UserManager extends BasicActor<Message, Void> {
 
     protected Void doRun() throws InterruptedException, SuspendExecution {
         new ReaderSocket( this.socketChannel, self() ).spawn();
-        System.out.println( "UserManager " );
 
         while ( receive( msg -> {
             switch (msg.type){
                 case LOGIN_REQ:
-                    System.out.println("Login Request");
                     login_request( msg );
                     break;
                 case LOGIN_REP:
@@ -65,16 +63,9 @@ public class UserManager extends BasicActor<Message, Void> {
         return null;
     }
 
-
-
     private void login_request( Message msg ) throws SuspendExecution {
         Protocol.Request.Login login = (Protocol.Request.Login) msg.obj;
-
-        System.out.println("user: " +login.getUsername() );
-        System.out.println("pass: " +login.getPassword() );
-
         this.user = login.getUsername();
-        //TODO ver melhor isto
         this.authenticator.send( new Message(
                 Message.Type.LOGIN_REQ,
                 self(),

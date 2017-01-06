@@ -45,14 +45,19 @@ public class ReaderSocket extends BasicActor<Message,Void> {
 
                     Protocol.Request request = Protocol.Request.parseFrom(this.cin.readRawBytes(len));
 
-                    if (request.getLogin()!=null){
+                    System.out.println(request.hasLogin());
+                    System.out.println(request.getLogin());
+
+
+                    if (request.hasLogin()){
                         System.out.println("Recebi messagem de login");
                         this.user.send( new Message(Message.Type.LOGIN_REQ, self(), request.getLogin()));
                     }else {
                         System.out.println("Recebi messagem de order");
                         this.user.send( new Message( Message.Type.ORDER_REQ, self(), request.getOrder()) );
                     }
-                    this.input.compact();
+                    this.input.clear();
+                    //this.input.compact();
                 }
 
             }

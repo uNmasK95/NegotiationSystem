@@ -4,6 +4,7 @@ import co.paralleluniverse.actors.ActorRef;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.strands.channels.Channel;
 import controller.Message;
+import controller.Protocol;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,16 +12,15 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JFrame{
     private JPanel panel1;
-    private JPanel tabPanel_buy;
+    private JPanel panel_sellbuy;
     private JComboBox comboBox2;
-    private JTextField textField2;
-    private JSpinner spinner2;
+    private JTextField textField_value;
+    private JSpinner spinner_nActions;
     private JButton submitButton1;
     private JTextArea textArea1;
     private JRadioButton sellRadioButton;
     private JRadioButton buyRadioButton;
-
-    private final String[] companies = {"Apple", "Meias Pinto"};
+    private JTextField textField_company;
 
     private final ActorRef main;
     private final Channel channelSubscribe;
@@ -43,31 +43,59 @@ public class Menu extends JFrame{
         });
     }
 
-
     private void clickSubmitButton(){
-        Message.Type type;
+        Protocol.Request.Order.Type type;
         String company = null;
         if(this.sellRadioButton.isSelected()){
-            type = Message.Type.SELL;
+            type = Protocol.Request.Order.Type.Sell;
         }else{
-            type = Message.Type.BUY;
+            type = Protocol.Request.Order.Type.Buy;
         }
 
-        if(this.comboBox2.getSelectedIndex() >=0 ){
-            company = companies[ this.comboBox2.getSelectedIndex() ];
-        }else{
+        if( !textField_company.getText().equals("") && !textField_value.getText().equals("")){
+            Protocol.Request request = Protocol.Request.newBuilder()
+                    .setOrder(
+                            Protocol.Request.Order.newBuilder()
+                            .setCompany(textField_company.getText())
+                            .setPrice(Float.parseFloat(textField_value.getText()))
+                            .setQuant((Integer) spinner_nActions.getValue())
+                            .setType(type)
+                            .build()
+                    )
 
+                    .build();
+
+            try {
+
+                this.main.send( new Message(
+                        Message.Type.ORDER_REQ,
+                        null,
+                        request
+                ));
+
+                String show = "Type: " + request.getOrder().getType() + "\n\t" +
+                        request.getOrder().getCompany() + "\n\t" +
+                        request.getOrder().getQuant() + "\n\t" +
+                        request.getOrder().getPrice() + "";
+
+                JOptionPane.showMessageDialog(this,
+                        show,
+                        "Offer Request",
+                        JOptionPane.PLAIN_MESSAGE);
+
+            } catch (SuspendExecution suspendExecution) {
+                suspendExecution.printStackTrace();
+            }
+        }else {
+            JOptionPane.showMessageDialog(this,
+                    "Need Company name and value.",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
         }
 
-        try {
-            this.main.send( new Message(
-                    type,
-                    null,
-                    null
-            ));
-        } catch (SuspendExecution suspendExecution) {
-            suspendExecution.printStackTrace();
-        }
+
+
+
     }
 
 

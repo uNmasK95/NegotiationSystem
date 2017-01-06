@@ -25,9 +25,11 @@ public class Main extends BasicActor<Message,Void> {
         this.channelLogin = channelLogin;
     }
 
+
+
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
-
+        System.out.println("new Main");
         try {
             FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(12350));
             new Listener( self(), socketChannel ).spawn();
@@ -45,6 +47,7 @@ public class Main extends BasicActor<Message,Void> {
                         System.out.println("Enviei para o channel");
                         break;
                     case ORDER_REQ:
+                        System.out.println("Recebi o order request");
                         send_request( socketChannel, msg );
                         break;
                     case SUB:
@@ -70,6 +73,7 @@ public class Main extends BasicActor<Message,Void> {
             cout.flush();
             output.flip();
             socketChannel.write(output);
+            this.output.compact();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,6 +87,7 @@ public class Main extends BasicActor<Message,Void> {
             cout.flush();
             output.flip();
             socketChannel.write(output);
+            this.output.compact();
         } catch (IOException e) {
             e.printStackTrace();
         }

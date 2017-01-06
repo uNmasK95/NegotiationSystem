@@ -19,7 +19,7 @@ public class Transaction extends BasicActor<Message,Void> {
 
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
-
+/*
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket requester = context.socket(ZMQ.REQ);
         requester.connect("tcp://" + host + ":" + port);
@@ -40,7 +40,7 @@ public class Transaction extends BasicActor<Message,Void> {
         requester.close();
         context.term();
 
-
+*/
         return null;
     }
 }

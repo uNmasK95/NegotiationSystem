@@ -8,6 +8,7 @@ import controller.Protocol;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.concurrent.ExecutionException;
 
 public class Login extends JFrame{
 
@@ -54,9 +55,6 @@ public class Login extends JFrame{
                     )
                     .build();
 
-            System.out.println("user: " + requestLogin.getLogin().getUsername());
-            System.out.println("pass: " + requestLogin.getLogin().getPassword());
-
             try {
 
                 main.send( new Message(
@@ -76,6 +74,7 @@ public class Login extends JFrame{
             } catch (SuspendExecution | InterruptedException e1 ) {
                 e1.printStackTrace();
             }
+
         }
     }
 

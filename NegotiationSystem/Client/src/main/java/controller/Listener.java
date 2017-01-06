@@ -39,8 +39,6 @@ public class Listener extends BasicActor<Message,Void> {
 
                     Protocol.Reply reply = Protocol.Reply.parseFrom(cin.readRawBytes(len) );
 
-                    System.out.println("recebi: " + reply.getResult());
-
                     if( reply.getType() == Protocol.Reply.Type.Login){
                         this.main.send( new Message(
                                 Message.Type.LOGIN_REP,
@@ -56,8 +54,8 @@ public class Listener extends BasicActor<Message,Void> {
                     }
 
 
-
-                    this.input.compact();
+                    this.input.clear();
+                    //this.input.compact();
                 }
 
             }

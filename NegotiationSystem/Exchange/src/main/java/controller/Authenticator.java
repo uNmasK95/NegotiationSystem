@@ -9,8 +9,6 @@ import java.sql.*;
 
 public class Authenticator extends BasicActor<Message, Void> {
 
-    private static final String TAG = "Authenticator";
-
     private final UserDAO userDAO;
 
     public Authenticator() throws SQLException {
@@ -44,7 +42,6 @@ public class Authenticator extends BasicActor<Message, Void> {
                 ((User) msg.obj).getPassword()
         );
 
-        System.out.println(result);
         msg.source.send(new Message(Message.Type.LOGIN_REP , null, result));
     }
 
