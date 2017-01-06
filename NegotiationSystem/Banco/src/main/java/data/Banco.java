@@ -36,6 +36,34 @@ public class Banco {
     this.c.close();
   }
 
+  public float getSaldo(String utilizador) throws UserNotFoundException {
+    PreparedStatement s = null;
+    ResultSet rs = null;
+    float saldo;
+    try {
+      s = c.prepareStatement("" +
+          "SELECT saldo FROM utilizadores " +
+          "WHERE username = ?");
+      s.setString(1,utilizador);
+      rs = s.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    try {
+      rs.next();
+      saldo = rs.getFloat(1);
+    }catch (SQLException e) {
+      throw new UserNotFoundException(utilizador);
+    }
+    finally {
+      try {
+        rs.close();
+        s.close();
+      } catch (SQLException e) {}
+    }
+    return saldo;
+  }
+
   public void transfer(String from, String to, float amount) throws InsuficientFundsException, UserNotFoundException {
     try {
       this.openConnection();

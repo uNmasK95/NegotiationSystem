@@ -4,6 +4,8 @@ import co.paralleluniverse.actors.ActorRef;
 
 public class Match {
   private float preco; //Preco medio
+  private float precoVenda;
+  private float precoCompra;
   private String empresa;
   private int quantidade;
   private ActorRef compradorRef;
@@ -11,9 +13,11 @@ public class Match {
   private String comprador;
   private String vendedor;
 
-  public Match(float preco, String empresa, int quantidade,
+  public Match(float preco, float precoVenda, float precoCompra, String empresa, int quantidade,
                ActorRef compradorRef, ActorRef vendedorRef, String comprador, String vendedor) {
     this.preco = preco;
+    this.precoVenda = precoVenda;
+    this.precoCompra = precoCompra;
     this.empresa = empresa;
     this.quantidade = quantidade;
     this.compradorRef = compradorRef;
@@ -24,6 +28,14 @@ public class Match {
 
   public float getPreco() {
     return preco;
+  }
+
+  public float getPrecoVenda() {
+    return precoVenda;
+  }
+
+  public float getPrecoCompra() {
+    return precoCompra;
   }
 
   public String getEmpresa() {

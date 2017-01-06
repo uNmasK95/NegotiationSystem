@@ -6,13 +6,7 @@ package controller;
 public final class Protocol {
   private Protocol() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:controller.Request)
@@ -47,27 +41,37 @@ public final class Protocol {
   /**
    * Protobuf type {@code controller.Request}
    */
-  public  static final class Request extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Request extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:controller.Request)
       RequestOrBuilder {
     // Use Request.newBuilder() to construct.
-    private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Request() {
+    private Request(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Request defaultInstance;
+    public static Request getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Request getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Request(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -118,7 +122,7 @@ public final class Protocol {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -129,11 +133,26 @@ public final class Protocol {
       return controller.Protocol.internal_static_controller_Request_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return controller.Protocol.internal_static_controller_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               controller.Protocol.Request.class, controller.Protocol.Request.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Request> PARSER =
+        new com.google.protobuf.AbstractParser<Request>() {
+      public Request parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Request(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Request> getParserForType() {
+      return PARSER;
     }
 
     public interface OrderOrBuilder extends
@@ -184,31 +203,37 @@ public final class Protocol {
     /**
      * Protobuf type {@code controller.Request.Order}
      */
-    public  static final class Order extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Order extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Request.Order)
         OrderOrBuilder {
       // Use Order.newBuilder() to construct.
-      private Order(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Order(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Order() {
-        type_ = 0;
-        company_ = "";
-        quant_ = 0;
-        price_ = 0F;
+      private Order(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Order defaultInstance;
+      public static Order getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Order getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Order(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -234,7 +259,7 @@ public final class Protocol {
                   unknownFields.mergeVarintField(1, rawValue);
                 } else {
                   bitField0_ |= 0x00000001;
-                  type_ = rawValue;
+                  type_ = value;
                 }
                 break;
               }
@@ -260,7 +285,7 @@ public final class Protocol {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -271,11 +296,26 @@ public final class Protocol {
         return controller.Protocol.internal_static_controller_Request_Order_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Protocol.internal_static_controller_Request_Order_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Protocol.Request.Order.class, controller.Protocol.Request.Order.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Order> PARSER =
+          new com.google.protobuf.AbstractParser<Order>() {
+        public Order parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Order(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Order> getParserForType() {
+        return PARSER;
       }
 
       /**
@@ -286,11 +326,11 @@ public final class Protocol {
         /**
          * <code>Buy = 0;</code>
          */
-        Buy(0),
+        Buy(0, 0),
         /**
          * <code>Sell = 1;</code>
          */
-        Sell(1),
+        Sell(1, 1),
         ;
 
         /**
@@ -303,19 +343,9 @@ public final class Protocol {
         public static final int Sell_VALUE = 1;
 
 
-        public final int getNumber() {
-          return value;
-        }
+        public final int getNumber() { return value; }
 
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
         public static Type valueOf(int value) {
-          return forNumber(value);
-        }
-
-        public static Type forNumber(int value) {
           switch (value) {
             case 0: return Buy;
             case 1: return Sell;
@@ -327,17 +357,17 @@ public final class Protocol {
             internalGetValueMap() {
           return internalValueMap;
         }
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-            Type> internalValueMap =
+        private static com.google.protobuf.Internal.EnumLiteMap<Type>
+            internalValueMap =
               new com.google.protobuf.Internal.EnumLiteMap<Type>() {
                 public Type findValueByNumber(int number) {
-                  return Type.forNumber(number);
+                  return Type.valueOf(number);
                 }
               };
 
         public final com.google.protobuf.Descriptors.EnumValueDescriptor
             getValueDescriptor() {
-          return getDescriptor().getValues().get(ordinal());
+          return getDescriptor().getValues().get(index);
         }
         public final com.google.protobuf.Descriptors.EnumDescriptor
             getDescriptorForType() {
@@ -359,9 +389,11 @@ public final class Protocol {
           return VALUES[desc.getIndex()];
         }
 
+        private final int index;
         private final int value;
 
-        private Type(int value) {
+        private Type(int index, int value) {
+          this.index = index;
           this.value = value;
         }
 
@@ -370,7 +402,7 @@ public final class Protocol {
 
       private int bitField0_;
       public static final int TYPE_FIELD_NUMBER = 1;
-      private int type_;
+      private controller.Protocol.Request.Order.Type type_;
       /**
        * <code>required .controller.Request.Order.Type type = 1;</code>
        */
@@ -381,12 +413,11 @@ public final class Protocol {
        * <code>required .controller.Request.Order.Type type = 1;</code>
        */
       public controller.Protocol.Request.Order.Type getType() {
-        controller.Protocol.Request.Order.Type result = controller.Protocol.Request.Order.Type.valueOf(type_);
-        return result == null ? controller.Protocol.Request.Order.Type.Buy : result;
+        return type_;
       }
 
       public static final int COMPANY_FIELD_NUMBER = 2;
-      private volatile java.lang.Object company_;
+      private java.lang.Object company_;
       /**
        * <code>required string company = 2;</code>
        */
@@ -457,6 +488,12 @@ public final class Protocol {
         return price_;
       }
 
+      private void initFields() {
+        type_ = controller.Protocol.Request.Order.Type.Buy;
+        company_ = "";
+        quant_ = 0;
+        price_ = 0F;
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -485,11 +522,12 @@ public final class Protocol {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeEnum(1, type_);
+          output.writeEnum(1, type_.getNumber());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, company_);
+          output.writeBytes(2, getCompanyBytes());
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           output.writeInt32(3, quant_);
@@ -497,20 +535,22 @@ public final class Protocol {
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
           output.writeFloat(4, price_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(1, type_);
+            .computeEnumSize(1, type_.getNumber());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, company_);
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, getCompanyBytes());
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
@@ -520,75 +560,16 @@ public final class Protocol {
           size += com.google.protobuf.CodedOutputStream
             .computeFloatSize(4, price_);
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Protocol.Request.Order)) {
-          return super.equals(obj);
-        }
-        controller.Protocol.Request.Order other = (controller.Protocol.Request.Order) obj;
-
-        boolean result = true;
-        result = result && (hasType() == other.hasType());
-        if (hasType()) {
-          result = result && type_ == other.type_;
-        }
-        result = result && (hasCompany() == other.hasCompany());
-        if (hasCompany()) {
-          result = result && getCompany()
-              .equals(other.getCompany());
-        }
-        result = result && (hasQuant() == other.hasQuant());
-        if (hasQuant()) {
-          result = result && (getQuant()
-              == other.getQuant());
-        }
-        result = result && (hasPrice() == other.hasPrice());
-        if (hasPrice()) {
-          result = result && (
-              java.lang.Float.floatToIntBits(getPrice())
-              == java.lang.Float.floatToIntBits(
-                  other.getPrice()));
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasType()) {
-          hash = (37 * hash) + TYPE_FIELD_NUMBER;
-          hash = (53 * hash) + type_;
-        }
-        if (hasCompany()) {
-          hash = (37 * hash) + COMPANY_FIELD_NUMBER;
-          hash = (53 * hash) + getCompany().hashCode();
-        }
-        if (hasQuant()) {
-          hash = (37 * hash) + QUANT_FIELD_NUMBER;
-          hash = (53 * hash) + getQuant();
-        }
-        if (hasPrice()) {
-          hash = (37 * hash) + PRICE_FIELD_NUMBER;
-          hash = (53 * hash) + java.lang.Float.floatToIntBits(
-              getPrice());
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Protocol.Request.Order parseFrom(
@@ -614,57 +595,46 @@ public final class Protocol {
       }
       public static controller.Protocol.Request.Order parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Protocol.Request.Order parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Protocol.Request.Order parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Protocol.Request.Order parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Protocol.Request.Order parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Protocol.Request.Order parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Protocol.Request.Order prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -672,7 +642,7 @@ public final class Protocol {
        * Protobuf type {@code controller.Request.Order}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Request.Order)
           controller.Protocol.Request.OrderOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -680,7 +650,7 @@ public final class Protocol {
           return controller.Protocol.internal_static_controller_Request_Order_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Protocol.internal_static_controller_Request_Order_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -693,18 +663,21 @@ public final class Protocol {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
-          type_ = 0;
+          type_ = controller.Protocol.Request.Order.Type.Buy;
           bitField0_ = (bitField0_ & ~0x00000001);
           company_ = "";
           bitField0_ = (bitField0_ & ~0x00000002);
@@ -713,6 +686,10 @@ public final class Protocol {
           price_ = 0F;
           bitField0_ = (bitField0_ & ~0x00000008);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -757,32 +734,6 @@ public final class Protocol {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Protocol.Request.Order) {
             return mergeFrom((controller.Protocol.Request.Order)other);
@@ -808,22 +759,25 @@ public final class Protocol {
           if (other.hasPrice()) {
             setPrice(other.getPrice());
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasType()) {
+            
             return false;
           }
           if (!hasCompany()) {
+            
             return false;
           }
           if (!hasQuant()) {
+            
             return false;
           }
           if (!hasPrice()) {
+            
             return false;
           }
           return true;
@@ -838,7 +792,7 @@ public final class Protocol {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Protocol.Request.Order) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -848,7 +802,7 @@ public final class Protocol {
         }
         private int bitField0_;
 
-        private int type_ = 0;
+        private controller.Protocol.Request.Order.Type type_ = controller.Protocol.Request.Order.Type.Buy;
         /**
          * <code>required .controller.Request.Order.Type type = 1;</code>
          */
@@ -859,8 +813,7 @@ public final class Protocol {
          * <code>required .controller.Request.Order.Type type = 1;</code>
          */
         public controller.Protocol.Request.Order.Type getType() {
-          controller.Protocol.Request.Order.Type result = controller.Protocol.Request.Order.Type.valueOf(type_);
-          return result == null ? controller.Protocol.Request.Order.Type.Buy : result;
+          return type_;
         }
         /**
          * <code>required .controller.Request.Order.Type type = 1;</code>
@@ -870,7 +823,7 @@ public final class Protocol {
             throw new NullPointerException();
           }
           bitField0_ |= 0x00000001;
-          type_ = value.getNumber();
+          type_ = value;
           onChanged();
           return this;
         }
@@ -879,7 +832,7 @@ public final class Protocol {
          */
         public Builder clearType() {
           bitField0_ = (bitField0_ & ~0x00000001);
-          type_ = 0;
+          type_ = controller.Protocol.Request.Order.Type.Buy;
           onChanged();
           return this;
         }
@@ -1023,53 +976,16 @@ public final class Protocol {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Request.Order)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Request.Order)
-      private static final controller.Protocol.Request.Order DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Protocol.Request.Order();
+        defaultInstance = new Order(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Protocol.Request.Order getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Order>
-          PARSER = new com.google.protobuf.AbstractParser<Order>() {
-        public Order parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Order(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Order> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Order> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Protocol.Request.Order getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Request.Order)
     }
 
     public interface LoginOrBuilder extends
@@ -1107,29 +1023,37 @@ public final class Protocol {
     /**
      * Protobuf type {@code controller.Request.Login}
      */
-    public  static final class Login extends
-        com.google.protobuf.GeneratedMessageV3 implements
+    public static final class Login extends
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:controller.Request.Login)
         LoginOrBuilder {
       // Use Login.newBuilder() to construct.
-      private Login(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private Login(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
+        this.unknownFields = builder.getUnknownFields();
       }
-      private Login() {
-        username_ = "";
-        password_ = "";
+      private Login(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Login defaultInstance;
+      public static Login getDefaultInstance() {
+        return defaultInstance;
       }
 
+      public Login getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
+          getUnknownFields() {
         return this.unknownFields;
       }
       private Login(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
+        initFields();
         int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1166,7 +1090,7 @@ public final class Protocol {
           throw e.setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+              e.getMessage()).setUnfinishedMessage(this);
         } finally {
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -1177,16 +1101,31 @@ public final class Protocol {
         return controller.Protocol.internal_static_controller_Request_Login_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Protocol.internal_static_controller_Request_Login_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 controller.Protocol.Request.Login.class, controller.Protocol.Request.Login.Builder.class);
       }
 
+      public static com.google.protobuf.Parser<Login> PARSER =
+          new com.google.protobuf.AbstractParser<Login>() {
+        public Login parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Login(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Login> getParserForType() {
+        return PARSER;
+      }
+
       private int bitField0_;
       public static final int USERNAME_FIELD_NUMBER = 1;
-      private volatile java.lang.Object username_;
+      private java.lang.Object username_;
       /**
        * <code>required string username = 1;</code>
        */
@@ -1228,7 +1167,7 @@ public final class Protocol {
       }
 
       public static final int PASSWORD_FIELD_NUMBER = 2;
-      private volatile java.lang.Object password_;
+      private java.lang.Object password_;
       /**
        * <code>required string password = 2;</code>
        */
@@ -1269,6 +1208,10 @@ public final class Protocol {
         }
       }
 
+      private void initFields() {
+        username_ = "";
+        password_ = "";
+      }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -1289,75 +1232,40 @@ public final class Protocol {
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+          output.writeBytes(1, getUsernameBytes());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+          output.writeBytes(2, getPasswordBytes());
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
+      private int memoizedSerializedSize = -1;
       public int getSerializedSize() {
-        int size = memoizedSize;
+        int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, getUsernameBytes());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, getPasswordBytes());
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
         return size;
       }
 
       private static final long serialVersionUID = 0L;
       @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof controller.Protocol.Request.Login)) {
-          return super.equals(obj);
-        }
-        controller.Protocol.Request.Login other = (controller.Protocol.Request.Login) obj;
-
-        boolean result = true;
-        result = result && (hasUsername() == other.hasUsername());
-        if (hasUsername()) {
-          result = result && getUsername()
-              .equals(other.getUsername());
-        }
-        result = result && (hasPassword() == other.hasPassword());
-        if (hasPassword()) {
-          result = result && getPassword()
-              .equals(other.getPassword());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (hasUsername()) {
-          hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-          hash = (53 * hash) + getUsername().hashCode();
-        }
-        if (hasPassword()) {
-          hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-          hash = (53 * hash) + getPassword().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
       }
 
       public static controller.Protocol.Request.Login parseFrom(
@@ -1383,57 +1291,46 @@ public final class Protocol {
       }
       public static controller.Protocol.Request.Login parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Protocol.Request.Login parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static controller.Protocol.Request.Login parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static controller.Protocol.Request.Login parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static controller.Protocol.Request.Login parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static controller.Protocol.Request.Login parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
+      public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
       public static Builder newBuilder(controller.Protocol.Request.Login prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return newBuilder().mergeFrom(prototype);
       }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
+      public Builder toBuilder() { return newBuilder(this); }
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -1441,7 +1338,7 @@ public final class Protocol {
        * Protobuf type {@code controller.Request.Login}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:controller.Request.Login)
           controller.Protocol.Request.LoginOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -1449,7 +1346,7 @@ public final class Protocol {
           return controller.Protocol.internal_static_controller_Request_Login_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return controller.Protocol.internal_static_controller_Request_Login_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -1462,15 +1359,18 @@ public final class Protocol {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
+        private static Builder create() {
+          return new Builder();
+        }
+
         public Builder clear() {
           super.clear();
           username_ = "";
@@ -1478,6 +1378,10 @@ public final class Protocol {
           password_ = "";
           bitField0_ = (bitField0_ & ~0x00000002);
           return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
         }
 
         public com.google.protobuf.Descriptors.Descriptor
@@ -1514,32 +1418,6 @@ public final class Protocol {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof controller.Protocol.Request.Login) {
             return mergeFrom((controller.Protocol.Request.Login)other);
@@ -1561,16 +1439,17 @@ public final class Protocol {
             password_ = other.password_;
             onChanged();
           }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
           if (!hasUsername()) {
+            
             return false;
           }
           if (!hasPassword()) {
+            
             return false;
           }
           return true;
@@ -1585,7 +1464,7 @@ public final class Protocol {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (controller.Protocol.Request.Login) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -1746,53 +1625,16 @@ public final class Protocol {
           onChanged();
           return this;
         }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
 
         // @@protoc_insertion_point(builder_scope:controller.Request.Login)
       }
 
-      // @@protoc_insertion_point(class_scope:controller.Request.Login)
-      private static final controller.Protocol.Request.Login DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new controller.Protocol.Request.Login();
+        defaultInstance = new Login(true);
+        defaultInstance.initFields();
       }
 
-      public static controller.Protocol.Request.Login getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<Login>
-          PARSER = new com.google.protobuf.AbstractParser<Login>() {
-        public Login parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Login(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<Login> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Login> getParserForType() {
-        return PARSER;
-      }
-
-      public controller.Protocol.Request.Login getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
+      // @@protoc_insertion_point(class_scope:controller.Request.Login)
     }
 
     private int bitField0_;
@@ -1808,13 +1650,13 @@ public final class Protocol {
      * <code>optional .controller.Request.Login login = 1;</code>
      */
     public controller.Protocol.Request.Login getLogin() {
-      return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
+      return login_;
     }
     /**
      * <code>optional .controller.Request.Login login = 1;</code>
      */
     public controller.Protocol.Request.LoginOrBuilder getLoginOrBuilder() {
-      return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
+      return login_;
     }
 
     public static final int ORDER_FIELD_NUMBER = 2;
@@ -1829,15 +1671,19 @@ public final class Protocol {
      * <code>optional .controller.Request.Order order = 2;</code>
      */
     public controller.Protocol.Request.Order getOrder() {
-      return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
+      return order_;
     }
     /**
      * <code>optional .controller.Request.Order order = 2;</code>
      */
     public controller.Protocol.Request.OrderOrBuilder getOrderOrBuilder() {
-      return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
+      return order_;
     }
 
+    private void initFields() {
+      login_ = controller.Protocol.Request.Login.getDefaultInstance();
+      order_ = controller.Protocol.Request.Order.getDefaultInstance();
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1862,77 +1708,40 @@ public final class Protocol {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, getLogin());
+        output.writeMessage(1, login_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, getOrder());
+        output.writeMessage(2, order_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getLogin());
+          .computeMessageSize(1, login_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getOrder());
+          .computeMessageSize(2, order_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Protocol.Request)) {
-        return super.equals(obj);
-      }
-      controller.Protocol.Request other = (controller.Protocol.Request) obj;
-
-      boolean result = true;
-      result = result && (hasLogin() == other.hasLogin());
-      if (hasLogin()) {
-        result = result && getLogin()
-            .equals(other.getLogin());
-      }
-      result = result && (hasOrder() == other.hasOrder());
-      if (hasOrder()) {
-        result = result && getOrder()
-            .equals(other.getOrder());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasLogin()) {
-        hash = (37 * hash) + LOGIN_FIELD_NUMBER;
-        hash = (53 * hash) + getLogin().hashCode();
-      }
-      if (hasOrder()) {
-        hash = (37 * hash) + ORDER_FIELD_NUMBER;
-        hash = (53 * hash) + getOrder().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static controller.Protocol.Request parseFrom(
@@ -1958,57 +1767,46 @@ public final class Protocol {
     }
     public static controller.Protocol.Request parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Protocol.Request parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static controller.Protocol.Request parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static controller.Protocol.Request parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static controller.Protocol.Request parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Protocol.Request parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(controller.Protocol.Request prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2016,7 +1814,7 @@ public final class Protocol {
      * Protobuf type {@code controller.Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:controller.Request)
         controller.Protocol.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2024,7 +1822,7 @@ public final class Protocol {
         return controller.Protocol.internal_static_controller_Request_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Protocol.internal_static_controller_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2037,32 +1835,39 @@ public final class Protocol {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getLoginFieldBuilder();
           getOrderFieldBuilder();
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         if (loginBuilder_ == null) {
-          login_ = null;
+          login_ = controller.Protocol.Request.Login.getDefaultInstance();
         } else {
           loginBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (orderBuilder_ == null) {
-          order_ = null;
+          order_ = controller.Protocol.Request.Order.getDefaultInstance();
         } else {
           orderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -2107,32 +1912,6 @@ public final class Protocol {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof controller.Protocol.Request) {
           return mergeFrom((controller.Protocol.Request)other);
@@ -2150,19 +1929,20 @@ public final class Protocol {
         if (other.hasOrder()) {
           mergeOrder(other.getOrder());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (hasLogin()) {
           if (!getLogin().isInitialized()) {
+            
             return false;
           }
         }
         if (hasOrder()) {
           if (!getOrder().isInitialized()) {
+            
             return false;
           }
         }
@@ -2178,7 +1958,7 @@ public final class Protocol {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (controller.Protocol.Request) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -2188,8 +1968,8 @@ public final class Protocol {
       }
       private int bitField0_;
 
-      private controller.Protocol.Request.Login login_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Protocol.Request.Login login_ = controller.Protocol.Request.Login.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder> loginBuilder_;
       /**
        * <code>optional .controller.Request.Login login = 1;</code>
@@ -2202,7 +1982,7 @@ public final class Protocol {
        */
       public controller.Protocol.Request.Login getLogin() {
         if (loginBuilder_ == null) {
-          return login_ == null ? controller.Protocol.Request.Login.getDefaultInstance() : login_;
+          return login_;
         } else {
           return loginBuilder_.getMessage();
         }
@@ -2243,7 +2023,6 @@ public final class Protocol {
       public Builder mergeLogin(controller.Protocol.Request.Login value) {
         if (loginBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              login_ != null &&
               login_ != controller.Protocol.Request.Login.getDefaultInstance()) {
             login_ =
               controller.Protocol.Request.Login.newBuilder(login_).mergeFrom(value).buildPartial();
@@ -2262,7 +2041,7 @@ public final class Protocol {
        */
       public Builder clearLogin() {
         if (loginBuilder_ == null) {
-          login_ = null;
+          login_ = controller.Protocol.Request.Login.getDefaultInstance();
           onChanged();
         } else {
           loginBuilder_.clear();
@@ -2285,18 +2064,17 @@ public final class Protocol {
         if (loginBuilder_ != null) {
           return loginBuilder_.getMessageOrBuilder();
         } else {
-          return login_ == null ?
-              controller.Protocol.Request.Login.getDefaultInstance() : login_;
+          return login_;
         }
       }
       /**
        * <code>optional .controller.Request.Login login = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder> 
           getLoginFieldBuilder() {
         if (loginBuilder_ == null) {
-          loginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Protocol.Request.Login, controller.Protocol.Request.Login.Builder, controller.Protocol.Request.LoginOrBuilder>(
                   getLogin(),
                   getParentForChildren(),
@@ -2306,8 +2084,8 @@ public final class Protocol {
         return loginBuilder_;
       }
 
-      private controller.Protocol.Request.Order order_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private controller.Protocol.Request.Order order_ = controller.Protocol.Request.Order.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder> orderBuilder_;
       /**
        * <code>optional .controller.Request.Order order = 2;</code>
@@ -2320,7 +2098,7 @@ public final class Protocol {
        */
       public controller.Protocol.Request.Order getOrder() {
         if (orderBuilder_ == null) {
-          return order_ == null ? controller.Protocol.Request.Order.getDefaultInstance() : order_;
+          return order_;
         } else {
           return orderBuilder_.getMessage();
         }
@@ -2361,7 +2139,6 @@ public final class Protocol {
       public Builder mergeOrder(controller.Protocol.Request.Order value) {
         if (orderBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              order_ != null &&
               order_ != controller.Protocol.Request.Order.getDefaultInstance()) {
             order_ =
               controller.Protocol.Request.Order.newBuilder(order_).mergeFrom(value).buildPartial();
@@ -2380,7 +2157,7 @@ public final class Protocol {
        */
       public Builder clearOrder() {
         if (orderBuilder_ == null) {
-          order_ = null;
+          order_ = controller.Protocol.Request.Order.getDefaultInstance();
           onChanged();
         } else {
           orderBuilder_.clear();
@@ -2403,18 +2180,17 @@ public final class Protocol {
         if (orderBuilder_ != null) {
           return orderBuilder_.getMessageOrBuilder();
         } else {
-          return order_ == null ?
-              controller.Protocol.Request.Order.getDefaultInstance() : order_;
+          return order_;
         }
       }
       /**
        * <code>optional .controller.Request.Order order = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder> 
           getOrderFieldBuilder() {
         if (orderBuilder_ == null) {
-          orderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          orderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               controller.Protocol.Request.Order, controller.Protocol.Request.Order.Builder, controller.Protocol.Request.OrderOrBuilder>(
                   getOrder(),
                   getParentForChildren(),
@@ -2423,53 +2199,16 @@ public final class Protocol {
         }
         return orderBuilder_;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:controller.Request)
     }
 
-    // @@protoc_insertion_point(class_scope:controller.Request)
-    private static final controller.Protocol.Request DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new controller.Protocol.Request();
+      defaultInstance = new Request(true);
+      defaultInstance.initFields();
     }
 
-    public static controller.Protocol.Request getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Request>
-        PARSER = new com.google.protobuf.AbstractParser<Request>() {
-      public Request parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Request(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Request> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Request> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Protocol.Request getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:controller.Request)
   }
 
   public interface ReplyOrBuilder extends
@@ -2511,30 +2250,37 @@ public final class Protocol {
   /**
    * Protobuf type {@code controller.Reply}
    */
-  public  static final class Reply extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Reply extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:controller.Reply)
       ReplyOrBuilder {
     // Use Reply.newBuilder() to construct.
-    private Reply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Reply(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Reply() {
-      type_ = 0;
-      result_ = false;
-      descrition_ = "";
+    private Reply(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Reply defaultInstance;
+    public static Reply getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Reply getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Reply(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2560,7 +2306,7 @@ public final class Protocol {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
                 bitField0_ |= 0x00000001;
-                type_ = rawValue;
+                type_ = value;
               }
               break;
             }
@@ -2581,7 +2327,7 @@ public final class Protocol {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2592,11 +2338,26 @@ public final class Protocol {
       return controller.Protocol.internal_static_controller_Reply_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return controller.Protocol.internal_static_controller_Reply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               controller.Protocol.Reply.class, controller.Protocol.Reply.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Reply> PARSER =
+        new com.google.protobuf.AbstractParser<Reply>() {
+      public Reply parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Reply(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Reply> getParserForType() {
+      return PARSER;
     }
 
     /**
@@ -2607,11 +2368,11 @@ public final class Protocol {
       /**
        * <code>Login = 0;</code>
        */
-      Login(0),
+      Login(0, 0),
       /**
        * <code>Order = 1;</code>
        */
-      Order(1),
+      Order(1, 1),
       ;
 
       /**
@@ -2624,19 +2385,9 @@ public final class Protocol {
       public static final int Order_VALUE = 1;
 
 
-      public final int getNumber() {
-        return value;
-      }
+      public final int getNumber() { return value; }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static Type valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static Type forNumber(int value) {
         switch (value) {
           case 0: return Login;
           case 1: return Order;
@@ -2648,17 +2399,17 @@ public final class Protocol {
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Type> internalValueMap =
+      private static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<Type>() {
               public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
+                return Type.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -2680,9 +2431,11 @@ public final class Protocol {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private Type(int value) {
+      private Type(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -2691,7 +2444,7 @@ public final class Protocol {
 
     private int bitField0_;
     public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    private controller.Protocol.Reply.Type type_;
     /**
      * <code>required .controller.Reply.Type type = 1;</code>
      */
@@ -2702,8 +2455,7 @@ public final class Protocol {
      * <code>required .controller.Reply.Type type = 1;</code>
      */
     public controller.Protocol.Reply.Type getType() {
-      controller.Protocol.Reply.Type result = controller.Protocol.Reply.Type.valueOf(type_);
-      return result == null ? controller.Protocol.Reply.Type.Login : result;
+      return type_;
     }
 
     public static final int RESULT_FIELD_NUMBER = 2;
@@ -2722,7 +2474,7 @@ public final class Protocol {
     }
 
     public static final int DESCRITION_FIELD_NUMBER = 3;
-    private volatile java.lang.Object descrition_;
+    private java.lang.Object descrition_;
     /**
      * <code>required string descrition = 3;</code>
      */
@@ -2763,6 +2515,11 @@ public final class Protocol {
       }
     }
 
+    private void initFields() {
+      type_ = controller.Protocol.Reply.Type.Login;
+      result_ = false;
+      descrition_ = "";
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2787,92 +2544,47 @@ public final class Protocol {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, type_);
+        output.writeEnum(1, type_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBool(2, result_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, descrition_);
+        output.writeBytes(3, getDescritionBytes());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, type_);
+          .computeEnumSize(1, type_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, result_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, descrition_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getDescritionBytes());
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof controller.Protocol.Reply)) {
-        return super.equals(obj);
-      }
-      controller.Protocol.Reply other = (controller.Protocol.Reply) obj;
-
-      boolean result = true;
-      result = result && (hasType() == other.hasType());
-      if (hasType()) {
-        result = result && type_ == other.type_;
-      }
-      result = result && (hasResult() == other.hasResult());
-      if (hasResult()) {
-        result = result && (getResult()
-            == other.getResult());
-      }
-      result = result && (hasDescrition() == other.hasDescrition());
-      if (hasDescrition()) {
-        result = result && getDescrition()
-            .equals(other.getDescrition());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasType()) {
-        hash = (37 * hash) + TYPE_FIELD_NUMBER;
-        hash = (53 * hash) + type_;
-      }
-      if (hasResult()) {
-        hash = (37 * hash) + RESULT_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getResult());
-      }
-      if (hasDescrition()) {
-        hash = (37 * hash) + DESCRITION_FIELD_NUMBER;
-        hash = (53 * hash) + getDescrition().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static controller.Protocol.Reply parseFrom(
@@ -2898,57 +2610,46 @@ public final class Protocol {
     }
     public static controller.Protocol.Reply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Protocol.Reply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static controller.Protocol.Reply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static controller.Protocol.Reply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static controller.Protocol.Reply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static controller.Protocol.Reply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(controller.Protocol.Reply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2956,7 +2657,7 @@ public final class Protocol {
      * Protobuf type {@code controller.Reply}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:controller.Reply)
         controller.Protocol.ReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2964,7 +2665,7 @@ public final class Protocol {
         return controller.Protocol.internal_static_controller_Reply_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return controller.Protocol.internal_static_controller_Reply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2977,24 +2678,31 @@ public final class Protocol {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
-        type_ = 0;
+        type_ = controller.Protocol.Reply.Type.Login;
         bitField0_ = (bitField0_ & ~0x00000001);
         result_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
         descrition_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -3035,32 +2743,6 @@ public final class Protocol {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof controller.Protocol.Reply) {
           return mergeFrom((controller.Protocol.Reply)other);
@@ -3083,19 +2765,21 @@ public final class Protocol {
           descrition_ = other.descrition_;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasType()) {
+          
           return false;
         }
         if (!hasResult()) {
+          
           return false;
         }
         if (!hasDescrition()) {
+          
           return false;
         }
         return true;
@@ -3110,7 +2794,7 @@ public final class Protocol {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (controller.Protocol.Reply) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -3120,7 +2804,7 @@ public final class Protocol {
       }
       private int bitField0_;
 
-      private int type_ = 0;
+      private controller.Protocol.Reply.Type type_ = controller.Protocol.Reply.Type.Login;
       /**
        * <code>required .controller.Reply.Type type = 1;</code>
        */
@@ -3131,8 +2815,7 @@ public final class Protocol {
        * <code>required .controller.Reply.Type type = 1;</code>
        */
       public controller.Protocol.Reply.Type getType() {
-        controller.Protocol.Reply.Type result = controller.Protocol.Reply.Type.valueOf(type_);
-        return result == null ? controller.Protocol.Reply.Type.Login : result;
+        return type_;
       }
       /**
        * <code>required .controller.Reply.Type type = 1;</code>
@@ -3142,7 +2825,7 @@ public final class Protocol {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000001;
-        type_ = value.getNumber();
+        type_ = value;
         onChanged();
         return this;
       }
@@ -3151,7 +2834,7 @@ public final class Protocol {
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        type_ = 0;
+        type_ = controller.Protocol.Reply.Type.Login;
         onChanged();
         return this;
       }
@@ -3263,81 +2946,44 @@ public final class Protocol {
         onChanged();
         return this;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:controller.Reply)
     }
 
-    // @@protoc_insertion_point(class_scope:controller.Reply)
-    private static final controller.Protocol.Reply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new controller.Protocol.Reply();
+      defaultInstance = new Reply(true);
+      defaultInstance.initFields();
     }
 
-    public static controller.Protocol.Reply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Reply>
-        PARSER = new com.google.protobuf.AbstractParser<Reply>() {
-      public Reply parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Reply(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Reply> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Reply> getParserForType() {
-      return PARSER;
-    }
-
-    public controller.Protocol.Reply getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:controller.Reply)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_Order_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_Order_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Request_Login_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Request_Login_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_controller_Reply_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_controller_Reply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -3368,25 +3014,25 @@ public final class Protocol {
     internal_static_controller_Request_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_controller_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_descriptor,
         new java.lang.String[] { "Login", "Order", });
     internal_static_controller_Request_Order_descriptor =
       internal_static_controller_Request_descriptor.getNestedTypes().get(0);
     internal_static_controller_Request_Order_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_Order_descriptor,
         new java.lang.String[] { "Type", "Company", "Quant", "Price", });
     internal_static_controller_Request_Login_descriptor =
       internal_static_controller_Request_descriptor.getNestedTypes().get(1);
     internal_static_controller_Request_Login_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Request_Login_descriptor,
         new java.lang.String[] { "Username", "Password", });
     internal_static_controller_Reply_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_controller_Reply_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_controller_Reply_descriptor,
         new java.lang.String[] { "Type", "Result", "Descrition", });
   }
