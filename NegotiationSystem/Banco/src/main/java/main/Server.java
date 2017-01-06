@@ -1,16 +1,12 @@
 package main;
 
-import bitronix.tm.BitronixTransactionManager;
 import data.Banco;
 
 import javax.jms.*;
-import javax.jms.Connection;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 import javax.transaction.*;
-import java.sql.*;
 
 public class Server {
   public static void main(String[] args) throws NamingException, JMSException, SystemException, NotSupportedException {
@@ -28,13 +24,13 @@ public class Server {
     Queue q;
     MessageConsumer mc = null;
 
+    System.out.println("Creating consumer...");
+    s = c1.createSession(false, 0);
+    q = s.createQueue("Transferencias");
+    mc = s.createConsumer(q);
+
     while(true) {
       try {
-        System.out.println("Creating consumer...");
-        s = c1.createSession(false, 0);
-        q = s.createQueue("Transferencias");
-        mc = s.createConsumer(q);
-
         System.out.println("receiving...");
         TextMessage m = (TextMessage) mc.receive();
         if(m.getText().equals("transferencia")) {
