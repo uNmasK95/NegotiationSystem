@@ -23,6 +23,9 @@ createdb -h localhost -p 12348
 psql -h localhost -p 12348 -a -f BD_Init_Banco.sql
 psql -h localhost -p 12348 -a -f BD_Pov_Banco.sql
 
+Alterar > max_prepared_transactions = 50 em postgresql.conf
+para cada BD
+
 -- iniciar servidores + psql ---
 
 postgres -D utilizadores/ -k. -p 12346 &
