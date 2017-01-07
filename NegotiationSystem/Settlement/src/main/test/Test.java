@@ -26,19 +26,7 @@ public class Test {
 //    }
     try {
       t.bankTransfer("pedro","freitas",10);
-    } catch (NamingException e) {
-      e.printStackTrace();
-    } catch (JMSException e) {
-      e.printStackTrace();
-    } catch (NotSupportedException e) {
-      e.printStackTrace();
-    } catch (SystemException e) {
-      e.printStackTrace();
-    } catch (HeuristicMixedException e) {
-      e.printStackTrace();
-    } catch (HeuristicRollbackException e) {
-      e.printStackTrace();
-    } catch (RollbackException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
 
