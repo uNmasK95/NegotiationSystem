@@ -15,26 +15,49 @@ import java.sql.*;
 import java.sql.Connection;
 
 // TODO - Tratar indisponibilidade do banco
-// TODO - Request/Reply
 public class Settlement {
-  public static void main(String[] args) throws NamingException, JMSException, SystemException, NotSupportedException, SQLException {
-    Context ctx = new InitialContext();
+  public static void main(String[] args) throws Exception {
+    new Settlement().start();
+  }
 
-    UserTransaction txn = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
+  private Context ctx;
+  private UserTransaction txn;
+  private javax.jms.Connection connection;
+  private Connection c_acoes;
+  private Connection c_banco;
+  private Session session;
+  private MessageConsumer mc;
+  private MessageProducer replier;
+  private AcoesListener acoesListener;
+  private Session session_acoes;
+  private Connection connection_acoes;
 
+
+  private Settlement() throws NamingException, JMSException, SQLException {
+    ctx = new InitialContext();
+    txn = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
     ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/amq");
-    javax.jms.Connection c1 = cf.createConnection();
-    c1.start();
+    connection = cf.createConnection();
 
     DataSource ds_acoes = (DataSource) ctx.lookup("jdbc/acoes");
-    Connection c_acoes = ds_acoes.getConnection();
+    c_acoes = ds_acoes.getConnection();
 
     DataSource ds_banco = (DataSource) ctx.lookup("jdbc/banco");
-    Connection c_banco = ds_banco.getConnection();
+    c_banco = ds_banco.getConnection();
 
-    Session s = c1.createSession(false,0);
-    Queue q = s.createQueue("vendas");
-    MessageConsumer mc = s.createConsumer(q);
+    session = connection.createSession(false,0);
+    Destination q = session.createQueue("vendas");
+    mc = session.createConsumer(q);
+    replier = session.createProducer(null);
+
+    //Iniciar acoesListener
+    session_acoes = connection.createSession(false,0);
+    connection_acoes = ds_acoes.getConnection();
+  }
+
+  private void start() throws NamingException, JMSException, SQLException, SystemException, NotSupportedException {
+    connection.start();
+    acoesListener = new AcoesListener(connection_acoes,session_acoes);
 
     while(true){
       txn.setTransactionTimeout(Integer.MAX_VALUE);
@@ -43,34 +66,40 @@ public class Settlement {
       boolean ok = true;
       Exception erro = null;
 
-      System.out.println("receiving...");
-      TextMessage m = (TextMessage) mc.receive();
+      System.out.println("Settlement > receiving...");
+      TextMessage request = (TextMessage) mc.receive();
+      System.out.print("Settlement > received \""+request.getText()+"\"... ");
 
-      if(m.getText().equals("venda")) {
+      if(request.getText().equals("venda")) {
         try{
           deliveryVSpayment(
-              m.getStringProperty("comprador"),
-              m.getStringProperty("vendedor"),
-              m.getStringProperty("empresa"),
-              m.getIntProperty("quantidade"),
-              m.getFloatProperty("preco"),
+              request.getStringProperty("comprador"),
+              request.getStringProperty("vendedor"),
+              request.getStringProperty("empresa"),
+              request.getIntProperty("quantidade"),
+              request.getFloatProperty("preco"),
               c_acoes,
               c_banco);
+          System.out.println("OK");
         } catch (InsuficientFundsException
-                | UserNotFoundException
-                | AcoesInsuficientesException
-                | BancoIndisponivelException
-                | SQLException e) {
+            | UserNotFoundException
+            | AcoesInsuficientesException
+            | BancoIndisponivelException
+            | SQLException e) {
           e.printStackTrace();
           ok = false;
           erro = e;
         }
       }
       else ok = false;
-      System.out.println("received: "+m.getText());
+
+      TextMessage response = session.createTextMessage();
 
       if(ok){
         try{
+          response.setText("OK");
+          response.setJMSCorrelationID(request.getJMSCorrelationID());
+          replier.send(request.getJMSReplyTo(), response);
           txn.commit();
         }
         catch (RollbackException | HeuristicRollbackException | HeuristicMixedException e){
@@ -80,30 +109,37 @@ public class Settlement {
       else{
         switch (erro.getClass().getSimpleName()){
           case "InsuficientFundsException":
-            // TODO - enviar resposta
+            response.setStringProperty("erro","dinheiro");
+            response.setFloatProperty("saldo", Float.parseFloat(erro.getMessage()));
             txn.rollback();
             break;
           case "AcoesInsuficientesException":
-            // TODO - enviar resposta
+            response.setStringProperty("erro","acoes");
+            response.setIntProperty("acoes",Integer.parseInt(erro.getMessage()));
             txn.rollback();
             break;
           case "UserNotFoundException":
-            // TODO - enviar resposta
+            response.setStringProperty("erro","utilizador");
+            response.setStringProperty("utilizador",erro.getMessage());
             txn.rollback();
             break;
           case "BancoIndisponivelException":
-            // TODO - enviar resposta
+            // TODO - Tratar este caso ...
+            response.setStringProperty("erro","erro");
             txn.rollback();
             break;
           default:
-            // TODO - enviar resposta
+            response.setStringProperty("erro","erro");
             txn.rollback();
         }
+        response.setText("KO");
+        response.setJMSCorrelationID(request.getJMSCorrelationID());
+        replier.send(request.getJMSReplyTo(), response);
       }
     }
   }
 
-  private static void deliveryVSpayment(
+  private void deliveryVSpayment(
           String comprador, String vendedor, String empresa, int quantidade, float preco,
           Connection acoes, Connection banco)
       throws AcoesInsuficientesException, SQLException, UserNotFoundException, InsuficientFundsException, BancoIndisponivelException
@@ -112,7 +148,7 @@ public class Settlement {
     transferirDinheiro(comprador,vendedor,preco,banco);
   }
 
-  private static void transferirDinheiro(String from, String to, float amount, Connection c) throws InsuficientFundsException, UserNotFoundException, BancoIndisponivelException {
+  private void transferirDinheiro(String from, String to, float amount, Connection c) throws InsuficientFundsException, UserNotFoundException, BancoIndisponivelException {
 
     try {
       //Verificar se utilizador "from" tem saldo suficiente
@@ -187,7 +223,7 @@ public class Settlement {
     }
   }
 
-  public static void transferirAcoes(String from, String to, String empresa, int quantidade, Connection c)
+  public void transferirAcoes(String from, String to, String empresa, int quantidade, Connection c)
       throws AcoesInsuficientesException, SQLException {
 
       // Verificar se utilizador "from" tem acoes suficientes para vender
@@ -204,7 +240,7 @@ public class Settlement {
           s1.close();
         }
         catch (Exception e){}
-        throw new AcoesInsuficientesException();
+        throw new AcoesInsuficientesException(""+qtdAntiga);
       }
       rs1.close();
       s1.close();

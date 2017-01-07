@@ -4,51 +4,57 @@ import exception.UserNotFoundException;
 
 import java.sql.*;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * Created by pedro on 23-12-2016.
  */
 public class Acoes {
 
-  public String host;
-  public int port;
-  public String database;
+  private Connection connection;
 
-  private Connection c;
-
-  public Acoes(){
-    this.host = "127.0.0.1";
-    this.port = 12347;
-    this.database = "acoes";
+  public Acoes(Connection c){
+    this.connection = c;
   }
 
-  public Acoes(String host, int port, String database){
-    this.host = host;
-    this.port = port;
-    this.database = database;
-  }
-
-  private void openConnection() throws SQLException {
-    this.c = DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+database);
-  }
-
-  private void closeConection() throws SQLException {
-    this.c.close();
-  }
-
-  /*
-    Retorna Map<Empresa,Quantidade_Acoes>
-   */
-  public Map<String,Integer> getAcoesUtilizador(String utilizador){
-    TreeMap<String,Integer> acoes = new TreeMap<>();
-
-    try { this.openConnection(); } catch (SQLException e) { e.printStackTrace(); return null; }
+  // FIXME - Estar sempre a chamar este metodo e' muito ineficiente
+  public Set<String> getEmpresas(){
+    TreeSet<String> acoes = new TreeSet<>();
 
     PreparedStatement s = null;
     ResultSet rs = null;
     try {
-      s = c.prepareStatement("" +
+      s = connection.prepareStatement("SELECT DISTINCT empresa FROM acoes");
+      rs = s.executeQuery();
+      while (rs.next()) {
+        acoes.add(rs.getString("empresa"));
+      }
+    }
+    catch(SQLException e){
+      e.printStackTrace();
+    }
+    finally {
+      try {
+        rs.close();
+        s.close();
+      } catch (SQLException e) {
+      }
+    }
+    return acoes;
+  }
+
+  /*
+  Retorna Map<Empresa,Quantidade_Acoes_Utilizador>
+ */
+  public Map<String,Integer> getAcoesUtilizador(String utilizador){
+    TreeMap<String,Integer> acoes = new TreeMap<>();
+
+    PreparedStatement s = null;
+    ResultSet rs = null;
+    try {
+      s = connection.prepareStatement("" +
           "SELECT empresa, quantidade FROM acoes " +
           "WHERE utilizador = ?");
       s.setString(1, utilizador);
@@ -64,7 +70,6 @@ public class Acoes {
       try {
         rs.close();
         s.close();
-        c.close();
       } catch (SQLException e) {
       }
     }
@@ -75,9 +80,8 @@ public class Acoes {
     PreparedStatement s = null;
     ResultSet rs = null;
     int acoes;
-    try { openConnection(); } catch (SQLException e) {e.printStackTrace(); return 0;}
     try {
-      s = c.prepareStatement("" +
+      s = connection.prepareStatement("" +
           "SELECT quantidade FROM acoes " +
           "WHERE empresa = ? AND utilizador = ?");
       s.setString(1,empresa);
@@ -96,7 +100,6 @@ public class Acoes {
       try {
         rs.close();
         s.close();
-        c.close();
       } catch (SQLException e) {
       }
     }
