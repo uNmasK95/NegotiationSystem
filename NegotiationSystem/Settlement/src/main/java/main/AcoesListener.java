@@ -4,6 +4,7 @@ import data.Acoes;
 
 import javax.jms.*;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Map;
 
 public class AcoesListener implements MessageListener {
@@ -36,22 +37,39 @@ public class AcoesListener implements MessageListener {
           if(request.propertyExists("utilizador")){
             //Responder com acoes do utilizador
             String utilizador = request.getStringProperty("utilizador");
-            Map<String,Integer> empresas = acoes.getAcoesUtilizador(utilizador);
-            reply.setText("utilizador");
-            for(String empresa: empresas.keySet()){
-              reply.setIntProperty(empresa,empresas.get(empresa));
+            try {
+              Map<String, Integer> empresas = acoes.getAcoesUtilizador(utilizador);
+              reply.setText("utilizador");
+              for(String empresa: empresas.keySet()) {
+                reply.setIntProperty(empresa, empresas.get(empresa));
+              }
+              reply.setJMSCorrelationID(request.getJMSCorrelationID());
+              replier.send(request.getJMSReplyTo(), reply);
             }
-            reply.setJMSCorrelationID(request.getJMSCorrelationID());
-            replier.send(request.getJMSReplyTo(), reply);
+            catch (SQLException e){
+              e.printStackTrace();
+              this.error(request);
+            }
+            catch (JMSException e){
+              e.printStackTrace();
+            }
           }
           else {
             //Responder com todas as acoes
             reply.setText("empresas");
-            for(String empresa: acoes.getEmpresas()){
-              reply.setBooleanProperty(empresa,true);
+            try {
+              for (String empresa : acoes.getEmpresas()) {
+                reply.setBooleanProperty(empresa, true);
+              }
+              reply.setJMSCorrelationID(request.getJMSCorrelationID());
+              replier.send(request.getJMSReplyTo(), reply);
+            }catch (SQLException e){
+              e.printStackTrace();
+              this.error(request);
             }
-            reply.setJMSCorrelationID(request.getJMSCorrelationID());
-            replier.send(request.getJMSReplyTo(), reply);
+            catch (JMSException e){
+              e.printStackTrace();
+            }
           }
         }
         else{
@@ -63,6 +81,16 @@ public class AcoesListener implements MessageListener {
     }
   }
 
+  private void error(TextMessage request) {
+    try {
+      TextMessage reply = session.createTextMessage();
+      reply.setText("erro");
+      reply.setJMSCorrelationID(request.getJMSCorrelationID());
+      replier.send(request.getJMSReplyTo(), reply);
+    }catch (JMSException e){
+      e.printStackTrace();
+    }
+  }
 
 
 }

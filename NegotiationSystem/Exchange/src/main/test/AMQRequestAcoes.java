@@ -63,17 +63,21 @@ class TestActor2 extends BasicActor<Void,Void> implements MessageListener {
       if (message instanceof TextMessage) {
         TextMessage reply = (TextMessage) message;
         messageText = reply.getText();
-        System.out.println("messageText = " + messageText);
-        Enumeration enumeration = reply.getPropertyNames();
-        while(enumeration.hasMoreElements()){
-          String empresa = (String)enumeration.nextElement();
-          switch (messageText) {
-            case "utilizador":
-              System.out.println(empresa + " - " + reply.getIntProperty(empresa));
-              break;
-            case "empresas":
-              System.out.println(empresa);
-              break;
+        if(messageText.equals("erro")){
+          System.err.println("erro...");
+        }
+        else {
+          Enumeration enumeration = reply.getPropertyNames();
+          while (enumeration.hasMoreElements()) {
+            String empresa = (String) enumeration.nextElement();
+            switch (messageText) {
+              case "utilizador":
+                System.out.println(empresa + " - " + reply.getIntProperty(empresa));
+                break;
+              case "empresas":
+                System.out.println(empresa);
+                break;
+            }
           }
         }
       }

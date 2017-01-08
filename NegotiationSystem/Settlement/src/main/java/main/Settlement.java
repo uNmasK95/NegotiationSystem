@@ -1,5 +1,7 @@
 package main;
 
+import bitronix.tm.TransactionManagerServices;
+import bitronix.tm.resource.ResourceLoader;
 import exception.AcoesInsuficientesException;
 import exception.BancoIndisponivelException;
 import exception.InsuficientFundsException;
@@ -14,11 +16,13 @@ import javax.transaction.*;
 import java.sql.*;
 import java.sql.Connection;
 
-// TODO - Tratar indisponibilidade do banco
 public class Settlement {
   public static void main(String[] args) throws Exception {
     new Settlement().start();
   }
+
+  // Tempo (ms) entre tentativas de acesso ao banco, quando esta indisponivel
+  private static long TEMPO_ENTRE_TENTATIVAS = 5000;
 
   private Context ctx;
   private UserTransaction txn;
@@ -31,43 +35,68 @@ public class Settlement {
   private AcoesListener acoesListener;
   private Session session_acoes;
   private Connection connection_acoes;
+  private boolean banco;
 
+  private TextMessage lastFailedRequest = null;
 
   private Settlement() throws NamingException, JMSException, SQLException {
     ctx = new InitialContext();
+
     txn = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
     ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/amq");
+
     connection = cf.createConnection();
+    connection.start();
 
     DataSource ds_acoes = (DataSource) ctx.lookup("jdbc/acoes");
     c_acoes = ds_acoes.getConnection();
 
-    DataSource ds_banco = (DataSource) ctx.lookup("jdbc/banco");
-    c_banco = ds_banco.getConnection();
+    try {
+      DataSource ds_banco = (DataSource) ctx.lookup("jdbc/banco");
+      c_banco = ds_banco.getConnection();
+      this.banco = true;
+    }
+    catch (Exception e){
+      this.banco = false;
+    }
 
     session = connection.createSession(false,0);
     Destination q = session.createQueue("vendas");
+
     mc = session.createConsumer(q);
     replier = session.createProducer(null);
 
     //Iniciar acoesListener
-    session_acoes = connection.createSession(false,0);
+    session_acoes = connection.createSession(false, 0);
     connection_acoes = ds_acoes.getConnection();
+    acoesListener = new AcoesListener(connection_acoes, session_acoes);
   }
 
   private void start() throws NamingException, JMSException, SQLException, SystemException, NotSupportedException {
-    connection.start();
-    acoesListener = new AcoesListener(connection_acoes,session_acoes);
-
     while(true){
-      txn.setTransactionTimeout(Integer.MAX_VALUE);
-      txn.begin();
-
       boolean ok = true;
       Exception erro = null;
 
+      while (!banco){
+        System.err.println("Banco indisponivel...");
+        try {
+          Thread.sleep(TEMPO_ENTRE_TENTATIVAS);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
+        this.reconnect();
+      }
+      txn.setTransactionTimeout(Integer.MAX_VALUE);
+
+      txn.begin();
       System.out.println("Settlement > receiving...");
-      TextMessage request = (TextMessage) mc.receive();
+      TextMessage request;
+      if(lastFailedRequest != null){
+        request = lastFailedRequest;
+        lastFailedRequest = null;
+      }
+      else
+        request = (TextMessage) mc.receive();
       System.out.print("Settlement > received \""+request.getText()+"\"... ");
 
       if(request.getText().equals("venda")) {
@@ -97,45 +126,72 @@ public class Settlement {
 
       if(ok){
         try{
-          response.setText("OK");
-          response.setJMSCorrelationID(request.getJMSCorrelationID());
-          replier.send(request.getJMSReplyTo(), response);
           txn.commit();
         }
         catch (RollbackException | HeuristicRollbackException | HeuristicMixedException e){
           e.printStackTrace();
         }
+        try{
+          response.setText("OK");
+          response.setJMSCorrelationID(request.getJMSCorrelationID());
+          replier.send(request.getJMSReplyTo(), response);
+        }
+        catch (Exception e){
+          e.printStackTrace();
+        }
       }
       else{
-        switch (erro.getClass().getSimpleName()){
-          case "InsuficientFundsException":
-            response.setStringProperty("erro","dinheiro");
-            response.setFloatProperty("saldo", Float.parseFloat(erro.getMessage()));
-            txn.rollback();
-            break;
-          case "AcoesInsuficientesException":
-            response.setStringProperty("erro","acoes");
-            response.setIntProperty("acoes",Integer.parseInt(erro.getMessage()));
-            txn.rollback();
-            break;
-          case "UserNotFoundException":
-            response.setStringProperty("erro","utilizador");
-            response.setStringProperty("utilizador",erro.getMessage());
-            txn.rollback();
-            break;
-          case "BancoIndisponivelException":
-            // TODO - Tratar este caso ...
-            response.setStringProperty("erro","erro");
-            txn.rollback();
-            break;
-          default:
-            response.setStringProperty("erro","erro");
-            txn.rollback();
+        try {
+          switch (erro.getClass().getSimpleName()) {
+            case "InsuficientFundsException":
+              response.setStringProperty("erro", "dinheiro");
+              response.setFloatProperty("saldo", Float.parseFloat(erro.getMessage()));
+              break;
+            case "AcoesInsuficientesException":
+              response.setStringProperty("erro", "acoes");
+              response.setIntProperty("acoes", Integer.parseInt(erro.getMessage()));
+              break;
+            case "UserNotFoundException":
+              response.setStringProperty("erro", "utilizador");
+              response.setStringProperty("utilizador", erro.getMessage());
+              break;
+            case "BancoIndisponivelException":
+              banco = false;
+              lastFailedRequest = request;
+              response.setStringProperty("erro", "banco");
+              break;
+            default:
+              response.setStringProperty("erro", "erro");
+          }
+          txn.rollback();
+          if(banco) {
+            response.setText("KO");
+            response.setJMSCorrelationID(request.getJMSCorrelationID());
+            replier.send(request.getJMSReplyTo(), response);
+          }
+          else {
+            // Pedido nao foi processado porque o banco estava indisponivel;
+            // Sera processado no proximo ciclo
+          }
+        }catch (Exception e){
+          e.printStackTrace();
         }
-        response.setText("KO");
-        response.setJMSCorrelationID(request.getJMSCorrelationID());
-        replier.send(request.getJMSReplyTo(), response);
       }
+    }
+  }
+
+  private void reconnect() throws NamingException, JMSException, SQLException, SystemException, NotSupportedException {
+
+    ResourceLoader btmResourceLoader = TransactionManagerServices.getResourceLoader();
+    btmResourceLoader.init();
+
+    try {
+      DataSource ds_banco = (DataSource) ctx.lookup("jdbc/banco");
+      c_banco = ds_banco.getConnection();
+      this.banco = true;
+    }
+    catch (Exception e){
+      this.banco = false;
     }
   }
 
