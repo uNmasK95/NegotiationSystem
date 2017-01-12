@@ -48,7 +48,7 @@ public class UserManager extends BasicActor<Message, Void> {
                     order_request( msg );
                     break;
                 case ORDER_REP:
-                    System.out.println("Order REply");
+                    System.out.println("Order Reply");
                     order_reply( msg );
                     break;
                 case KO:
@@ -159,11 +159,11 @@ public class UserManager extends BasicActor<Message, Void> {
      * Metodo responsavel por uma menssagem de ordem concluida
      * @param msg
      */
-    private void order_reply( Message msg ) {
+    private void order_reply( Message msg ) throws SuspendExecution{
         Protocol.Reply reply = Protocol.Reply.newBuilder()
                 .setType(Protocol.Reply.Type.Order)
                 .setResult(true)
-                .setDescrition("Coisas")
+                .setDescrition( (String) msg.obj)
                 //TODO alterar isto
                 .build();
 

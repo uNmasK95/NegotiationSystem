@@ -68,7 +68,8 @@ public class Login extends JFrame{
 
                 if( reply.getType() == Protocol.Reply.Type.Login && reply.getResult() ){
                     System.out.println("Login Realizado");
-                    new Menu( main, channelSubscribe);
+                    new Menu( main, channelSubscribe).setTitle("User: " + this.usernameTextField.getText());
+                    this.dispose();
                 }
 
             } catch (SuspendExecution | InterruptedException e1 ) {

@@ -1,0 +1,13 @@
+bin/activemq start
+ 
+OR
+ 
+bin/activemq start > /tmp/smlog  2>&1 &;
+Note: /tmp/smlog may be changed to another file name.
+
+netstat -an|grep 61616
+
+http://localhost:8161/admin
+admin admin
+
+bin/activemq stop

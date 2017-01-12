@@ -6,6 +6,7 @@ import controller.entity.Match;
 import controller.entity.Order;
 import controller.entity.Orders;
 
+import javax.jms.JMSException;
 import java.util.*;
 
 public class OrderManager extends BasicActor<Message,Void> {
@@ -40,7 +41,14 @@ public class OrderManager extends BasicActor<Message,Void> {
         List<Match> result = this.orders.add( order );
         if(!result.isEmpty()){
             System.out.println("Foi encontrado match");
-            new Transaction( result ).spawn();
+            for ( Match m : result ) {
+                try {
+                    new Transaction( m ).spawn();
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                    //TODO ver o que vou fazer aqui
+                }
+            }
         }else{
             System.out.println("Não foi encontrado match");
         }

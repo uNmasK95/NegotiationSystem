@@ -35,12 +35,45 @@ public class Menu extends JFrame{
         this.pack();
         this.setVisible(true);
 
+        this.spinner_nActions.setValue(1);
+
         submitButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 clickSubmitButton();
+                clearSubmit();
             }
         });
+
+        Thread worker = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    String mess = (String) channelSubscribe.receive();
+
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                                textArea1.append(mess);
+                        }
+                    });
+                } catch (SuspendExecution suspendExecution) {
+                    suspendExecution.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+
+
+
+    }
+
+    private void clearSubmit(){
+        this.textField_company.setText("");
+        this.textField_value.setText("");
+        this.spinner_nActions.setValue(1);
     }
 
     private void clickSubmitButton(){

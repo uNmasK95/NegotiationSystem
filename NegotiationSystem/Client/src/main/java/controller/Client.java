@@ -14,20 +14,13 @@ import java.net.InetSocketAddress;
 public class Client{
 
 
-    public static void main(String[] args) throws IOException, SuspendExecution {
-        final String portSubs = args[0];
-        final String host = "localhost";
+
+    public static void main(String[] args) {
 
         final Channel<Protocol.Reply> channelLogin = Channels.newChannel(0);
         final Channel<String> channelSubscrib = Channels.newChannel(10);
 
-        ZMQ.Context context = ZMQ.context(1);
-        ZMQ.Socket socket = context.socket(ZMQ.SUB);
-        socket.connect("tcp://" + host + ":" + portSubs);
-
-
-        ActorRef main = new Main( socket , channelLogin ).spawn();
-        //Subscriber subscriber = new Subscriber( socket, channelSubscrib );
+        ActorRef main = new Main( channelLogin, channelSubscrib ).spawn();
 
         Login login = new Login(main, channelLogin, channelSubscrib);
 

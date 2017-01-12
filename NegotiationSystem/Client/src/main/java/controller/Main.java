@@ -1,6 +1,8 @@
 package controller;
 
+import co.paralleluniverse.actors.ActorRef;
 import co.paralleluniverse.actors.BasicActor;
+import co.paralleluniverse.common.util.SystemProperties;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import co.paralleluniverse.strands.channels.Channel;
@@ -13,16 +15,26 @@ import java.nio.ByteBuffer;
 
 public class Main extends BasicActor<Message,Void> {
 
+    public final String hostXPub = "localhost";
+    public final int portXPub = 12370;
+
     private final ByteBuffer output;
     private final CodedOutputStream cout;
     private final ZMQ.Socket socketSub;
     private final Channel channelLogin;
+    private final ActorRef subscriber;
 
-    public Main( ZMQ.Socket socketSub, Channel channelLogin ) {
+    public Main( Channel channelLogin, Channel channelSubscrib ) {
         this.output = ByteBuffer.allocate(1024);
         this.cout = CodedOutputStream.newInstance( this.output );
-        this.socketSub = socketSub;
         this.channelLogin = channelLogin;
+
+        ZMQ.Context context = ZMQ.context(1);
+        this.socketSub = context.socket(ZMQ.SUB);
+        this.socketSub.connect("tcp://" + hostXPub + ":" + portXPub);
+
+        this.subscriber = new Subscriber( this.socketSub, channelSubscrib ).spawn();
+
     }
 
 
@@ -51,7 +63,9 @@ public class Main extends BasicActor<Message,Void> {
                         send_request( socketChannel, msg );
                         break;
                     case SUB:
-
+                        this.socketSub.subscribe( ((String) msg.obj).getBytes() );
+                    case UNSUB:
+                        this.socketSub.unsubscribe( ((String) msg.obj).getBytes() );
                     default:
                         break;
                 }
