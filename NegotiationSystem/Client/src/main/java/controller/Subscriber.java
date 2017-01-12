@@ -21,8 +21,11 @@ public class Subscriber extends BasicActor<Message,Void> {
 
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
-
+        //TODO mudar isto
+        System.out.println("Susbscriver iniciou");
+        socketSubscribe.subscribe("microsoft".getBytes());
         while ( true ) {  //TODO ver melhor esta condição
+            System.out.println("Susbscriver while true");
             byte[] b = this.socketSubscribe.recv();
             System.out.println( new String(b) );
             channelSubscrib.send( new String(b) );

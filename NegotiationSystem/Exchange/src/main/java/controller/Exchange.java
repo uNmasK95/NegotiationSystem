@@ -25,10 +25,10 @@ public class Exchange {
 
                 ZMQ.Context context = ZMQ.context(1);
                 ZMQ.Socket socketPubs = context.socket(ZMQ.XPUB);
-                socketPubs.bind("tcp://*:" + portPub);
+                socketPubs.bind("tcp://*:" + portSub);
 
                 ZMQ.Socket socketSubs = context.socket(ZMQ.XSUB);
-                socketSubs.bind("tcp://*:" + portSub);
+                socketSubs.bind("tcp://*:" + portPub);
 
                 ZMQ.proxy(socketPubs, socketSubs, null);
 

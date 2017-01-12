@@ -66,6 +66,8 @@ public class Menu extends JFrame{
             }
         };
 
+        worker.start();
+
 
 
     }

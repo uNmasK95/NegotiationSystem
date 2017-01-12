@@ -30,7 +30,7 @@ public class ReaderSocket extends BasicActor<Message,Void> {
     protected Void doRun() throws InterruptedException, SuspendExecution {
 
         try {
-
+            //TODO resolver problema de fechar ator quando o utilizador faz logout
             while (true) {
 
                 //ler do socket para o buffer; ficar a espera enquanto não tiver nada
@@ -57,7 +57,6 @@ public class ReaderSocket extends BasicActor<Message,Void> {
                         this.user.send( new Message( Message.Type.ORDER_REQ, self(), request.getOrder()) );
                     }
                     this.input.clear();
-                    //this.input.compact();
                 }
 
             }
@@ -65,7 +64,7 @@ public class ReaderSocket extends BasicActor<Message,Void> {
            // this.user.send( new Message(Message.Type.KO, self(),"IOException"));
             System.out.println("IOException");
         }
-        //this.user.send( new Message(Message.Type.KO, self(),"Socket is close!"));
+        this.user.send( new Message(Message.Type.KO, self(),"Socket is close!"));
         System.out.println("Socket is close!");
         return null;
     }

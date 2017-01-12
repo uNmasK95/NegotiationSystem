@@ -9,6 +9,7 @@ import co.paralleluniverse.strands.channels.Channel;
 import com.google.protobuf.CodedOutputStream;
 import org.zeromq.ZMQ;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -62,6 +63,10 @@ public class Main extends BasicActor<Message,Void> {
                         System.out.println("Recebi o order request");
                         send_request( socketChannel, msg );
                         break;
+                    case ORDER_REP:
+                        System.out.println("Recebi o order request");
+                        Protocol.Reply reply = (Protocol.Reply) msg.obj;
+                        System.out.println(reply.getResult() + ":" + reply.getDescrition());
                     case SUB:
                         this.socketSub.subscribe( ((String) msg.obj).getBytes() );
                     case UNSUB:

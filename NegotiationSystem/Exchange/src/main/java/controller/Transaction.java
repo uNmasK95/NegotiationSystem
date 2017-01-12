@@ -8,7 +8,7 @@ import org.zeromq.ZMQ;
 
 import javax.jms.*;
 
-public class Transaction extends BasicActor<Message,Void> implements MessageListener {
+public class Transaction extends BasicActor<Message,Void> {
 
     private final String hostXSub = "localhost";
     private final int portXSub = 12371;
@@ -34,7 +34,7 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
             Destination tempDest = session.createTemporaryQueue();
             MessageConsumer responseConsumer = session.createConsumer(tempDest);
 
-            responseConsumer.setMessageListener(this);
+            //responseConsumer.setMessageListener(this);
 
             TextMessage m = session.createTextMessage("venda");
             m.setStringProperty("comprador",    this.match.getComprador() );
@@ -47,10 +47,7 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
 
             producer.send(m);
 
-            producer.close();
-            connection.close();
-
-
+            onMessage(responseConsumer.receive());
 
         } catch (JMSException e) {
             e.printStackTrace();
@@ -66,8 +63,7 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
         return null;
     }
 
-    @Override
-    public void onMessage(javax.jms.Message message){
+    public void onMessage(javax.jms.Message message) throws SuspendExecution{
         String messageText = null;
         try {
             if (message instanceof TextMessage) {
@@ -105,9 +101,6 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
             }
         } catch (JMSException e) {
             //TODO ver o que acontece neste momento se a tranferencia já foi processada ou não
-        } catch (SuspendExecution suspendExecution) {
-            //TODO ver se isto vai funcionar
-            suspendExecution.printStackTrace();
         }
     }
 
@@ -115,7 +108,7 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
      * Metodo utilizado para criar uma notificação de que foi realizada uma transferência de ações
      * entre dois utilizadores para uma determinada empresa
      */
-    private void publish(){
+    private void publish() throws SuspendExecution{
         //FIXME ter atenção a estas portas
         System.out.println("OK - subscrive");
 
@@ -133,7 +126,7 @@ public class Transaction extends BasicActor<Message,Void> implements MessageList
      * Metodo utilizado para realizar a notificação dos utilizadores que participaram na tranferência
      * @throws SuspendExecution
      */
-    private void notify_users() throws SuspendExecution{
+    private void notify_users() throws SuspendExecution {
         //FIXME melhor isto. não tenho a certeza se posso fazer isto.
         System.out.println("OK - notify");
         this.match.getCompradorRef().send(
