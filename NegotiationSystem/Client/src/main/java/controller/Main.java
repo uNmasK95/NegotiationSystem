@@ -8,6 +8,7 @@ import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import co.paralleluniverse.strands.channels.Channel;
 import com.google.protobuf.CodedOutputStream;
 import org.zeromq.ZMQ;
+import presentation.Menu;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -23,9 +24,10 @@ public class Main extends BasicActor<Message,Void> {
     private final CodedOutputStream cout;
     private final ZMQ.Socket socketSub;
     private final Channel channelLogin;
-    private final ActorRef subscriber;
+    //private final ActorRef subscriber;
+    private Menu menu;
 
-    public Main( Channel channelLogin, Channel channelSubscrib ) {
+    public Main( Channel channelLogin ) {
         this.output = ByteBuffer.allocate(1024);
         this.cout = CodedOutputStream.newInstance( this.output );
         this.channelLogin = channelLogin;
@@ -33,8 +35,6 @@ public class Main extends BasicActor<Message,Void> {
         ZMQ.Context context = ZMQ.context(1);
         this.socketSub = context.socket(ZMQ.SUB);
         this.socketSub.connect("tcp://" + hostXPub + ":" + portXPub);
-
-        this.subscriber = new Subscriber( this.socketSub, channelSubscrib ).spawn();
 
     }
 
@@ -45,7 +45,11 @@ public class Main extends BasicActor<Message,Void> {
         System.out.println("new Main");
         try {
             FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(12350));
+
             new Listener( self(), socketChannel ).spawn();
+
+            //coloquei aqui o subscriber porque perciso de passar o self e acho que no construtor não ia ter a referencia do actor
+            new Subscriber( self(), this.socketSub ).spawn();
 
             while(receive( msg -> {
                 switch (msg.type){
@@ -57,6 +61,13 @@ public class Main extends BasicActor<Message,Void> {
                         // ver como vamos fazer para comonicar com a interface
                         System.out.println("Recebi o login reply");
                         channelLogin.send(msg.obj);
+
+                        Protocol.Reply result = (Protocol.Reply) msg.obj;
+
+                        if( result.getResult() ){
+                            this.menu = new Menu( result.getDescrition(), self());
+                        }
+
                         System.out.println("Enviei para o channel");
                         break;
                     case ORDER_REQ:
@@ -65,12 +76,21 @@ public class Main extends BasicActor<Message,Void> {
                         break;
                     case ORDER_REP:
                         System.out.println("Recebi o order request");
+
                         Protocol.Reply reply = (Protocol.Reply) msg.obj;
+                        this.menu.order_result(reply.getResult() + ":" + reply.getDescrition());
+
                         System.out.println(reply.getResult() + ":" + reply.getDescrition());
-                    case SUB:
+                        break;
+                    case SUB_KEY:
                         this.socketSub.subscribe( ((String) msg.obj).getBytes() );
-                    case UNSUB:
+                        break;
+                    case UNSUB_KEY:
                         this.socketSub.unsubscribe( ((String) msg.obj).getBytes() );
+                        break;
+                    case SUB_MES:
+                        this.menu.setSubcribeResult( (String)msg.obj );
+                        break;
                     default:
                         break;
                 }

@@ -18,11 +18,9 @@ public class Client{
     public static void main(String[] args) {
 
         final Channel<Protocol.Reply> channelLogin = Channels.newChannel(0);
-        final Channel<String> channelSubscrib = Channels.newChannel(10);
 
-        ActorRef main = new Main( channelLogin, channelSubscrib ).spawn();
-
-        Login login = new Login(main, channelLogin, channelSubscrib);
+        ActorRef main = new Main( channelLogin ).spawn();
+        Login login = new Login(main, channelLogin );
 
     }
 }

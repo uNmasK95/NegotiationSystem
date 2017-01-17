@@ -14,7 +14,6 @@ public class Login extends JFrame{
 
     private final ActorRef main;
     private final Channel channelLogin;
-    private final Channel channelSubscribe;
 
     private JTextField usernameTextField;
     private JPasswordField passwordPasswordField;
@@ -22,11 +21,10 @@ public class Login extends JFrame{
     private JPanel panel1;
 
 
-    public Login(ActorRef main, Channel channelLogin, Channel channelSubscribe){
+    public Login(ActorRef main, Channel channelLogin ){
         super("Login");
         this.main = main;
         this.channelLogin = channelLogin;
-        this.channelSubscribe = channelSubscribe;
 
         this.setContentPane(panel1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +66,6 @@ public class Login extends JFrame{
 
                 if( reply.getType() == Protocol.Reply.Type.Login && reply.getResult() ){
                     System.out.println("Login Realizado");
-                    new Menu( main, channelSubscribe).setTitle("User: " + this.usernameTextField.getText());
                     this.dispose();
                 }
 

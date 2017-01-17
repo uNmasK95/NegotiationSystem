@@ -7,6 +7,7 @@ import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import com.google.protobuf.CodedOutputStream;
 import controller.entity.Order;
 import controller.entity.User;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -84,7 +85,7 @@ public class UserManager extends BasicActor<Message, Void> {
         Protocol.Reply reply = Protocol.Reply.newBuilder()
                 .setType(Protocol.Reply.Type.Login)
                 .setResult( (boolean) msg.obj)
-                .setDescrition("Reply Login")
+                .setDescrition(this.user)
                 .build();
 
         try {
@@ -107,6 +108,13 @@ public class UserManager extends BasicActor<Message, Void> {
      */
     private void order_request( Message msg ) throws SuspendExecution {
         Protocol.Request.Order request = (Protocol.Request.Order) msg.obj;
+
+        //TODO limpar isto
+        System.out.println( "Type: " + request.getType() + "\n\t" +
+                request.getCompany() + "\n\t" +
+                request.getQuant() + "\n\t" +
+                request.getPrice() + "");
+
         if(request.getType() == Protocol.Request.Order.Type.Buy){
             order_buy( request );
         }else{

@@ -12,11 +12,11 @@ public class Subscriber extends BasicActor<Message,Void> {
     private final ZMQ.Socket socketSubscribe;
     //private final String hostXPub = "localhost";
     //private final int portXPub = 12370;
-    private final Channel channelSubscrib;
+    private final ActorRef main;
 
-    public Subscriber(ZMQ.Socket socketSubscribe,  Channel channelSubscrib) {
+    public Subscriber(ActorRef main, ZMQ.Socket socketSubscribe ) {
+        this.main = main;
         this.socketSubscribe = socketSubscribe;
-        this.channelSubscrib = channelSubscrib;
     }
 
     @Override
@@ -28,8 +28,11 @@ public class Subscriber extends BasicActor<Message,Void> {
             System.out.println("Susbscriver while true");
             byte[] b = this.socketSubscribe.recv();
             System.out.println( new String(b) );
-            channelSubscrib.send( new String(b) );
+            main.send( new Message(
+                    Message.Type.SUB_MES,
+                    null,
+                    new String(b)
+            ) );
         }
-
     }
 }

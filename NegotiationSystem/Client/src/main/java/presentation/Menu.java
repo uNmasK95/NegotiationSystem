@@ -23,11 +23,10 @@ public class Menu extends JFrame{
     private JTextField textField_company;
 
     private final ActorRef main;
-    private final Channel channelSubscribe;
 
-    public Menu(ActorRef main, Channel channelSubscribe){
+    public Menu( String title, ActorRef main ){
+        super( title );
         this.main = main;
-        this.channelSubscribe = channelSubscribe;
 
         this.setContentPane(panel1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,42 +44,18 @@ public class Menu extends JFrame{
                 clearSubmit();
             }
         });
-
-        Thread worker = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    String mess = (String) channelSubscribe.receive();
-
-                    SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                                textArea1.append(mess);
-                        }
-                    });
-                } catch (SuspendExecution suspendExecution) {
-                    suspendExecution.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-
-        worker.start();
-
-
-
     }
 
     private void clearSubmit(){
         this.textField_company.setText("");
         this.textField_value.setText("");
         this.spinner_nActions.setValue(1);
+        this.sellRadioButton.setSelected(true);
     }
 
     private void clickSubmitButton(){
         Protocol.Request.Order.Type type;
-        String company = null;
+
         if(this.sellRadioButton.isSelected()){
             type = Protocol.Request.Order.Type.Sell;
         }else{
@@ -97,30 +72,32 @@ public class Menu extends JFrame{
                             .setType(type)
                             .build()
                     )
-
                     .build();
 
             try {
-
-                this.main.send( new Message(
-                        Message.Type.ORDER_REQ,
-                        null,
-                        request
-                ));
 
                 String show = "Type: " + request.getOrder().getType() + "\n\t" +
                         request.getOrder().getCompany() + "\n\t" +
                         request.getOrder().getQuant() + "\n\t" +
                         request.getOrder().getPrice() + "";
 
-                JOptionPane.showMessageDialog(this,
+                int result = JOptionPane.showConfirmDialog(this,
                         show,
                         "Offer Request",
-                        JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.YES_NO_OPTION);
+
+                if ( result == JOptionPane.YES_OPTION ){
+                    this.main.send( new Message(
+                            Message.Type.ORDER_REQ,
+                            null,
+                            request
+                    ));
+                }
 
             } catch (SuspendExecution suspendExecution) {
                 suspendExecution.printStackTrace();
             }
+
         }else {
             JOptionPane.showMessageDialog(this,
                     "Need Company name and value.",
@@ -134,4 +111,15 @@ public class Menu extends JFrame{
     }
 
 
+    public void setSubcribeResult( String result ){
+        textArea1.append( result );
+    }
+
+    public void order_result(String result){
+        JOptionPane.showMessageDialog(this,
+                result,
+                "Offer Result",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }
 }

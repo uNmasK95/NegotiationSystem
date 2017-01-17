@@ -4,7 +4,7 @@ import co.paralleluniverse.actors.ActorRef;
 
 public class Message {
 
-    public static enum Type { LOGIN_REQ , LOGIN_REP, ORDER_REQ, ORDER_REP , SUB, UNSUB, KO}
+    public static enum Type { LOGIN_REQ , LOGIN_REP, ORDER_REQ, ORDER_REP , SUB_KEY, UNSUB_KEY, SUB_MES,  KO}
 
     final Type type;
     final ActorRef source;
