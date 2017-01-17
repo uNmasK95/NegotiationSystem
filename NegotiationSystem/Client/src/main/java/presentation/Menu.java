@@ -13,14 +13,17 @@ import java.awt.event.ActionListener;
 public class Menu extends JFrame{
     private JPanel panel1;
     private JPanel panel_sellbuy;
-    private JComboBox comboBox2;
     private JTextField textField_value;
     private JSpinner spinner_nActions;
-    private JButton submitButton1;
+    private JButton submitButton;
     private JTextArea textArea1;
     private JRadioButton sellRadioButton;
     private JRadioButton buyRadioButton;
     private JTextField textField_company;
+    private JTextField textField_sub;
+    private JTextField textField_unsub;
+    private JButton subscribeButton;
+    private JButton unsubscribeButton;
 
     private final ActorRef main;
 
@@ -34,9 +37,16 @@ public class Menu extends JFrame{
         this.pack();
         this.setVisible(true);
 
-        this.spinner_nActions.setValue(1);
+        this.clearSubmit();
 
-        submitButton1.addActionListener(new ActionListener() {
+        submitButton_ActionListener();
+        subscribeButton_ActionListener();
+        unsubscribeButton_ActionListener();
+
+    }
+
+    private void submitButton_ActionListener(){
+        submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -46,11 +56,55 @@ public class Menu extends JFrame{
         });
     }
 
+    private void subscribeButton_ActionListener(){
+        subscribeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if( !textField_sub.getText().equals("") ){
+                    try {
+                        main.send( new Message(
+                                Message.Type.SUB_KEY,
+                                null,
+                                textField_sub.getText()
+                        ));
+                    } catch (SuspendExecution suspendExecution) {
+                        //TODO impossivel fazer sub alterar
+                        suspendExecution.printStackTrace();
+                    }
+                }
+
+            }
+        });
+    }
+
+    private void unsubscribeButton_ActionListener(){
+        unsubscribeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if( !textField_sub.getText().equals("") ){
+                    try {
+                        main.send( new Message(
+                                Message.Type.SUB_KEY,
+                                null,
+                                textField_sub.getText()
+                        ));
+                    } catch (SuspendExecution suspendExecution) {
+                        //TODO impossivel fazer sub alterar
+                        suspendExecution.printStackTrace();
+                    }
+                }
+
+            }
+        });
+    }
+
     private void clearSubmit(){
         this.textField_company.setText("");
         this.textField_value.setText("");
         this.spinner_nActions.setValue(1);
         this.sellRadioButton.setSelected(true);
+        this.textField_sub.setText("");
+        this.textField_unsub.setText("");
     }
 
     private void clickSubmitButton(){
@@ -110,8 +164,8 @@ public class Menu extends JFrame{
 
     }
 
-
     public void setSubcribeResult( String result ){
+
         textArea1.append( result );
     }
 
