@@ -1,5 +1,6 @@
 package controller;
 
+import co.paralleluniverse.actors.ActorRef;
 import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
 import controller.entity.Match;
@@ -14,9 +15,11 @@ public class Transaction extends BasicActor<Message,Void> {
     private final int portXSub = 12371;
     private final Match match;
     private final Connection connection;
+    private final ActorRef orderManager;
 
 
-    public Transaction( Match match ) throws JMSException {
+    public Transaction( ActorRef orderManager, Match match ) throws JMSException {
+        this.orderManager = orderManager;
         this.match = match;
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
         this.connection = connectionFactory.createConnection();
@@ -75,28 +78,31 @@ public class Transaction extends BasicActor<Message,Void> {
                     publish();
 
                 }else if(messageText.equals("KO")){
-
+/*
                     //FIXME ver o que fazer se não for possivel fazer a tranferencia
                     System.err.print("ERRO: ");
-                    /*
+
                     String erro = textMessage.getStringProperty("erro");
                     switch (erro){
                         case "dinheiro":
+                            //TODO tratar caso em que um dos utilizadores não tem dinheiro. Comprardor não tem saldo.
                             float saldo = textMessage.getFloatProperty("saldo");
                             System.err.println("Saldo insuficiente - " + saldo); //saldo atual
                             break;
                         case "acoes":
+                            //TODO tratar caso em que o vendedor não tem acções.
                             int acoes = textMessage.getIntProperty("acoes");
                             System.err.println("Acoes insuficentes - "+acoes);
                             break;
                         case "utilizador":
+                            //TODO um utilizador não está registado no banco
                             String utilizador = textMessage.getStringProperty("utilizador");
                             System.err.println("Utilizador nao existente - "+utilizador);
                             break;
                         default:
                             System.err.println("???");
-                    }
-                    */
+                    }*/
+
                 }
             }
         } catch (JMSException e) {
@@ -110,16 +116,24 @@ public class Transaction extends BasicActor<Message,Void> {
      */
     private void publish() throws SuspendExecution{
         //FIXME ter atenção a estas portas
-        System.out.println("OK - subscrive");
+        /*System.out.println("OK - subscrive");
 
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket socketPub = context.socket(ZMQ.PUB);
         socketPub.connect("tcp://" + hostXSub + ":" + portXSub);
 
-        socketPub.send(this.match.getEmpresa()+": " + this.match.getQuantidade() + ";" + this.match.getPreco() + ";\n");
-
-        socketPub.close();
-        context.term();
+        for(int i = 0; i < 10; i++ ){
+            socketPub.send(this.match.getEmpresa()+":" + i  + this.match.getQuantidade() + ";" + this.match.getPreco() + ";\n");
+        }
+        System.out.println("enviou");
+        //socketPub.close();
+        //context.term();
+        */
+        orderManager.send( new Message(
+                Message.Type.PUB_MES,
+                null,
+                this.match.getEmpresa()+":" + this.match.getQuantidade() + ";" + this.match.getPreco() + ";\n"
+        ));
     }
 
     /**
@@ -128,7 +142,6 @@ public class Transaction extends BasicActor<Message,Void> {
      */
     private void notify_users() throws SuspendExecution {
         //FIXME melhor isto. não tenho a certeza se posso fazer isto.
-        System.out.println("OK - notify");
         this.match.getCompradorRef().send(
                 new Message(
                         Message.Type.ORDER_REP,

@@ -17,14 +17,14 @@ import java.nio.ByteBuffer;
 
 public class Main extends BasicActor<Message,Void> {
 
-    public final String hostXPub = "localhost";
-    public final int portXPub = 12370;
+    public final String hostPub = "localhost";
+    public final int portPub = 12370;
 
     private final ByteBuffer output;
     private final CodedOutputStream cout;
     private final ZMQ.Socket socketSub;
     private final Channel channelLogin;
-    //private final ActorRef subscriber;
+
     private Menu menu;
 
     public Main( Channel channelLogin ) {
@@ -34,7 +34,7 @@ public class Main extends BasicActor<Message,Void> {
 
         ZMQ.Context context = ZMQ.context(1);
         this.socketSub = context.socket(ZMQ.SUB);
-        this.socketSub.connect("tcp://" + hostXPub + ":" + portXPub);
+        this.socketSub.connect("tcp://" + hostPub + ":" + portPub);
 
     }
 
@@ -69,6 +69,7 @@ public class Main extends BasicActor<Message,Void> {
                         }
 
                         System.out.println("Enviei para o channel");
+
                         break;
                     case ORDER_REQ:
                         System.out.println("Recebi o order request");

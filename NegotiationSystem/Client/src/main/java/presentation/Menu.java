@@ -81,12 +81,12 @@ public class Menu extends JFrame{
         unsubscribeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if( !textField_sub.getText().equals("") ){
+                if( !textField_unsub.getText().equals("") ){
                     try {
                         main.send( new Message(
-                                Message.Type.SUB_KEY,
+                                Message.Type.UNSUB_KEY,
                                 null,
-                                textField_sub.getText()
+                                textField_unsub.getText()
                         ));
                     } catch (SuspendExecution suspendExecution) {
                         //TODO impossivel fazer sub alterar

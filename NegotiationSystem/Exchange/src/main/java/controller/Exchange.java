@@ -11,9 +11,6 @@ import java.util.concurrent.ExecutionException;
  */
 public class Exchange {
 
-    public static int portPub = 12370;
-    public static int portSub = 12371;
-
     public static void main(String[] args) {
 
         try {
@@ -22,16 +19,6 @@ public class Exchange {
             try {
                 Acceptor acceptor = new Acceptor(port);
                 acceptor.spawn();
-
-                ZMQ.Context context = ZMQ.context(1);
-                ZMQ.Socket socketPubs = context.socket(ZMQ.XPUB);
-                socketPubs.bind("tcp://*:" + portSub);
-
-                ZMQ.Socket socketSubs = context.socket(ZMQ.XSUB);
-                socketSubs.bind("tcp://*:" + portPub);
-
-                ZMQ.proxy(socketPubs, socketSubs, null);
-
                 acceptor.join();
 
             } catch (SQLException e) {

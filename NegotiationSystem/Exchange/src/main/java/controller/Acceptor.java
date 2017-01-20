@@ -5,6 +5,7 @@ import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberServerSocketChannel;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
+import org.zeromq.ZMQ;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -20,6 +21,7 @@ public class Acceptor extends BasicActor {
         this.port = port;
         this.authenticator = new Authenticator().spawn();
         this.orderManager = new OrderManager().spawn();
+        //new Notification().start();
     }
 
     protected Void doRun() throws InterruptedException, SuspendExecution {
