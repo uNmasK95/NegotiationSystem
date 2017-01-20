@@ -6,6 +6,7 @@ import co.paralleluniverse.common.util.SystemProperties;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import co.paralleluniverse.strands.channels.Channel;
+import com.esotericsoftware.minlog.Log;
 import com.google.protobuf.CodedOutputStream;
 import org.zeromq.ZMQ;
 import presentation.Menu;
@@ -35,33 +36,24 @@ public class Main extends BasicActor<Message,Void> {
         ZMQ.Context context = ZMQ.context(1);
         this.socketSub = context.socket(ZMQ.SUB);
         this.socketSub.connect("tcp://" + hostPub + ":" + portPub);
-
     }
-
-
 
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
-        System.out.println("new Main");
         try {
             FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(12350));
-
             new Listener( self(), socketChannel ).spawn();
-
-            //coloquei aqui o subscriber porque perciso de passar o self e acho que no construtor não ia ter a referencia do actor
             new Subscriber( self(), this.socketSub ).spawn();
 
             while(receive( msg -> {
                 switch (msg.type){
                     case LOGIN_REQ:
                         login_req( socketChannel, msg );
-                        System.out.println("Login request send");
                         break;
                     case LOGIN_REP:
-                        // ver como vamos fazer para comonicar com a interface
                         System.out.println("Recebi o login reply");
+                        //TODO altera isto tirar o channel
                         channelLogin.send(msg.obj);
-
                         Protocol.Reply result = (Protocol.Reply) msg.obj;
 
                         if( result.getResult() ){
@@ -71,35 +63,43 @@ public class Main extends BasicActor<Message,Void> {
                         System.out.println("Enviei para o channel");
 
                         break;
+
                     case ORDER_REQ:
-                        System.out.println("Recebi o order request");
                         send_request( socketChannel, msg );
                         break;
                     case ORDER_REP:
-                        System.out.println("Recebi o order request");
-
                         Protocol.Reply reply = (Protocol.Reply) msg.obj;
+                        System.out.println("ORDER REPLY: " + reply.getResult() + ":" + reply.getDescrition());
                         this.menu.order_result(reply.getResult() + ":" + reply.getDescrition());
 
-                        System.out.println(reply.getResult() + ":" + reply.getDescrition());
                         break;
+
                     case SUB_KEY:
                         this.socketSub.subscribe( ((String) msg.obj).getBytes() );
                         break;
+
                     case UNSUB_KEY:
                         this.socketSub.unsubscribe( ((String) msg.obj).getBytes() );
                         break;
+
                     case SUB_MES:
-                        this.menu.setSubcribeResult( (String)msg.obj );
+                        this.menu.setSubcribeResult( (String) msg.obj );
                         break;
+
+                    case KO:
+                        return false;
                     default:
                         break;
                 }
                 return true;
             }));
 
+            this.socketSub.close();
+            socketChannel.close();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Actor Main fail");
+            //e.printStackTrace();
         }
 
         return null;
@@ -114,7 +114,10 @@ public class Main extends BasicActor<Message,Void> {
             output.flip();
             socketChannel.write(output);
             this.output.compact();
+            System.out.println("Order: " + request.getOrder().getCompany() + ";" + request.getOrder().getType() +
+                    ";" + request.getOrder().getQuant() + ";" + request.getOrder().getPrice() + ";\n");
         } catch (IOException e) {
+            System.out.println("Error send order request");
             e.printStackTrace();
         }
     }
@@ -128,7 +131,9 @@ public class Main extends BasicActor<Message,Void> {
             output.flip();
             socketChannel.write(output);
             this.output.compact();
+            System.out.println("Login: " + login.getLogin().getUsername() + ";" + login.getLogin().getPassword() + ";\n");
         } catch (IOException e) {
+            System.out.println("Error send login request");
             e.printStackTrace();
         }
     }

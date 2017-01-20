@@ -23,8 +23,8 @@ public class Authenticator extends BasicActor<Message, Void> {
             if(msg.type == Message.Type.LOGIN_REQ){
                 loginRequest( msg );
             }
+            return true;
 
-         return true;
         }));
         return null;
     }
@@ -42,7 +42,11 @@ public class Authenticator extends BasicActor<Message, Void> {
                 ((User) msg.obj).getPassword()
         );
 
-        msg.source.send(new Message(Message.Type.LOGIN_REP , null, result));
+        msg.source.send( new Message(
+                Message.Type.LOGIN_REP ,
+                null,
+                result
+        ));
     }
 
 }

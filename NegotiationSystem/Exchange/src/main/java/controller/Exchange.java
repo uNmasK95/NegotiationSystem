@@ -27,6 +27,7 @@ public class Exchange {
             }
 
         } catch (InterruptedException | ExecutionException e) {
+            System.out.println("Exchange fail");
             e.printStackTrace();
         }
     }

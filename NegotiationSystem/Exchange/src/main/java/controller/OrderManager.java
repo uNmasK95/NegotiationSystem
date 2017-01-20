@@ -23,7 +23,6 @@ public class OrderManager extends BasicActor<Message,Void> {
         ZMQ.Context context = ZMQ.context(1);
         this.socketPubs = context.socket(ZMQ.PUB);
         this.socketPubs.bind("tcp://*:" + portPub);
-        System.out.println("Proxy1");
     }
 
     @Override
@@ -44,10 +43,13 @@ public class OrderManager extends BasicActor<Message,Void> {
             return true;
         }));
 
+        this.socketPubs.close();
+
         return null;
     }
 
     private void send_pub(String obj) {
+        System.out.println("PUB: " + obj);
         this.socketPubs.send(obj);
     }
 

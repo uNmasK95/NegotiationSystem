@@ -41,20 +41,16 @@ public class UserManager extends BasicActor<Message, Void> {
                     login_request( msg );
                     break;
                 case LOGIN_REP:
-                    System.out.println("Login Reply");
                     login_reply( msg );
                     break;
                 case ORDER_REQ:
-                    System.out.println("Order Request");
                     order_request( msg );
                     break;
                 case ORDER_REP:
-                    System.out.println("Order Reply");
                     order_reply( msg );
                     break;
                 case KO:
-                    System.out.println("KO");
-                    // seja qual for a messagem
+                    System.out.println("USERMANAGER " + this.user + ": KO");
                     return false;
                 default:
                     break;
@@ -67,6 +63,7 @@ public class UserManager extends BasicActor<Message, Void> {
     private void login_request( Message msg ) throws SuspendExecution {
         Protocol.Request.Login login = (Protocol.Request.Login) msg.obj;
         this.user = login.getUsername();
+        System.out.println("LOGIN: " + login.getUsername() + ";" + login.getPassword());
         this.authenticator.send( new Message(
                 Message.Type.LOGIN_REQ,
                 self(),
@@ -97,6 +94,7 @@ public class UserManager extends BasicActor<Message, Void> {
             this.output.compact();
 
         } catch (IOException e) {
+            System.out.println("Error send login reply");
             e.printStackTrace();
         }
     }
@@ -109,11 +107,10 @@ public class UserManager extends BasicActor<Message, Void> {
     private void order_request( Message msg ) throws SuspendExecution {
         Protocol.Request.Order request = (Protocol.Request.Order) msg.obj;
 
-        //TODO limpar isto
-        System.out.println( "Type: " + request.getType() + "\n\t" +
-                request.getCompany() + "\n\t" +
-                request.getQuant() + "\n\t" +
-                request.getPrice() + "");
+        System.out.println( "ORDER: " + request.getType() + ";" +
+                request.getCompany() + ";" +
+                request.getQuant() + ";" +
+                request.getPrice() + ";");
 
         if(request.getType() == Protocol.Request.Order.Type.Buy){
             order_buy( request );
@@ -172,7 +169,6 @@ public class UserManager extends BasicActor<Message, Void> {
                 .setType(Protocol.Reply.Type.Order)
                 .setResult(true)
                 .setDescrition( (String) msg.obj)
-                //TODO alterar isto
                 .build();
 
         try {
@@ -184,6 +180,7 @@ public class UserManager extends BasicActor<Message, Void> {
             this.output.compact();
 
         } catch (IOException e) {
+            System.out.println("Error send order reply");
             e.printStackTrace();
         }
     }

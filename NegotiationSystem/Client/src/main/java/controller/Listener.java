@@ -6,6 +6,7 @@ import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import com.google.protobuf.CodedInputStream;
 
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -30,14 +31,10 @@ public class Listener extends BasicActor<Message,Void> {
         try {
             while (socketChannel.isOpen()) {
 
-                //ler do socket para o buffer; ficar a espera enquanto não tiver nada
                 if (socketChannel.read(this.input) > 0){
-                    //colocar o buffer de for a que seja possivel ler dele
+
                     this.input.flip();
-
-                    // quantos bytes o parse precisa de ler
                     int len = this.cin.readRawVarint32();
-
                     Protocol.Reply reply = Protocol.Reply.parseFrom(cin.readRawBytes(len) );
 
                     if( reply.getType() == Protocol.Reply.Type.Login){
@@ -53,15 +50,18 @@ public class Listener extends BasicActor<Message,Void> {
                                 reply
                         ));
                     }
-
-
                     this.input.clear();
-                    //this.input.compact();
                 }
 
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            main.send( new Message(
+                    Message.Type.KO,
+                    null,
+                    "Listener KO"));
+
+            System.out.println("Listener KO");
+            //e.printStackTrace();
         }
 
         return null;

@@ -5,7 +5,6 @@ import co.paralleluniverse.actors.BasicActor;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.io.FiberSocketChannel;
 import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.CodedOutputStream;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -17,8 +16,6 @@ public class ReaderSocket extends BasicActor<Message,Void> {
     private final ByteBuffer input;
     private final CodedInputStream cin;
 
-
-
     public ReaderSocket(FiberSocketChannel socketChannel, ActorRef user) {
         this.socketChannel = socketChannel;
         this.user = user;
@@ -29,42 +26,28 @@ public class ReaderSocket extends BasicActor<Message,Void> {
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
 
-        try {
-            //TODO resolver problema de fechar ator quando o utilizador faz logout
-            while (true) {
-
+        while (socketChannel.isOpen()) {
+            try {
                 //ler do socket para o buffer; ficar a espera enquanto não tiver nada
-                if(socketChannel.read(this.input) > 0){
-                    System.out.println("Deixou de ler");
-
+                if (socketChannel.read(this.input) > 0) {
                     //colocar o buffer de for a que seja possivel ler dele
                     this.input.flip();
-
                     // quantos bytes o parse precisa de ler
                     int len = this.cin.readRawVarint32();
-
                     Protocol.Request request = Protocol.Request.parseFrom(this.cin.readRawBytes(len));
 
-                    System.out.println(request.hasLogin());
-                    System.out.println(request.getLogin());
-
-
-                    if (request.hasLogin()){
-                        System.out.println("Recebi messagem de login");
-                        this.user.send( new Message(Message.Type.LOGIN_REQ, self(), request.getLogin()));
-                    }else {
-                        System.out.println("Recebi messagem de order");
-                        this.user.send( new Message( Message.Type.ORDER_REQ, self(), request.getOrder()) );
+                    if (request.hasLogin()) {
+                        this.user.send(new Message(Message.Type.LOGIN_REQ, self(), request.getLogin()));
+                    } else {
+                        this.user.send(new Message(Message.Type.ORDER_REQ, self(), request.getOrder()));
                     }
                     this.input.clear();
                 }
-
+            } catch (IOException e) {
+                System.out.println("IOException");
             }
-        } catch (IOException e) {
-           // this.user.send( new Message(Message.Type.KO, self(),"IOException"));
-            System.out.println("IOException");
         }
-        this.user.send( new Message(Message.Type.KO, self(),"Socket is close!"));
+        this.user.send(new Message(Message.Type.KO, self(), "Socket is close!"));
         System.out.println("Socket is close!");
         return null;
     }
