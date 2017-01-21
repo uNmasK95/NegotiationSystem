@@ -17,10 +17,7 @@ public class Client{
 
     public static void main(String[] args) {
 
-        final Channel<Protocol.Reply> channelLogin = Channels.newChannel(0);
-
-        ActorRef main = new Main( channelLogin ).spawn();
-        Login login = new Login(main, channelLogin );
+        ActorRef main = new Main().spawn();
 
     }
 }

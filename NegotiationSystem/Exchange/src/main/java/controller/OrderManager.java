@@ -57,7 +57,7 @@ public class OrderManager extends BasicActor<Message,Void> {
 
         List<Match> result = this.orders.add( order );
         if(!result.isEmpty()){
-            System.out.println("Foi encontrado match");
+            System.out.println("ORDER: Match");
             for ( Match m : result ) {
                 try {
                     new Transaction( self(), m ).spawn();
@@ -67,7 +67,7 @@ public class OrderManager extends BasicActor<Message,Void> {
                 }
             }
         }else{
-            System.out.println("Não foi encontrado match");
+            System.out.println("ORDER: Match not found");
         }
 
     }

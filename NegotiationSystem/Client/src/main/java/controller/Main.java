@@ -9,6 +9,7 @@ import co.paralleluniverse.strands.channels.Channel;
 import com.esotericsoftware.minlog.Log;
 import com.google.protobuf.CodedOutputStream;
 import org.zeromq.ZMQ;
+import presentation.Login;
 import presentation.Menu;
 
 import javax.swing.*;
@@ -24,14 +25,13 @@ public class Main extends BasicActor<Message,Void> {
     private final ByteBuffer output;
     private final CodedOutputStream cout;
     private final ZMQ.Socket socketSub;
-    private final Channel channelLogin;
 
+    private Login login;
     private Menu menu;
 
-    public Main( Channel channelLogin ) {
+    public Main( ) {
         this.output = ByteBuffer.allocate(1024);
         this.cout = CodedOutputStream.newInstance( this.output );
-        this.channelLogin = channelLogin;
 
         ZMQ.Context context = ZMQ.context(1);
         this.socketSub = context.socket(ZMQ.SUB);
@@ -40,6 +40,9 @@ public class Main extends BasicActor<Message,Void> {
 
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
+
+        this.login = new Login( self() );
+
         try {
             FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(12350));
             new Listener( self(), socketChannel ).spawn();
@@ -51,17 +54,15 @@ public class Main extends BasicActor<Message,Void> {
                         login_req( socketChannel, msg );
                         break;
                     case LOGIN_REP:
-                        System.out.println("Recebi o login reply");
-                        //TODO altera isto tirar o channel
-                        channelLogin.send(msg.obj);
-                        Protocol.Reply result = (Protocol.Reply) msg.obj;
+                        if( this.login != null){
+                            Protocol.Reply result = (Protocol.Reply) msg.obj;
+                            this.login.login_reply( result.getResult() );
 
-                        if( result.getResult() ){
-                            this.menu = new Menu( result.getDescrition(), self());
+                            if( result.getResult() ){
+                                this.menu = new Menu( result.getDescrition(), self());
+                                this.login = null;
+                            }
                         }
-
-                        System.out.println("Enviei para o channel");
-
                         break;
 
                     case ORDER_REQ:
@@ -115,7 +116,7 @@ public class Main extends BasicActor<Message,Void> {
             socketChannel.write(output);
             this.output.compact();
             System.out.println("Order: " + request.getOrder().getCompany() + ";" + request.getOrder().getType() +
-                    ";" + request.getOrder().getQuant() + ";" + request.getOrder().getPrice() + ";\n");
+                    ";" + request.getOrder().getQuant() + ";" + request.getOrder().getPrice() + ";");
         } catch (IOException e) {
             System.out.println("Error send order request");
             e.printStackTrace();
@@ -131,7 +132,7 @@ public class Main extends BasicActor<Message,Void> {
             output.flip();
             socketChannel.write(output);
             this.output.compact();
-            System.out.println("Login: " + login.getLogin().getUsername() + ";" + login.getLogin().getPassword() + ";\n");
+            System.out.println("Login: " + login.getLogin().getUsername() + ";" + login.getLogin().getPassword() + ";");
         } catch (IOException e) {
             System.out.println("Error send login request");
             e.printStackTrace();

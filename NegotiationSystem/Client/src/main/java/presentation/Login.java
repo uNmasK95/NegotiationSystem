@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutionException;
 public class Login extends JFrame{
 
     private final ActorRef main;
-    private final Channel channelLogin;
 
     private JTextField usernameTextField;
     private JPasswordField passwordPasswordField;
@@ -21,10 +20,9 @@ public class Login extends JFrame{
     private JPanel panel1;
 
 
-    public Login(ActorRef main, Channel channelLogin ){
+    public Login( ActorRef main ){
         super("Login");
         this.main = main;
-        this.channelLogin = channelLogin;
 
         this.setContentPane(panel1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,21 +59,8 @@ public class Login extends JFrame{
                         requestLogin
                 ));
 
-                System.out.println("Á espera de recber resposta");
-                Protocol.Reply reply = (Protocol.Reply) channelLogin.receive();
-
-                if( reply.getType() == Protocol.Reply.Type.Login && reply.getResult() ){
-                    System.out.println("Login Realizado");
-                    this.dispose();
-                }else {
-                    JOptionPane.showMessageDialog(this,
-                            "Username or Password Error",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-
-            } catch (SuspendExecution | InterruptedException e1 ) {
-                e1.printStackTrace();
+            } catch (SuspendExecution e) {
+                e.printStackTrace();
             }
 
         }
@@ -89,7 +74,21 @@ public class Login extends JFrame{
                 usernameTextField.setText("");
             }
         });
+        passwordPasswordField.setText("");
     }
 
+
+    public void login_reply( boolean result ){
+        if( result ){
+            System.out.println("LOGIN: OK");
+            this.dispose();
+        }else {
+            JOptionPane.showMessageDialog(this,
+                    "Username or Password Error",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            init_usernameTextField();
+        }
+    }
 
 }

@@ -16,7 +16,6 @@ public class Transaction extends BasicActor<Message,Void> {
     private final Connection connection;
     private final ActorRef orderManager;
 
-
     public Transaction( ActorRef orderManager, Match match ) throws JMSException {
         this.orderManager = orderManager;
         this.match = match;
@@ -60,8 +59,6 @@ public class Transaction extends BasicActor<Message,Void> {
 
         return null;
     }
-
-
 
     public void onMessage(javax.jms.Message message) throws SuspendExecution{
         try {
