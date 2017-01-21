@@ -14,6 +14,8 @@ public class Login extends JFrame{
 
     private final ActorRef main;
 
+
+    //private JTextField usernameTextField;
     private JTextField usernameTextField;
     private JPasswordField passwordPasswordField;
     private JButton SIGNINButton;
@@ -29,7 +31,6 @@ public class Login extends JFrame{
         this.setLocationRelativeTo(null);
         this.pack();
         this.setVisible(true);
-        init_usernameTextField();
 
         SIGNINButton.addActionListener(new ActionListener() {
             @Override
@@ -66,18 +67,6 @@ public class Login extends JFrame{
         }
     }
 
-    private void init_usernameTextField(){
-        usernameTextField.setText("Username!");
-        usernameTextField.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                usernameTextField.setText("");
-            }
-        });
-        passwordPasswordField.setText("");
-    }
-
-
     public void login_reply( boolean result ){
         if( result ){
             System.out.println("LOGIN: OK");
@@ -87,8 +76,11 @@ public class Login extends JFrame{
                     "Username or Password Error",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            init_usernameTextField();
         }
     }
 
+    private void createUIComponents() {
+        usernameTextField = new HintTextField("Username");
+        passwordPasswordField = new HintPasswordField("Password");
+    }
 }

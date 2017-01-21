@@ -40,7 +40,7 @@ class TestActor extends BasicActor<Void,Void> implements MessageListener {
       m.setStringProperty("vendedor","pedro");
       m.setStringProperty("empresa","microsoft");
       m.setIntProperty("quantidade",1);
-      m.setFloatProperty("preco",2.0f);
+      m.setFloatProperty("preco",-2000.0f);
 
       // Testes de excecoes ...
       //m.setStringProperty("comprador","UNKOWN");

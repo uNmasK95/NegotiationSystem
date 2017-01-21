@@ -9,6 +9,7 @@ import controller.Protocol;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 
 public class Menu extends JFrame{
     private JPanel panel1;
@@ -21,15 +22,19 @@ public class Menu extends JFrame{
     private JRadioButton buyRadioButton;
     private JTextField textField_company;
     private JTextField textField_sub;
-    private JTextField textField_unsub;
+    private JComboBox<String> textField_unsub;
     private JButton subscribeButton;
     private JButton unsubscribeButton;
 
+    private HashSet<String> subscriptions = new HashSet<>();
     private final ActorRef main;
+    private static final int SUBSCRIPTIONS_LIMIT = 5;
 
     public Menu( String title, ActorRef main ){
         super( title );
         this.main = main;
+        textField_unsub.addItem("");
+        textField_unsub.setSelectedItem("");
 
         this.setContentPane(panel1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,21 +65,28 @@ public class Menu extends JFrame{
         subscribeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if( !textField_sub.getText().equals("") ){
-                    try {
-                        main.send( new Message(
+                String sub = textField_sub.getText();
+                if( !sub.equals("") && !subscriptions.contains(sub)){
+                    if(subscriptions.size() < SUBSCRIPTIONS_LIMIT) {
+                        try {
+                            main.send(new Message(
                                 Message.Type.SUB_KEY,
                                 null,
-                                textField_sub.getText()
-                        ));
-                        textArea1.append("SUBSCRIBE: " + textField_sub.getText() + "\n");
-                        textField_sub.setText("");
-                    } catch (SuspendExecution suspendExecution) {
-                        //TODO impossivel fazer sub alterar
-                        suspendExecution.printStackTrace();
+                                sub
+                            ));
+                            subscriptions.add(sub);
+                            textField_unsub.addItem(sub);
+                            textArea1.append("SUBSCRIBE: " + sub + "\n");
+                            textField_sub.setText("");
+                        } catch (SuspendExecution suspendExecution) {
+                            //TODO impossivel fazer sub alterar
+                            suspendExecution.printStackTrace();
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(Menu.this, "Subscription limit reached");
                     }
                 }
-
             }
         });
     }
@@ -83,21 +95,23 @@ public class Menu extends JFrame{
         unsubscribeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if( !textField_unsub.getText().equals("") ){
+                String unsub = (String) textField_unsub.getSelectedItem();
+                if( !unsub.equals("") ){
                     try {
                         main.send( new Message(
                                 Message.Type.UNSUB_KEY,
                                 null,
-                                textField_unsub.getText()
+                                unsub
                         ));
-                        textArea1.append("UNSUBSCRIBE: " + textField_unsub.getText() + "\n");
-                        textField_unsub.setText("");
+                        textArea1.append("UNSUBSCRIBE: " + unsub + "\n");
+                        subscriptions.remove(unsub);
+                        textField_unsub.removeItem(unsub);
+                        textField_unsub.setSelectedItem("");
                     } catch (SuspendExecution suspendExecution) {
                         //TODO impossivel fazer sub alterar
                         suspendExecution.printStackTrace();
                     }
                 }
-
             }
         });
     }
@@ -108,7 +122,7 @@ public class Menu extends JFrame{
         this.spinner_nActions.setValue(1);
         this.sellRadioButton.setSelected(true);
         this.textField_sub.setText("");
-        this.textField_unsub.setText("");
+        this.textField_unsub.setSelectedItem("");
     }
 
     private void clickSubmitButton(){
