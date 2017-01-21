@@ -85,7 +85,7 @@ public class Transaction extends BasicActor<Message,Void> {
                                             new Order(
                                                     this.match.getEmpresa(),
                                                     this.match.getQuantidade(),
-                                                    this.match.getPreco(),
+                                                    this.match.getPrecoCompra(),
                                                     this.match.getComprador(),
                                                     self(),
                                                     Order.Tipo.COMPRA
@@ -112,7 +112,7 @@ public class Transaction extends BasicActor<Message,Void> {
         orderManager.send( new Message(
                 Message.Type.PUB_MES,
                 null,
-                this.match.getEmpresa()+":" + this.match.getQuantidade() + ";" + this.match.getPreco() + ";\n"
+                this.match.getEmpresa()+";" + this.match.getQuantidade() + ";" + this.match.getPreco() + ";\n"
         ));
     }
 
@@ -125,10 +125,11 @@ public class Transaction extends BasicActor<Message,Void> {
                 new Message(
                         Message.Type.ORDER_REP,
                         self(),
-                        "Company: " + this.match.getEmpresa()+": \n" +
-                                "\tSalesman: " + this.match.getVendedor() + ";\n" +
-                                "\tAmount: " + this.match.getQuantidade() + ";\n" +
-                                "\tPrice: " + this.match.getPreco() + ";\n"
+                        "-- Buy --\n"+
+                        "> Company: " + this.match.getEmpresa()+"; \n" +
+                        "> Salesman: " + this.match.getVendedor() + ";\n" +
+                        "> Amount: " + this.match.getQuantidade() + ";\n" +
+                        "> Price: " + this.match.getPreco() + ";\n"
                 )
         );
 
@@ -136,10 +137,11 @@ public class Transaction extends BasicActor<Message,Void> {
                 new Message(
                         Message.Type.ORDER_REP,
                         self(),
-                        "Company: " + this.match.getEmpresa()+": \n" +
-                                "\tBuyer: " + this.match.getComprador() + ";\n" +
-                                "\tAmount: " + this.match.getQuantidade() + ";\n" +
-                                "\tPrice: " + this.match.getPreco() + ";\n"
+                    "-- Sell --\n"+
+                        "> Company: " + this.match.getEmpresa()+"; \n" +
+                        "> Buyer: " + this.match.getComprador() + ";\n" +
+                        "> Amount: " + this.match.getQuantidade() + ";\n" +
+                        "> Price: " + this.match.getPreco() + ";\n"
                 )
         );
 

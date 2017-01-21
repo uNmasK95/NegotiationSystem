@@ -71,7 +71,7 @@ public class Main extends BasicActor<Message,Void> {
                     case ORDER_REP:
                         Protocol.Reply reply = (Protocol.Reply) msg.obj;
                         System.out.println("ORDER REPLY: " + reply.getResult() + ":" + reply.getDescrition());
-                        this.menu.order_result(reply.getResult() + ":" + reply.getDescrition());
+                        this.menu.order_result(reply.getDescrition());
 
                         break;
 

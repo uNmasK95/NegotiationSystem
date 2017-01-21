@@ -120,7 +120,7 @@ public class Menu extends JFrame{
         this.textField_company.setText("");
         this.textField_value.setText("");
         this.spinner_nActions.setValue(1);
-        this.sellRadioButton.setSelected(true);
+        //this.sellRadioButton.setSelected(true);
         this.textField_sub.setText("");
         this.textField_unsub.setSelectedItem("");
     }
@@ -164,6 +164,10 @@ public class Menu extends JFrame{
                             null,
                             request
                     ));
+                    this.textArea1.append("Order placed: "+request.getOrder().getType()+", " +
+                        request.getOrder().getCompany() + ", "+
+                        request.getOrder().getQuant() + ","+
+                        request.getOrder().getPrice()+"\n");
                 }
 
             } catch (SuspendExecution suspendExecution) {
@@ -183,14 +187,15 @@ public class Menu extends JFrame{
     }
 
     public void setSubcribeResult( String result ){
-        textArea1.append( result );
+        textArea1.append( "Notification: " + result );
     }
 
     public void order_result(String result){
-        JOptionPane.showMessageDialog(this,
-                result,
-                "Offer Result",
-                JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(this,
+//                result,
+//                "Offer Result",
+//                JOptionPane.INFORMATION_MESSAGE);
+        this.textArea1.append(result);
 
     }
 }
