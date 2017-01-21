@@ -67,6 +67,11 @@ public class Login extends JFrame{
                 if( reply.getType() == Protocol.Reply.Type.Login && reply.getResult() ){
                     System.out.println("Login Realizado");
                     this.dispose();
+                }else {
+                    JOptionPane.showMessageDialog(this,
+                            "Username or Password Error",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SuspendExecution | InterruptedException e1 ) {

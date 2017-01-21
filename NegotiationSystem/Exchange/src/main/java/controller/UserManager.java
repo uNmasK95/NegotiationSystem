@@ -156,7 +156,6 @@ public class UserManager extends BasicActor<Message, Void> {
                         self(),
                         Order.Tipo.VENDA
                 )
-                // FIXME ver o que colocar aqui no user
         ));
     }
 

@@ -14,7 +14,8 @@ public class Exchange {
     public static void main(String[] args) {
 
         try {
-            int port =  Integer.parseInt(args[0]);
+            //int port =  Integer.parseInt(args[0]);
+            int port = 12350;
             System.out.println("Exchange listening on port " + port);
             try {
                 Acceptor acceptor = new Acceptor(port);

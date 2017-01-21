@@ -67,6 +67,8 @@ public class Menu extends JFrame{
                                 null,
                                 textField_sub.getText()
                         ));
+                        textArea1.append("SUBSCRIBE: " + textField_sub.getText() + "\n");
+                        textField_sub.setText("");
                     } catch (SuspendExecution suspendExecution) {
                         //TODO impossivel fazer sub alterar
                         suspendExecution.printStackTrace();
@@ -88,6 +90,8 @@ public class Menu extends JFrame{
                                 null,
                                 textField_unsub.getText()
                         ));
+                        textArea1.append("UNSUBSCRIBE: " + textField_unsub.getText() + "\n");
+                        textField_unsub.setText("");
                     } catch (SuspendExecution suspendExecution) {
                         //TODO impossivel fazer sub alterar
                         suspendExecution.printStackTrace();
@@ -165,7 +169,6 @@ public class Menu extends JFrame{
     }
 
     public void setSubcribeResult( String result ){
-
         textArea1.append( result );
     }
 

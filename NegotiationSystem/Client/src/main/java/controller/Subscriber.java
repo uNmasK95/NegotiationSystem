@@ -19,10 +19,7 @@ public class Subscriber extends BasicActor<Message,Void> {
 
     @Override
     protected Void doRun() throws InterruptedException, SuspendExecution {
-        //TODO mudar isto
-        socketSubscribe.subscribe("".getBytes());
         while ( true ) {
-            //TODO ver melhor esta condição
             byte[] b = this.socketSubscribe.recv();
             System.out.println( "SUB: " + new String(b) );
             main.send( new Message(
