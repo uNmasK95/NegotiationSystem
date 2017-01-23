@@ -53,7 +53,7 @@ public class OrderList{
           precoV = o.getPrice();
           compradorRef = this_order.getUserRef();
           comprador = this_order.getUser();
-          precoC = o.getPrice();
+          precoC = this_order.getPrice();
           break;
       }
       matches.add(new Match(
