@@ -22,6 +22,9 @@ public class Main extends BasicActor<Message,Void> {
     public final String hostPub = "localhost";
     public final int portPub = 12370;
 
+    public final String hostExchange = "localhost";
+    public final int portExchange = 12350;
+
     private final ByteBuffer output;
     private final CodedOutputStream cout;
     private final ZMQ.Socket socketSub;
@@ -44,7 +47,7 @@ public class Main extends BasicActor<Message,Void> {
         this.login = new Login( self() );
 
         try {
-            FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(12350));
+            FiberSocketChannel socketChannel = FiberSocketChannel.open(new InetSocketAddress(hostExchange,portExchange));
             new Listener( self(), socketChannel ).spawn();
             new Subscriber( self(), this.socketSub ).spawn();
 
